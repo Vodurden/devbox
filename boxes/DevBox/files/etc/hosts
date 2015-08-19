@@ -1,0 +1,4 @@
+::1           localhost localhost.example.me
+127.0.0.1     localhost localhost.example.me
+::1           freebsd-vagrant freebsd-vagrant.example.me
+127.0.0.1     freebsd-vagrant freebsd-vagrant.example.me
