@@ -5,8 +5,10 @@
                 "<enter><wait>",
                 "<enter><wait>",
                 "freebsd-vagrant<enter><wait>",
+                "<spacebar>",
                 "<down><spacebar>",
-                "<down><spacebar>",
+                "<down>>",
+                "<down>",
                 "<down><spacebar><wait>",
                 "<enter><wait>",
                 "<enter><wait>",
@@ -14,6 +16,12 @@
                 "<enter><wait>",
                 "<enter><wait>",
                 "<enter><wait>",
+                "<wait10>",
+                "<wait10>",
+                "<wait10>",
+                "<wait10>",
+                "<wait10>",
+                "<wait10>",
                 "<wait10>",
                 "<wait10>",
                 "<wait10>",
@@ -77,7 +85,8 @@
     ],
     "provisioners": [{
         "scripts": [
-            "scripts/postinstall.sh"
+            "scripts/postinstall.sh",
+            "scripts/test_postinstall.sh"
         ],
         "type": "shell"
     }],

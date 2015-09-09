@@ -1,0 +1,8 @@
+# Always delete stale distfiles without prompting (-d)
+ALWAYS_SCRUB_DISTFILES=dopt
+# Install packages for build-only dependencies (--packages-build)
+PM_PACKAGES_BUILD=pmp_build
+# Delete build-only dependencies when finished (--delete-build-only)
+PM_DEL_BUILD_ONLY=pm_dbo
+#Suppress the build confirmation message (--no-confirm)
+PM_NO_CONFIRM=pm_no_confirm

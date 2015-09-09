@@ -1,7 +1,3 @@
-cd FreeBSD-10.1-RELEASE \
-    && (rm -rf build || true) \
-    && packer build freebsd.json \
-    && cd - \
-    && cd DevBox \
-    && packer build devbox.json \
-    && vagrant box add --force devbox build/devbox.box
+cd FreeBSD-10.1-RELEASE && time ./build.sh && cd - \
+    && cd DevBox-Core && time ./build.sh && cd - \
+    && cd DevBox && time ./build.sh && cd -

@@ -2,17 +2,11 @@
 
 echo 'Running post-install..'
 
+echo
 echo 'Setting up pkg'
 if [ ! -f /usr/local/sbin/pkg ]; then
   ASSUME_ALWAYS_YES=yes pkg bootstrap
 fi
-
-echo 'Setting up VM Tools..'
-pkg install -y virtualbox-ose-additions
-echo 'vboxguest_enable="YES"' >> /etc/rc.conf
-echo 'vboxservice_enable="YES"' >> /etc/rc.conf
-echo 'hald_enable="YES"' >> /etc/rc.conf
-echo 'dbus_enable="YES"' >> /etc/rc.conf
 
 echo
 echo 'Setting up sudo..'
@@ -31,14 +25,12 @@ echo
 echo 'Changing roots shell back'
 chsh -s tcsh root
 
-# Install ports
-# Lie to portsnap. Portsnap will yell at you if you're non interactive
-# and tell you to use `portsnap cron`. We don't really want to wait
-# between 1-3600 seconds to initialize the machine and we're not
-# deploying this to a fleet so instead we're going to lie and say
-# we really are interactive. Please don't hurt me BSD gods :(
-portsnap --interactive fetch
-portsnap extract
+# Packer bugs can cause this script to finish earlier then it should and progress to the
+# next script. We're going to check that this file exists in the next script which ensures
+# that the entire script has run.
+#
+# see: https://github.com/mitchellh/packer/issues/2631
+touch /tmp/postinstall_good
 
 echo
 echo 'Post-install complete.'
