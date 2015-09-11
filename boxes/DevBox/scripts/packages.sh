@@ -1,16 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-set +x
+pacman -Syy
 
-# Languages!
-# Ruby, Python and Perl are installed by DevBox-Core (as
-# dependencies by other packages)
-pkg install -y \
-    node \
-    www/npm \
-    lang/elixir \
-    lang/rust
+# Fonts
+pacman --noconfirm -S \
+       adobe-source-code-pro-fonts
 
 # Tools
-pkg install -y \
-    git
+pacman --noconfirm -S \
+       git \
+       xclip \
+       aspell
+
+# Languages
+pacman --noconfirm -S \
+       clang \
+       cmake \
+       nodejs \
+       npm \
+       elixir \
+       lua \
+       rust
+
+# Install bundler for our jake user
+runuser -l jake -c 'gem install bundler'

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-vagrant up \
+vagrant destroy -f \
+    && vagrant up \
     && rm -rf build \
     && mkdir build \
     && vagrant package --output build/devbox.box \

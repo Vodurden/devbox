@@ -1,9 +1,11 @@
 #!/bin/sh
 
-# Add the Jake account. No password
-echo 'jake::::::Jake Woods:/usr/home/jake:tcsh:none' > /tmp/users
-adduser -w none -G wheel -f /tmp/users
-rm /tmp/users
+# Enable 'wheel' as sudo access
+echo 'Enabling Wheel=Sudo'
+sed -i -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
 
-# Give the jake account sudo access
-echo 'jake ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/jake
+# Add the Jake account. No password
+echo 'Creating Jake'
+useradd -c 'Jake Woods' -m -G wheel jake
+passwd -d jake # No password for the jake account
+echo 'Done'
