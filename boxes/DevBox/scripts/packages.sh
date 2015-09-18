@@ -20,7 +20,8 @@ pacman --noconfirm -S \
        npm \
        elixir \
        lua \
-       rust
+       rust \
+       markdown
 
 # Install bundler for our jake user
 runuser -l jake -c 'gem install bundler'
