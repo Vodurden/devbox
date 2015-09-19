@@ -12,7 +12,7 @@ EOF
 
 pacman-key -r 962DDE58
 pacman-key --lsign-key 962DDE58
-pacman -Syy
+pacman -Sy
 
 # Fontconfig and Freetype2 will be replaced by their infinality equivalents
 yes | pacman -S cairo-infinality-ultimate

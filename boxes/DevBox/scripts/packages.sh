@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Syy
+pacman -Sy
 
 # Fonts
 pacman --noconfirm -S \
