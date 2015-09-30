@@ -28,7 +28,10 @@
      erlang
      python
      rust
-     javascript
+     (javascript :variables
+       js2-basic-offset 2
+       js-indent-level 2
+       js2-global-externs '("module" "require" "__dirname" "console" "process"))
      lua
      )
    ;; A list of packages and/or extensions that will not be install and loaded.

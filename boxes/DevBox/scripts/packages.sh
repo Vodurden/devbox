@@ -25,3 +25,7 @@ pacman --noconfirm -S \
 
 # Install bundler for our jake user
 runuser -l jake -c 'gem install bundler'
+
+# Install node packages for spacemacs javascript support
+npm install -g tern
+npm install -g js-beautify
