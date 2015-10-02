@@ -1,9 +1,15 @@
 #!/bin/bash
 
+# Make sure our .spacemacs is clean
+echo 'Cleaning .spacemacs'
+mv /tmp/.spacemacs /home/jake/.spacemacs
+dos2unix -q /home/jake/.spacemacs
+chown jake:jake /home/jake/.spacemacs
+
 # Install Spacemacs. When updating Spacemacs modify the `--branch <tag>` portion of the runuser command to point to the new version tag.
 echo 'Installing Spacemacs'
 
-runuser -l jake -c 'git clone --recursive https://github.com/syl20bnr/spacemacs --branch v0.103.6 ~/.emacs.d'
+runuser -l jake -c 'git clone --recursive https://github.com/syl20bnr/spacemacs --branch v0.104.2 ~/.emacs.d'
 
 # We must switch to the users home directory before running init.el
 # or gpg will fail to find it's keys and we won't be able to

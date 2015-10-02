@@ -20,5 +20,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, path: "scripts/packages.sh"
+
+  # We want our `.spacemacs` file available when we bootstrap to:
+  # * Prevent spacemacs asking for first-time configuration
+  # * Preload layers we want to use
+  config.vm.provision :file,
+    source: "../../files/home/jake/.spacemacs",
+    destination: "/tmp/.spacemacs"
   config.vm.provision :shell, path: "scripts/spacemacs.sh"
 end
