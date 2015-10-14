@@ -38,7 +38,8 @@ values."
      (javascript :variables
                  js2-basic-offset 2
                  js-indent-level 2
-                 js2-global-externs '("module" "require" "__dirname" "console" "process"))
+                 js2-global-externs '("module" "require" "__dirname" "console" "process"
+                                      "describe" "it" "before" "beforeEach" "after" "afterEach"))
      lua
      )
    ;; List of additional packages that will be installed without being
