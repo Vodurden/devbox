@@ -225,14 +225,8 @@ layers configuration."
   (setq projectile-indexing-method 'native)
 
   ;; Custom Bindings
-  (add-hook 'evil-after-load-hook
-    (lambda ()
-      (progn
-        (define-key evil-normal-state-map (kbd "<tab>") 'evil-jumper/forward)
-        (define-key evil-normal-state-map (kbd "<backtab>") 'evil-jumper/backward)
-      )
-    )
-  )
+  (define-key evil-normal-state-map (kbd "<tab>") 'evil-jumper/forward)
+  (define-key evil-normal-state-map (kbd "<backtab>") 'evil-jumper/backward)
 )
 
 
