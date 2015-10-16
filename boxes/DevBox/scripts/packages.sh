@@ -14,18 +14,15 @@ pacman --noconfirm -S \
 
 # Languages
 pacman --noconfirm -S \
-       clang \
-       cmake \
-       nodejs \
-       npm \
-       elixir \
+       clang cmake \
+       nodejs npm \
+       erlang erlang-docs elixir \
        lua \
        rust \
        markdown
 
+# Install node packages for spacemacs javascript support
+npm install -g tern js-beautify
+
 # Install bundler for our jake user
 runuser -l jake -c 'gem install bundler'
-
-# Install node packages for spacemacs javascript support
-npm install -g tern
-npm install -g js-beautify
