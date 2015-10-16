@@ -217,6 +217,13 @@ layers configuration."
   (setq-default default-buffer-file-coding-system 'utf-8-unix)
   (setq-default buffer-file-coding-system 'utf-8-unix)
 
+  ;; Smoother mouse wheel scrolling
+  (setq
+   mouse-wheel-scroll-amount '(3 ((shift) . 1))
+   mouse-wheel-progressive-speed nil
+   scroll-preserve-screen-position 1
+   redisplay-dont-pause t)
+
   ;; Remove trailing whitespace before saving a file
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
