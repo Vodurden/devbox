@@ -30,7 +30,7 @@ git clone https://github.com/jeremyjh/dialyxir.git /tmp/dialyxir \
     && rm -rf /tmp/dialyxir
 
 # Install node packages for spacemacs javascript support
-npm install -g tern js-beautify
+runuser -l jake -c 'sudo npm install -g tern js-beautify'
 
 # Install bundler for our jake user
 runuser -l jake -c 'gem install bundler'

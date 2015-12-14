@@ -1,0 +1,31 @@
+{
+  "variables": {
+    "iso_url": "http://mirrors.kernel.org/archlinux/iso/2015.11.01/archlinux-2015.11.01-dual.iso",
+    "iso_checksum": "de1876320317586ec84259df3bc3cfbafcf3242c",
+    "iso_checksum_type": "sha1"
+  },
+  "builders": [{
+    "type": "virtualbox-iso",
+    "iso_url": "{{user `iso_url`}}",
+    "iso_checksum": "{{user `iso_checksum`}}",
+    "iso_checksum_type": "{{user `iso_checksum_type`}}",
+    "guest_os_type": "ArchLinux_64",
+    "guest_additions_mode": "disable",
+    "http_directory": ".",
+    "boot_wait": "5s",
+    "boot_command": [
+      "<enter><wait10><wait10>",
+      "/usr/bin/curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/scripts/bootstrap.sh'<enter><wait5>",
+      "/usr/bin/curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/scripts/poweroff.timer'<enter><wait5>",
+      "/usr/bin/bash ./bootstrap.sh<enter>"
+    ],
+    "disk_size": 40960,
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "shutdown_command": "sudo systemctl start poweroff.timer"
+  }],
+  "post-processors": [{
+    "type": "vagrant",
+    "output": "arch-base.box"
+  }]
+}
