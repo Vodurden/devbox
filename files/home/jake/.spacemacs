@@ -28,6 +28,7 @@ values."
      syntax-checking
      emacs-lisp
      (ruby :variables
+           ruby-enable-enh-ruby-mode t
            enh-ruby-deep-indent-paren nil
            enh-ruby-hanging-paren-deep-indent-level 2
            enh-ruby-hanging-brace-deep-indent-level 2)

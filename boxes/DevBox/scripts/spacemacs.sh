@@ -9,7 +9,7 @@ chown jake:jake /home/jake/.spacemacs
 # Install Spacemacs. When updating Spacemacs modify the `--branch <tag>` portion of the runuser command to point to the new version tag.
 echo 'Installing Spacemacs'
 
-runuser -l jake -c 'git clone --recursive https://github.com/syl20bnr/spacemacs --branch v0.104.2 ~/.emacs.d'
+runuser -l jake -c 'git clone --recursive https://github.com/syl20bnr/spacemacs --branch v0.105.9 ~/.emacs.d'
 
 # We must switch to the users home directory before running init.el
 # or gpg will fail to find it's keys and we won't be able to
