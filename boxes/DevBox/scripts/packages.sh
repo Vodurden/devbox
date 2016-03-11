@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fix protocol error
+chmod 777 /var/cache/pacman/pkg
+
 pacman -Sy
 
 # Fonts
@@ -19,7 +22,8 @@ pacman --noconfirm -S \
        erlang erlang-docs elixir \
        lua \
        rust \
-       markdown
+       markdown \
+       ruby
 
 # Install dialyxir so we can statically analyse elixir!
 git clone https://github.com/jeremyjh/dialyxir.git /tmp/dialyxir \

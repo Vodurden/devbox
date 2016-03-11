@@ -22,6 +22,7 @@ TIMEZONE='UTC'
 CONFIG_SCRIPT='/usr/local/bin/arch-config.sh'
 ROOT_PARTITION="${DISK}1"
 TARGET_DIR='/mnt'
+LANGUAGE='en_US.UTF-8'
 
 echo "==> clearing partition table on ${DISK}"
 /usr/bin/sgdisk --zap ${DISK}
@@ -42,6 +43,12 @@ echo '==> creating /root filesystem (ext4)'
 echo "==> mounting ${ROOT_PARTITION} to ${TARGET_DIR}"
 /usr/bin/mount -o noatime,errors=remount-ro ${ROOT_PARTITION} ${TARGET_DIR}
 
+# Update our mirrorlist to use only the *fastest* mirrors!
+echo "Ranking mirrors. This may take a *while*!"
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup | tee /etc/pacman.d/mirrorlist
+echo "Done"
+
 echo '==> bootstrapping the base installation'
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel
 /usr/bin/arch-chroot ${TARGET_DIR} pacman -S --noconfirm gptfdisk openssh syslinux
@@ -61,6 +68,7 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
   echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
   /usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
   /usr/bin/locale-gen
+  /usr/bin/localectl set-locale LANG=${LANGUAGE}
   /usr/bin/mkinitcpio -p linux
   /usr/bin/usermod --password ${PASSWORD} root
   # https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
@@ -91,6 +99,11 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
   /usr/bin/pacman -Rcns --noconfirm gptfdisk
   /usr/bin/yes | /usr/bin/pacman -Scc
 EOF
+
+echo '==> Copying ranked mirrors into chroot target'
+rm -f /etc/pacman.d/mirrorlist
+cp /etc/pacman.d/mirrorlist ${TARGET_DIR}/etc/pacman.d/mirrorlist
+cp /etc/pacman.d/mirrorlist.backup ${TARGET_DIR}/etc/pacman.d/mirrorlist.backup
 
 echo '==> entering chroot and configuring system'
 /usr/bin/arch-chroot ${TARGET_DIR} ${CONFIG_SCRIPT}

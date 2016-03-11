@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Use UTF-8 locale
+# Set locale!
+locale-gen
 localectl set-locale LANG=en_US.UTF-8
 
 # Update system
