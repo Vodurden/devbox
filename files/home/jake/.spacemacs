@@ -286,6 +286,10 @@ layers configuration."
   ;; Custom Bindings
   (define-key evil-normal-state-map (kbd "<tab>") 'evil-jumper/forward)
   (define-key evil-normal-state-map (kbd "<backtab>") 'evil-jumper/backward)
+
+  ;; Elixir-Layer custom bindings
+  (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
+    "md" (lambda() (interactive) (alchemist-execute "mix dialyzer")))
 )
 
 
