@@ -280,8 +280,8 @@ layers configuration."
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
 
-  ;; Force native indexing so .gitignore is respected
-  (setq projectile-indexing-method 'native)
+  ;; Use alien indexing as it's *much* faster and works with  .gitignore
+  (setq projectile-indexing-method 'alien)
 
   ;; Custom Bindings
   (define-key evil-normal-state-map (kbd "<tab>") 'evil-jumper/forward)
