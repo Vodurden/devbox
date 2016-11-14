@@ -1,0 +1,17 @@
+---
+- name: Ensure git is installed
+  package: pkg=git state=present
+
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
+- name: Configure git user name
+  git_config: >
+    name=user.name
+    scope=global
+    value={{ user.text_name }}
+
+- name: Configure git user email
+  git_config: >
+    name=user.email
+    scope=global
+    value={{ user.email }}

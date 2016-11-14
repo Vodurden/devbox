@@ -1,0 +1,48 @@
+---
+- name: Ensure Xorg is installed
+  action: apt pkg={{item}} state=present
+  with_items:
+    - xorg
+    - xserver-xorg
+
+- name: Ensure xmonad is installed
+  action: apt pkg={{item}} state=present
+  with_items:
+    - xmonad
+    - libghc-xmonad-dev
+    - libghc-xmonad-contrib-dev
+
+- name: Ensure urxvt is installed
+  apt: pkg=rxvt-unicode-256color state=present
+
+- name: Download the latest adobe-source-code-pro font
+  git: >
+    dest=/usr/local/share/fonts/source-code-pro
+    repo=https://github.com/adobe-fonts/source-code-pro.git
+    version=release
+    depth=1
+    force=no
+    update=no
+  register: adobe_source_code_pro_font_download
+
+- name: Install the latest adobe-source-code-pro font
+  command: fc-cache -fv
+  when: adobe_source_code_pro_font_download.changed
+
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
+- name: Ensure the .xmonad directory exists
+  file: >
+    path="{{ user.home }}/.xmonad"
+    state=directory
+    owner="{{ user.name }}"
+    group="{{ user.group }}"
+
+- name: Symlink xmonad.hs file
+  file: >
+    src={{ role_path }}/files/dotfiles/.xmonad/xmonad.hs
+    dest="{{ user.home }}/.xmonad/xmonad.hs"
+    state=link
+    force=yes
+    owner="{{ user.name }}"
+    group="{{ user.group }}"

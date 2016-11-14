@@ -1,0 +1,7 @@
+# Install with `ansible-galaxy install -r requirements.yml`
+
+- name: virtualbox-guest
+  src: https://github.com/PeterMosmans/ansible-role-virtualbox-guest
+
+- name: oracle-java
+  src: https://github.com/William-Yeh/ansible-oracle-java

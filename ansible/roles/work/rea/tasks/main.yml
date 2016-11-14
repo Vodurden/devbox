@@ -1,0 +1,21 @@
+---
+- name: Install rea-slip-utils
+  git: >
+    dest="{{ user.home }}/.rea-slip-utils"
+    repo=https://git.realestate.com.au/cbde/rea-slip-utils.git
+    depth=1
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Add rea configuration to .profile
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: work/rea"
+    marker: "# {mark} ansible: work/rea"
+    block: |
+      export REA_LDAP_USER={{ user.name }}
+      export AWS_DEFAULT_REGION=ap-southeast-2
+      export PATH="$HOME/.rea-slip-utils/bin:$PATH"

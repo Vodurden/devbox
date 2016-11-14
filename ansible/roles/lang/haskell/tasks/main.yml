@@ -1,0 +1,24 @@
+---
+- include: "{{ playbook_dir }}/shared_tasks/os_vars.yml"
+
+- name: Install stack
+  package: pkg={{ stack_pkg }} state=present
+
+- name: Setup stack
+  command: stack setup
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Add stack configuration to .profile
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: lang/haskell"
+    marker: "# {mark} ansible: lang/haskell"
+    block: |
+      export PATH="$HOME/.local/bin:$PATH" # Haskell stack binaries
+
+- name: Install haskell packages for spacemacs
+  command: stack install apply-refact hlint stylish-haskell hasktags hoogle ghc-mod intero
+  become: yes
+  become_user: "{{ user.name }}"

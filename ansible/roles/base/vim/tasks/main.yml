@@ -1,0 +1,29 @@
+---
+- name: Install vim
+  package: pkg=vim state=present
+
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
+- name: Ensure {{ user.home }}/.vim/bundle exists
+  file: >
+    path={{ user.home }}/.vim/bundle
+    state=directory
+    owner={{ user.name }}
+    group="{{ user.group }}"
+
+- name: Install Vundle
+  git: >
+    dest="{{ user.home }}/.vim/bundle/Vundle.vim"
+    repo=https://github.com/VundleVim/Vundle.vim.git
+    version=88688fe453038ac1ac26e31646cfbec50fca2fb7
+    depth=1
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install vim plugins
+  command: "vim +PluginInstall +qall"
+  when: synchronize_dotfiles.changed
+  become: yes
+  become_user: "{{ user.name }}"

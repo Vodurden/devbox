@@ -1,0 +1,8 @@
+---
+- name: Install node
+  package: pkg=nodejs state=present
+  register: install_node
+
+- name: Install node packages for spacemacs
+  command: npm install -g tern js-beautify eslint
+  when: install_node.changed

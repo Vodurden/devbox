@@ -1,0 +1,44 @@
+---
+- include: "{{ playbook_dir }}/shared_tasks/os_vars.yml"
+
+# Java is installed by our role dependencies, see java/meta/main.yml
+- name: Install jenv
+  git: >
+    dest="{{ user.home }}/.jenv"
+    repo=https://github.com/gcuisinier/jenv.git
+    version=0.4.4
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Add jenv configuration to .profile
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: lang/java"
+    marker: "# {mark} ansible: lang/java"
+    block: |
+      export PATH="$HOME/.jenv/bin:$PATH"
+      export JENV_ROOT="$HOME/.jenv"
+      eval "$(jenv init -)"
+
+- name: Add installed javas to jenv
+  shell: >
+    eval "$({{ user.home }}/.jenv/bin/jenv init -)" &&
+    {{ user.home }}/.jenv/bin/jenv add {{ item }} &&
+    {{ user.home }}/.jenv/bin/jenv rehash
+  with_items:
+    - "{{ java8_92_home_path }}"
+  register: add_installed_java
+  become: yes
+  become_user: "{{ user.name }}"
+  failed_when: > # Ignore errors caused by having already added this java
+    (add_installed_java.stdout_lines | select("match", ".*is not a valid path to java installation.*") | list | length > 0)
+    or
+    ((add_installed_java.rc > 0) and (add_installed_java.stdout_lines | reject("match", ".*There is already a .* managed by jenv.*") | list | length > 0))
+
+- name: Use Java 1.8 globally
+  command: "{{ user.home }}/.jenv/bin/jenv global 1.8"
+  become: yes
+  become_user: "{{ user.name }}"
