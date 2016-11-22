@@ -9,6 +9,6 @@
 # with a wrapper that calls our new version.
 - name: Use emacs 25 in the terminal
   copy: >
-    src="{{ role_path }}/files/emacs"
+    src="{{ role_path }}/files/emacs_wrapper.sh"
     dest=/usr/local/bin/emacs
     mode="u=rwx,g=rx,o=rx"
