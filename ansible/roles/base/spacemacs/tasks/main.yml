@@ -1,6 +1,10 @@
 ---
-- name: Ensure emacs is installed
-  package: pkg=emacs state=present
+- name: Install emacs (debian)
+  apt: pkg=emacs state=present
+  when: ansible_distribution == "Debian"
+
+- include: "macosx.yml"
+  when: ansible_distribution == "MacOSX"
 
 - name: Ensure spacemacs is installed for {{ user.name }}
   git: >

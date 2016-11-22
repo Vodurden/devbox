@@ -1,0 +1,31 @@
+---
+- name: Check if {{ app_name }} is installed
+  stat: path=/Applications/{{ app_name }}.app
+  register: app_installed
+
+- name: Download {{ app_name }} dmg
+  get_url: >
+    url={{ dmg_url }}
+    dest=/tmp/{{ app_name }}.dmg
+  when: app_installed.stat.exists == False
+
+- name: Attach {{ app_name }}.dmg
+  command: hdiutil attach /tmp/{{ app_name }}.dmg -nobrowse -mountpoint /tmp/{{ app_name }}
+  when: app_installed.stat.exists == False
+
+- name: Install {{ app_name }}
+  shell: cp -aR /tmp/{{ app_name }}/*.app /Applications/{{ app_name }}.app
+  when: app_installed.stat.exists == False
+
+- name: Detach {{ app_name }}.dmg
+  command: hdiutil detach /tmp/{{ app_name }}
+  when: app_installed.stat.exists == False
+
+- name: Remove install files
+  file: >
+    path={{ item }}
+    state=absent
+  with_items:
+    - "/tmp/{{ app_name }}.dmg"
+    - "/tmp/{{ app_name }}"
+  when: app_installed.stat.exists == False
