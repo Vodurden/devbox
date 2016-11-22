@@ -1,0 +1,14 @@
+---
+- name: Install build-essential
+  apt: package=build-essential state=present
+
+- name: Install checkinstall
+  apt: package=checkinstall state=present
+
+# See: http://stackoverflow.com/a/7900910
+- name: Fix directory creation bug in checkinstall
+  lineinfile: >
+    regexp="TRANSLATE=.*"
+    line="TRANSLATE=0"
+    dest=/etc/checkinstallrc
+    state=present

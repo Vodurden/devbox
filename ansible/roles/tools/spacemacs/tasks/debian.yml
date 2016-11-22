@@ -1,0 +1,40 @@
+---
+- name: Check if emacs25 is already installed
+  shell: dpkg -l emacs-25
+  register: emacs_25_installed
+  failed_when: "emacs_25_installed.rc > 0 and emacs_25_installed.stderr != 'dpkg-query: no packages found matching emacs-25'"
+
+- name: Install emacs build dependencies
+  apt: package=emacs24 state=build-dep
+  when: emacs_25_installed.rc > 0
+
+- name: Download emacs25 source
+  get_url:
+    url: "https://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.gz"
+    dest: /tmp/emacs-25.1.tar.gz
+  when: emacs_25_installed.rc > 0
+
+- name: Unarchive emacs25 source
+  unarchive:
+    src: /tmp/emacs-25.1.tar.gz
+    dest: /tmp/
+  when: emacs_25_installed.rc > 0
+
+- name: Configure emacs25
+  shell: ./configure
+  args:
+    chdir: "/tmp/emacs-25.1"
+  when: emacs_25_installed.rc > 0
+
+- name: Make emacs25
+  shell: make
+  args:
+    chdir: "/tmp/emacs-25.1"
+  when: emacs_25_installed.rc > 0
+
+- name: Install emacs25
+  shell: >
+    checkinstall -D -y --pkgname=emacs-25 --pkgversion=25.1
+  args:
+    chdir: "/tmp/emacs-25.1"
+  when: emacs_25_installed.rc > 0

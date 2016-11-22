@@ -10,6 +10,7 @@
   roles:
     - debian/locale
     - debian/apt
+    - debian/build-tools
     - debian/users
     - debian/gui
     - { role: virtualbox-guest, virtualbox_remove_os_packages: true, virtualbox_x11: true, virtualbox_version: '5.1.8', virtualbox_keep: true }
