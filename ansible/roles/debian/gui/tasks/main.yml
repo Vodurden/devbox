@@ -1,19 +1,22 @@
 ---
-- name: Ensure Xorg is installed
+- name: Install Xorg 
   action: apt pkg={{item}} state=present
   with_items:
     - xorg
     - xserver-xorg
 
-- name: Ensure xmonad is installed
+- name: Install xmonad 
   action: apt pkg={{item}} state=present
   with_items:
     - xmonad
     - libghc-xmonad-dev
     - libghc-xmonad-contrib-dev
 
-- name: Ensure urxvt is installed
+- name: Install urxvt 
   apt: pkg=rxvt-unicode-256color state=present
+
+- name: Install fontconfig
+  apt: pkg=fontconfig state=present
 
 - name: Download the latest adobe-source-code-pro font
   git: >
