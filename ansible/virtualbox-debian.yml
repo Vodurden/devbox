@@ -11,12 +11,12 @@
     - debian/locale
     - debian/apt
     - debian/users
-    - base/terminal
-    - base/git
-    - base/vim
-    - base/spacemacs
-    - base/gui
+    - debian/gui
     - { role: virtualbox-guest, virtualbox_remove_os_packages: true, virtualbox_x11: true, virtualbox_version: '5.1.8', virtualbox_keep: true }
+    - tools/terminal
+    - tools/git
+    - tools/vim
+    - tools/spacemacs
     - lang/ruby
     - lang/java
     - lang/scala

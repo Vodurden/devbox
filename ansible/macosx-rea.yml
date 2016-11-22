@@ -8,10 +8,10 @@
       group: "NETWIDE\\Domain Users"
       home: /Users/jake.woods
   roles:
-    - base/terminal
-    - base/git
-    - base/vim
-    - base/spacemacs
+    - tools/terminal
+    - tools/git
+    - tools/vim
+    - tools/spacemacs
     - lang/ruby
     - lang/java
     - lang/scala

@@ -1,15 +1,42 @@
 Introduction
 ============
-This repository contains everything needed to build my personal development environment as a virtual machine.
+This repository contains scripts to provision my development environment. Currently I support *Mac* and *Debian on VirtualBox*
 
 Most of the work is done to provide a consistent environment for my spacemacs configuration to run in. (https://github.com/syl20bnr/spacemacs)
 
+Requirements
+============
+
+On Windows:
+
+- A bash-compatible terminal (I'm using Msys2)
+- VirtualBox
+- Vagrant on the path
+
+On Mac:
+
+- Python
+- Ansible
+
 Usage
 =====
-Once the project is built simply execute `vagrant up` in the root directory.
+
+On Windows:
+
+- Execute `auto/vagrant.sh`
+
+On Mac:
+
+- Execute `auto/macosx-rea.sh`
 
 Development Flow
 ----------------
+
+On Mac:
+
+- Open Emacs
+
+On Debian:
 
 - Login: `jake`
 - Open a GUI: `startx`
@@ -25,32 +52,23 @@ At this point we should have a fullscreen emacs. Use `Alt+1` and `Alt+2` to swap
 Useful Information
 ------------------
 
+On Debian:
+
 - Login: `jake` (no password)
 - Start GUI/xmonad: `startx`
 - Start emacs: `(emacs &>/dev/null &)`
-
-Building
-========
-
-- Requires: Vagrant (https://www.vagrantup.com/)
-- Time: ~30min
-
-To build this project simply:
-
-    cd boxes
-    ./build.sh
-
 
 Directory Structure
 ===================
 
     .
-    +-- boxes
-    |   +-- DevBox            Image built from DevBox-Core. Adds Languages & Tools
+    +-- ansible             Ansible provisoning scripts applied when running ansible.
     |   |
-    |   +-- DevBox-Core       Base Arch Image installing core packages & config
+    |   +-- roles           Roles to mix together for each machine. Defines some capability
+    |   |                   we want the machine to have.
+    |   |
+    |   +-- shared_tasks    Common ansible tasks that are used by many roles
     |
-    +-- files                Files applied to the machine on `vagrant up`.
-    |                        Usually dotfiles
+    +-- auto                Automation scripts used to run/provision the devbox
     |
-    +-- scripts              Scripts executed on the machines during configuration
+    +-- vagrant             Files specific to the vagrant implementation of the box
