@@ -1,0 +1,6 @@
+Metrics/LineLength:
+  Max: 160
+
+# Too many projects are inconsistent with this to make it a rule.
+Style/HashSyntax:
+  Enabled: false

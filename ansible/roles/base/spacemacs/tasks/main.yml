@@ -1,0 +1,24 @@
+---
+- name: Ensure emacs is installed
+  package: pkg=emacs state=present
+
+- name: Ensure spacemacs is installed for {{ user.name }}
+  git: >
+    dest="{{ user.home }}/.emacs.d"
+    repo=https://github.com/syl20bnr/spacemacs.git
+    version=v0.200.5
+    depth=1
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
+- name: Initialize spacemacs packages
+  command: emacs --batch -l {{ user.home }}/.emacs.d/init.el
+  args:
+    chdir: "{{ user.home }}/.emacs.d"
+  become: yes
+  become_user: "{{ user.name }}"
+  when: synchronize_dotfiles.changed

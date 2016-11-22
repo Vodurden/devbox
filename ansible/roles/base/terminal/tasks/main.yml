@@ -1,0 +1,2 @@
+---
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"

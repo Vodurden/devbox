@@ -1,0 +1,20 @@
+---
+- hosts: all
+  vars:
+    user:
+      name: jake.woods
+      email: "jake.woods@rea-group.com"
+      text_name: "Jake Woods"
+      group: "NETWIDE\\Domain Users"
+      home: /Users/jake.woods
+  roles:
+    - base/terminal
+    - base/git
+    - base/vim
+    - base/spacemacs
+    - lang/ruby
+    - lang/java
+    - lang/scala
+    - lang/haskell
+    - lang/javascript
+    - work/rea

@@ -1,0 +1,13 @@
+---
+- name: Synchronizing {{ role_path | basename }} dotfiles
+  synchronize: >
+    src="{{ role_path }}/files/dotfiles/"
+    dest="{{ user.home }}"
+    archive=no
+    recursive=yes
+    times=yes
+    rsync_opts="--chown={{ user.name }}:{{ user.group | regex_escape() }}"
+  register: "synchronize_dotfiles"
+  changed_when: > # Ignore timestamp changes to directories, we only care about file changes
+    (synchronize_dotfiles.changed) and
+    (synchronize_dotfiles.stdout_lines | reject("match", ".d..t....... ?.*") | list | length > 0)

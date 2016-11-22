@@ -1,2 +1,7 @@
 build/
 .vagrant/
+
+ansible/galaxy_roles/
+ansible.log
+*.retry
+*.swp

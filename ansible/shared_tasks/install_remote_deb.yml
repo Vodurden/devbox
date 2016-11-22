@@ -1,0 +1,16 @@
+---
+- name: Check if {{ package_name }} is installed
+  command: dpkg-query -W {{ package_name }}
+  register: install_remote_deb_check_installed
+  failed_when: install_remote_deb_check_installed.rc > 1
+  changed_when: install_remote_deb_check_installed.rc == 1
+
+- name: Download {{ package_name }}
+  get_url: >
+    url="{{ package_url }}"
+    dest="/tmp/{{ package_name }}.deb"
+  when: install_remote_deb_check_installed.rc == 1
+
+- name: Install {{ package_name }}
+  apt: deb="/tmp/{{ package_name }}.deb"
+  when: install_remote_deb_check_installed.rc == 1
