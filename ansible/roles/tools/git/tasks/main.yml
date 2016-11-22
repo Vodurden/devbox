@@ -9,9 +9,13 @@
     name=user.name
     scope=global
     value={{ user.text_name }}
+  become: yes
+  become_user: "{{ user.name }}"
 
 - name: Configure git user email
   git_config: >
     name=user.email
     scope=global
     value={{ user.email }}
+  become: yes
+  become_user: "{{ user.name }}"
