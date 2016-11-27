@@ -19,3 +19,5 @@
       export REA_LDAP_USER={{ user.name }}
       export AWS_DEFAULT_REGION=ap-southeast-2
       export PATH="$HOME/.rea-slip-utils/bin:$PATH"
+
+      export CP_DOMAIN_ENV=production
