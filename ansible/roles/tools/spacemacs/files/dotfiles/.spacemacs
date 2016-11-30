@@ -69,7 +69,8 @@ values."
                  js2-global-externs '("module" "require" "__dirname" "console" "process"
                                       "describe" "it" "before" "beforeEach" "after" "afterEach"))
 
-     html
+     (html :variables
+           css-indent-offset 2)
      markdown
      org
      yaml
