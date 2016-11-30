@@ -29,7 +29,7 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: '172.17.8.11'
 
   config.vm.synced_folder '.', '/vagrant'
-  config.vm.synced_folder 'E:\\Projects', '/code'
+  config.vm.synced_folder 'E:\\Projects', '/code', mount_options: ['fmode=777,dmode=666']
 
   config.vm.provision :shell, privileged: true, path: 'vagrant/scripts/bootstrap_ansible.sh'
   config.vm.provision :ansible_local do |ansible|
