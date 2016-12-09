@@ -12,6 +12,7 @@
     - tools/git
     - tools/vim
     - tools/spacemacs
+    - tools/conscript
     - lang/ruby
     - lang/java
     - lang/scala

@@ -3,6 +3,8 @@
 #
 source ~/.aws-shortcuts/aws-shortcuts.sh
 
+# ansible: tools/conscript
+
 # ansible: lang/ruby
 
 # ansible: lang/java
