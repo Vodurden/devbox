@@ -4,6 +4,8 @@
 - name: Install stack
   package: pkg={{ stack_pkg }} state=present
 
+- include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
 - name: Setup stack
   command: stack setup
   become: yes
