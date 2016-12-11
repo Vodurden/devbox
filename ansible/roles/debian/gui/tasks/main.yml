@@ -1,18 +1,21 @@
 ---
-- name: Install Xorg 
+- name: Install Xorg
   action: apt pkg={{item}} state=present
   with_items:
     - xorg
     - xserver-xorg
 
-- name: Install xmonad 
+- name: Install xmonad
   action: apt pkg={{item}} state=present
   with_items:
     - xmonad
     - libghc-xmonad-dev
     - libghc-xmonad-contrib-dev
 
-- name: Install urxvt 
+- name: Install suckless tools
+  apt: pkg=suckless-tools state=present
+
+- name: Install urxvt
   apt: pkg=rxvt-unicode-256color state=present
 
 - name: Install fontconfig
