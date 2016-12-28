@@ -26,7 +26,7 @@ done
 
 # If VAGRANT_STATUS wasn't running or poweroff we assume this was the first provision and thus
 # we need to restart to correctly apply our virtualbox guest utils.
-if [ ${VAGRANT_STATUS} != "running" ] || [ ${VAGRANT_STATUS} != "poweroff" ]; then
+if [ ${VAGRANT_STATUS} != "running" ] && [ ${VAGRANT_STATUS} != "poweroff" ]; then
   echo "Restarting machine..."
   vagrant reload 
 fi
