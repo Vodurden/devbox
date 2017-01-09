@@ -6,6 +6,7 @@
   get_url: >
     url=https://oss.sonatype.org/content/repositories/releases/org/scalastyle/scalastyle_2.11/0.8.0/scalastyle_2.11-0.8.0-batch.jar
     dest=/usr/local/bin/scalastyle_2.11-0.8.0-batch.jar
+    checksum=sha1:66ce54a6eb8dde221c6efb530b2c108c876c0e27
 
 - name: Ensure scalastyle command-line wrapper exists
   copy: >
