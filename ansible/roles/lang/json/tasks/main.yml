@@ -1,0 +1,15 @@
+---
+- include: "{{ playbook_dir }}/shared_tasks/os_vars.yml"
+
+- name: Install jq
+  package: package=jq state=present
+
+- name: Install jp (jmespath)
+  get_url: >
+    url={{ jp_url }}
+    checksum={{ jp_checksum }}
+    dest=/usr/local/bin/jp
+    mode="u=rwx,g=rx,o=rx"
+
+- name: Install jpterm
+  pip: name=jmespath-terminal

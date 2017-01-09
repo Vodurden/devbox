@@ -20,4 +20,5 @@
     - lang/scala
     - lang/haskell
     - lang/javascript
+    - lang/json
     - work/rea
