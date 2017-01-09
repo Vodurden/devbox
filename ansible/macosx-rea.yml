@@ -14,6 +14,7 @@
     - tools/spacemacs
     - tools/conscript
     - tools/giter8
+    - tools/aws
     - lang/ruby
     - lang/java
     - lang/scala

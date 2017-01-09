@@ -1,0 +1,26 @@
+---
+- name: Install aws cli
+  pip: name=awscli
+
+- name: Install bash-my-aws
+  git: >
+    dest="{{ user.home }}/.bash-my-aws"
+    repo=https://github.com/realestate-com-au/bash-my-aws.git
+    depth=1
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Configure bash-my-aws
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: tools/aws"
+    marker: "# {mark} ansible: tools/aws"
+    block: |
+      # Source the bash-my-aws functions
+      for f in ~/.bash-my-aws/lib/*-functions; do source $f; done
+
+      # Enable bash-my-aws auto completion
+      source ~/.bash-my-aws/bash_completion.sh

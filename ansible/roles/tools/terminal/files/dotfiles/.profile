@@ -2,6 +2,8 @@
 # .profile
 #
 
+# ansible: tools/aws
+
 # ansible: tools/conscript
 
 # ansible: lang/ruby
