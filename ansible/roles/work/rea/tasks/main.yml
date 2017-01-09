@@ -1,4 +1,29 @@
 ---
+- name: Install cbde homebrew tap
+  homebrew_tap: >
+    name=cbde/stuff
+    url=git@git.realestate.com.au:cbde/homebrew-stuff.git
+    state=present
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install rea-as
+  homebrew: >
+    name=rea-as
+    state=present
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install (rea) aws-shortcuts
+  git: >
+    dest="{{ user.home }}/.aws-shortcuts"
+    repo=https://git.realestate.com.au/resi-lob/aws-shortcuts.git
+    depth=1
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
 - name: Install rea-slip-utils
   git: >
     dest="{{ user.home }}/.rea-slip-utils"
@@ -21,3 +46,17 @@
       export PATH="$HOME/.rea-slip-utils/bin:$PATH"
 
       export CP_DOMAIN_ENV=production
+
+      # rea-slip-docker-login is too long!
+      alias docker-login="rea-slip-docker-login"
+
+      # Enable aws-shortcuts
+      if [ -e $HOME/.aws-shortcuts/iam-roles.txt ]; then
+         source $HOME/.aws-shortcuts/aws-shortcuts.sh
+      else
+        echo "Cannot source `aws-shortcuts`: iam-roles.txt is missing."
+        echo "To fix run:"
+        echo ""
+        echo "    rea-as saml > ~/.aws-shortcuts/iam-roles.txt"
+        echo ""
+      fi

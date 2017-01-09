@@ -1,7 +1,6 @@
 #
 # .profile
 #
-source ~/.aws-shortcuts/aws-shortcuts.sh
 
 # ansible: tools/conscript
 
