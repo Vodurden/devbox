@@ -1,8 +1,12 @@
 ---
 - name: Install node
   package: pkg=nodejs state=present
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
   register: install_node
 
 - name: Install node packages for spacemacs
   command: npm install -g tern js-beautify eslint
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
   when: install_node.changed

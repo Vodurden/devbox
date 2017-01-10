@@ -3,6 +3,8 @@
 
 - name: Install stack
   package: pkg={{ stack_pkg }} state=present
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
 
 - include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
 

@@ -1,2 +1,18 @@
 ---
 - include: "{{ playbook_dir }}/shared_tasks/dotfiles.yml"
+
+- name: Upgrade bash to version 4 on OSX
+  homebrew: name=bash state=present
+  become: yes
+  become_user: "{{ user.name }}"
+  when: ansible_distribution == "MacOSX"
+
+- name: Make bash 4 an acceptable shell on OSX
+  lineinfile:
+    dest: /etc/shells
+    line: "/usr/local/bin/bash"
+  when: ansible_distribution == "MacOSX"
+
+- name: Use bash 4 as the default shell on OSX
+  command: chsh -s /usr/local/bin/bash "{{ user.name }}"
+  when: ansible_distribution == "MacOSX"

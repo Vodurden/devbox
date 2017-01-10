@@ -7,6 +7,9 @@
       text_name: "Jake Woods"
       group: "NETWIDE\\Domain Users"
       home: /Users/jake.woods
+
+    # The user to install system-level packages with. Defaults to root.
+    system_install_user: jake.woods
   roles:
     - tools/terminal
     - tools/git

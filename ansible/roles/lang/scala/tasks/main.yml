@@ -1,6 +1,8 @@
 ---
 - name: Ensure sbt is installed
   package: package=sbt state=present
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
 
 - name: Install scalastyle
   get_url: >
