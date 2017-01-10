@@ -15,6 +15,7 @@
     - tools/conscript
     - tools/giter8
     - tools/aws
+    - tools/networking
     - lang/ruby
     - lang/java
     - lang/scala

@@ -1,0 +1,5 @@
+---
+- name: Install nmap
+  package: pkg=nmap state=present
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
