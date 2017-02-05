@@ -1,5 +1,17 @@
 URxvt.termName: xterm-256color
 URxvt.intensityStyles: false
+URxvt.scrollstyle: plain
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+URxvt.font:xft:inconsolata:pixelsize=15
+URxvt.boldfont:xft:inconsolata-bold:pixelsize=15
+URxvt.letterSpace: -1
 
 !! BEGIN Solarized
 #define S_base03        #002b36
