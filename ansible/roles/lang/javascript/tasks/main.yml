@@ -6,7 +6,7 @@
   register: install_node
 
 - name: Install node packages for spacemacs
-  command: npm install -g tern js-beautify eslint
+  command: npm install -g tern js-beautify eslint babel-eslint eslint-plugin-react
   become: yes
   become_user: "{{ system_install_user | default('root') }}"
   when: install_node.changed
