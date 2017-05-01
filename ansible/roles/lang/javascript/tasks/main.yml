@@ -10,3 +10,9 @@
   become: yes
   become_user: "{{ system_install_user | default('root') }}"
   when: install_node.changed
+
+- name: Install other node packages
+  command: npm install -g yarn
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
+  when: install_node.changed
