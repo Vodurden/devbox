@@ -16,3 +16,12 @@
 - name: Use bash 4 as the default shell on OSX
   command: chsh -s /usr/local/bin/bash "{{ user.name }}"
   when: ansible_distribution == "MacOSX"
+
+- name: Add ~/.bin to the path
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: lang/terminal"
+    marker: "# {mark} ansible: lang/terminal"
+    block: |
+      export PATH="$HOME/.bin:$PATH" # ~/.bin folder

@@ -2,6 +2,8 @@
 # .profile
 #
 
+# ansible: tools/terminal
+
 # ansible: tools/aws
 
 # ansible: tools/conscript
