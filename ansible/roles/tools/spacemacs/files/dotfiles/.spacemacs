@@ -57,6 +57,7 @@ values."
      rust
      go
      csharp
+     java
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-enable-enh-ruby-mode t
@@ -371,6 +372,11 @@ you should place your code here."
   ;; Elixir-Layer custom bindings
   (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
     "md" (lambda() (interactive) (alchemist-execute "mix dialyzer")))
+
+  ;; Better indentation for java arguments
+  (add-hook 'java-mode-hook (lambda()
+                              (c-set-offset 'arglist-intro '+)
+                              (c-set-offset 'arglist-close '0)))
 
   ;; Editor config support
   (editorconfig-mode 1)
