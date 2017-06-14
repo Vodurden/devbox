@@ -376,6 +376,7 @@ you should place your code here."
   ;; Better indentation for java arguments
   (add-hook 'java-mode-hook (lambda()
                               (c-set-offset 'arglist-intro '+)
+                              (c-set-offset 'arglist-cont-nonempty '+)
                               (c-set-offset 'arglist-close '0)))
 
   ;; Editor config support
