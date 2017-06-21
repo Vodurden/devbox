@@ -14,6 +14,13 @@
   become: yes
   become_user: "{{ user.name }}"
 
+- name: Install (rea) aws authentication shortcuts
+  homebrew: >
+    name=aws-console-url
+    state=present
+  become: yes
+  become_user: "{{ user.name }}"
+
 - name: Install (rea) aws-shortcuts
   git: >
     dest="{{ user.home }}/.aws-shortcuts"
@@ -60,3 +67,15 @@
         echo "    rea-as saml > ~/.aws-shortcuts/iam-roles.txt"
         echo ""
       fi
+
+      # Alias aws-console-url
+      function aws-console {
+        if [ -z ${AWS_ROLE} ]; then
+          echo "No AWS_ROLE found. Are you authenticated?"
+          return
+        fi
+
+        USER_DATA_DIR=/tmp/chrome-profile-$AWS_ROLE
+        mkdir -p "${USER_DATA_DIR}"
+        open -a "Google Chrome" --new --args --profile-directory="${USER_DATA_DIR}" --incognito $(aws-console-url)
+      }
