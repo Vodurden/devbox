@@ -1,8 +1,9 @@
 ---
+
 - name: Install cbde homebrew tap
   homebrew_tap: >
-    name=cbde/stuff
-    url=git@git.realestate.com.au:cbde/homebrew-stuff.git
+    name=cowbell/stuff
+    url=ssh://git@git.realestate.com.au:65422/cowbell/homebrew-stuff
     state=present
   become: yes
   become_user: "{{ user.name }}"
@@ -24,7 +25,7 @@
 - name: Install (rea) aws-shortcuts
   git: >
     dest="{{ user.home }}/.aws-shortcuts"
-    repo=https://git.realestate.com.au/resi-lob/aws-shortcuts.git
+    repo=ssh://git@git.realestate.com.au:65422/resi-lob/aws-shortcuts
     depth=1
     force=no
     update=no
@@ -34,7 +35,7 @@
 - name: Install rea-slip-utils
   git: >
     dest="{{ user.home }}/.rea-slip-utils"
-    repo=https://git.realestate.com.au/cbde/rea-slip-utils.git
+    repo=ssh://git@git.realestate.com.au:65422/cowbell/rea-slip-utils
     depth=1
     force=no
     update=no
