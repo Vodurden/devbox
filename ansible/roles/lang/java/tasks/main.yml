@@ -29,7 +29,7 @@
     {{ user.home }}/.jenv/bin/jenv add {{ item }} &&
     {{ user.home }}/.jenv/bin/jenv rehash
   with_items:
-    - "{{ java8_92_home_path }}"
+    - "{{ java8_131_home_path }}"
   register: add_installed_java
   become: yes
   become_user: "{{ user.name }}"

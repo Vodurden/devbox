@@ -4,4 +4,4 @@
   src: https://github.com/PeterMosmans/ansible-role-virtualbox-guest
 
 - name: oracle-java
-  src: https://github.com/William-Yeh/ansible-oracle-java
+  src: https://github.com/srsp/ansible-oracle-java
