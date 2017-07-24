@@ -20,6 +20,7 @@
     - tools/giter8
     - tools/aws
     - tools/networking
+    - tools/mysql
     - lang/ruby
     - lang/java
     - lang/scala

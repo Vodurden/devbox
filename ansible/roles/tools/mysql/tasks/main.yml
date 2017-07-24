@@ -1,0 +1,7 @@
+---
+- include: "{{ playbook_dir }}/shared_tasks/os_vars.yml"
+
+- name: Install mysql
+  package: pkg={{ mysql_pkg }} state=present
+  become: yes
+  become_user: "{{ system_install_user | default('root') }}"
