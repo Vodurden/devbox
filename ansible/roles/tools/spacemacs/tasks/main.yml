@@ -9,7 +9,7 @@
   git: >
     dest="{{ user.home }}/.emacs.d"
     repo=https://github.com/syl20bnr/spacemacs.git
-    version=v0.200.5
+    version=v0.200.9
     depth=1
     force=no
     update=no
