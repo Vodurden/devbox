@@ -11,6 +11,7 @@
     # The user to install system-level packages with. Defaults to root.
     system_install_user: jake.woods
   roles:
+    - macosx/iterm2
     - tools/terminal
     - tools/git
     - tools/vim
