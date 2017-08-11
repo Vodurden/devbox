@@ -1,4 +1,28 @@
 ---
+#- name: Check for installed nvm
+#  stat: path="{{ user.home }}/.nvm/bin/cs"
+#  register: conscript_installed
+
+- name: Install nvm
+  git: >
+    dest="{{ user.home }}/.nvm"
+    repo=https://github.com/creationix/nvm.git
+    version=v0.33.2
+    force=no
+    update=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Configure nvm
+  blockinfile:
+    dest: "{{ user.home }}/.profile"
+    state: present
+    insertafter: "# ansible: lang/javascript"
+    marker: "# {mark} ansible: lang/javascript"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 - name: Install node
   package: pkg=nodejs state=present
   become: yes
