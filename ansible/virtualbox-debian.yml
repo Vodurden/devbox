@@ -23,6 +23,7 @@
     - tools/aws
     - tools/networking
     - tools/mysql
+    - tools/utilities
     - lang/ruby
     - lang/java
     - lang/scala
