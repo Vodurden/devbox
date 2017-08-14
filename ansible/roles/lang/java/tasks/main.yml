@@ -26,7 +26,7 @@
 - name: Add installed javas to jenv
   shell: >
     eval "$({{ user.home }}/.jenv/bin/jenv init -)" &&
-    {{ user.home }}/.jenv/bin/jenv add {{ item }} &&
+    $(yes y | {{ user.home }}/.jenv/bin/jenv add {{ item }}) &&
     {{ user.home }}/.jenv/bin/jenv rehash
   with_items:
     - "{{ java8_131_home_path }}"
