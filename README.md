@@ -15,7 +15,7 @@ On Windows:
 
 On Mac:
 
-- Python
+- Python (use brew)
 - Ansible
 
 Usage
