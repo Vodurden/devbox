@@ -31,6 +31,8 @@
   shell: src/configure && make -C src
   args:
     chdir: "{{ user.home }}/.rbenv"
+  become: yes
+  become_user: "{{ user.name }}"
 
 - name: Add rbenv configuration to .profile
   blockinfile:
@@ -66,12 +68,22 @@
 - name: Install default gems
   shell: >
     {{ user.home }}/.rbenv/bin/rbenv global {{ item }} &&
-    {{ user.home }}/.rbenv/shims/gem install --conservative bundler pry pry-doc ruby_parser rubocop pry-byebug &&
+    {{ user.home }}/.rbenv/shims/gem install --conservative bundler pry pry-doc ruby_parser rubocop &&
     {{ user.home }}/.rbenv/bin/rbenv rehash
   become: yes
   become_user: "{{ user.name }}"
   with_items:
     - 2.0.0-p353
+    - 2.3.1
+
+- name: Install default gems (supported only)
+  shell: >
+    {{ user.home }}/.rbenv/bin/rbenv global {{ item }} &&
+    {{ user.home }}/.rbenv/shims/gem install --conservative pry-byebug &&
+    {{ user.home }}/.rbenv/bin/rbenv rehash
+  become: yes
+  become_user: "{{ user.name }}"
+  with_items:
     - 2.3.1
 
 - name: Use 2.3.1 as the global ruby
