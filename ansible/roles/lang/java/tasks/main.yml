@@ -23,20 +23,19 @@
       export JENV_ROOT="$HOME/.jenv"
       eval "$(jenv init -)"
 
+- name: Clear installed javas from jenv
+  file: >
+    path={{ user.home }}/.jenv/versions
+    state=absent
+
 - name: Add installed javas to jenv
-  shell: >
-    eval "$({{ user.home }}/.jenv/bin/jenv init -)" &&
-    $(yes y | {{ user.home }}/.jenv/bin/jenv add {{ item }}) &&
-    {{ user.home }}/.jenv/bin/jenv rehash
-  with_items:
-    - "{{ java8_131_home_path }}"
-  register: add_installed_java
+  shell: |
+    mkdir -p {{ user.home }}/.jenv/versions
+    {{ user.home }}/.jenv/bin/jenv add {{ item }}
   become: yes
   become_user: "{{ user.name }}"
-  failed_when: > # Ignore errors caused by having already added this java
-    (add_installed_java.stdout_lines | select("match", ".*is not a valid path to java installation.*") | list | length > 0)
-    or
-    ((add_installed_java.rc > 0) and (add_installed_java.stdout_lines | reject("match", ".*There is already a .* managed by jenv.*") | list | length > 0))
+  with_items:
+    - "{{ java8_131_home_path }}"
 
 - name: Use Java 1.8 globally
   command: "{{ user.home }}/.jenv/bin/jenv global 1.8"
