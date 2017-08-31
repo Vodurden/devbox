@@ -1,4 +1,6 @@
 ---
+- include: "{{ playbook_dir }}/shared_tasks/os_vars.yml"
+
 - name: Install aws cli
   pip: name=awscli
 
@@ -24,3 +26,10 @@
 
       # Enable bash-my-aws auto completion
       source ~/.bash-my-aws/bash_completion.sh
+
+- name: Install shush
+  get_url:
+    url: "{{ shush_url }}"
+    checksum: "{{ shush_checksum_sha1 }}"
+    dest: /usr/local/bin/shush
+    mode: "u=rwx,g=rx,o=rx"
