@@ -14,3 +14,5 @@
   changed_when: > # Ignore timestamp changes to directories, we only care about file changes
     (synchronize_dotfiles.changed) and
     (synchronize_dotfiles.stdout_lines | reject("match", ".d..t....... ?.*") | list | length > 0)
+  tags:
+    - homedir

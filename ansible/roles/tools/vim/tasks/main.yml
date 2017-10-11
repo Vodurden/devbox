@@ -12,6 +12,8 @@
     state=directory
     owner={{ user.name }}
     group="{{ user.group }}"
+  tags:
+    - homedir
 
 - name: Install Vundle
   git: >
@@ -23,9 +25,13 @@
     update=no
   become: yes
   become_user: "{{ user.name }}"
+  tags:
+    - homedir
 
 - name: Install vim plugins
   command: "vim +PluginInstall +qall"
   when: synchronize_dotfiles.changed
   become: yes
   become_user: "{{ user.name }}"
+  tags:
+    - homedir
