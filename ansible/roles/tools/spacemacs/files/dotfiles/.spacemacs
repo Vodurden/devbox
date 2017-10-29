@@ -58,6 +58,7 @@ values."
      go
      csharp
      java
+     idris
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-enable-enh-ruby-mode t
