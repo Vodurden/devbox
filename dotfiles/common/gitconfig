@@ -6,3 +6,6 @@
 	default = simple
 [rebase]
 	autosquash = true
+[user]
+	name = Jake Woods
+	email = jake@jakewoods.net

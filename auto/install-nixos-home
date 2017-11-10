@@ -3,7 +3,10 @@ set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Provisioning nixos configuration."
+echo "Provisioning nixos home configuration."
+
+mkdir -p ${HOME}/.nixpkgs
+cp -r ${SOURCE_DIR}/../nixpkgs/* ${HOME}/.nixpkgs/
 
 ${SOURCE_DIR}/scripts/nix-install-dev-env-profile
 ${SOURCE_DIR}/scripts/sync-spacemacs

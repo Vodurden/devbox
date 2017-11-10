@@ -18,13 +18,27 @@
     git
 
     # X packages
+    acpi
+    xclip
+    firefox
     rxvt_unicode-with-plugins
     termite
     dmenu
     fontconfig
+
+    haskellPackages.xmobar
+
+    steam
   ];
 
+
   services.nixosManual.showManual = true;
+
+  # Enable DBus
+  services.dbus.enable = true;
+
+  # Replace nptd by timesyncd
+  services.timesyncd.enable = true;
 
   # Enable X11
   services.compton.enable = true;

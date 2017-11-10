@@ -17,6 +17,7 @@
         emacs
         vim
 
+        sbt
         nodejs-8_x
       ];
     };
