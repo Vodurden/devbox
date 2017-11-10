@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Provisioning nixos configuration."
+
+${SOURCE_DIR}/scripts/nix-install-dev-env-profile
+${SOURCE_DIR}/scripts/sync-spacemacs
+${SOURCE_DIR}/scripts/sync-bash-my-aws
+${SOURCE_DIR}/scripts/link-dotfiles
+
+echo "Provisioning complete."

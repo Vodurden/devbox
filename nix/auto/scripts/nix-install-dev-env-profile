@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Installing default nix dev-env profile"
+nix-env -i all
+echo "Done."
+echo

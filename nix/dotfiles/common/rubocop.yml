@@ -1,0 +1,10 @@
+Metrics/LineLength:
+  Max: 160
+
+# Too many projects are inconsistent with this, too much noise.
+Style/HashSyntax:
+  Enabled: false
+
+# Too many projects are inconsistent with this, too much noise.
+Style/StringLiterals:
+  Enabled: false
