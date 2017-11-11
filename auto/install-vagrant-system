@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Provisioning vagrant nixos system configuration."
+
+echo "Using nixos version 17.09"
+nix-channel --add https://nixos.org/channels/nixos-17.09 nixos
+
+echo "Updating OS configuration"
+cp ${SOURCE_DIR}/../nixos/common.nix /etc/nixos/common.nix
+cp ${SOURCE_DIR}/../nixos/vagrant.nix /etc/nixos/configuration.nix
+
+nix-channel --update
+nixos-rebuild switch
+
+echo "Provisioning complete."

@@ -5,6 +5,6 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR="${SOURCE_DIR}/../../dotfiles"
 
 echo "Linking dotfiles from ${DOTFILES_DIR} ..."
-/usr/bin/env rcup -- -v -d "${DOTFILES_DIR}/common" -d "${DOTFILES_DIR}/linux"
+/usr/bin/env rcup -- -d "${DOTFILES_DIR}/common" -d "${DOTFILES_DIR}/linux"
 echo "Done."
 echo

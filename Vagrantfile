@@ -7,8 +7,6 @@
 # you're doing.
 Vagrant.configure("2") do |config|
   config.vm.box = "nixos/nixos-16.09-x86_64"
-  config.ssh.username = "vagrant"
-  config.ssh.password = "vagrant"
 
   config.vm.provider :virtualbox do |vb|
     vb.gui = true
@@ -25,25 +23,4 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.synced_folder 'E:\\Projects', '/code', mount_options: ['fmode=777,dmode=777']
-
-  # Upgrade nixos to 17.09
-  config.vm.provision :shell, privileged: true, inline: <<-SHELL
-    nix-channel --add https://nixos.org/channels/nixos-17.09 nixos
-  SHELL
-
-  # Overwrite the OS's configuration.nix with our own
-  config.vm.provision :file, source: "./nixos", destination: "/tmp"
-  config.vm.provision :shell, privileged: true, inline: <<-SHELL
-    mv /tmp/nixos/common.nix /etc/nixos/common.nix
-    mv /tmp/nixos/vagrant.nix /etc/nixos/configuration.nix
-  SHELL
-
-  # Add user-specific configuration
-  config.vm.provision :file, source: "nixpkgs", destination: "/tmp/nixpkgs"
-  config.vm.provision :shell, privileged: true, inline: <<-SHELL
-    rm -rf /home/jake/.nixpkgs
-    mkdir -p /home/jake/
-    mv /tmp/nixpkgs /home/jake/.nixpkgs
-  SHELL
-
 end
