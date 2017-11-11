@@ -1,8 +1,6 @@
 Introduction
 ============
-This repository contains scripts to provision my development environment. Currently I support *Mac* and *Debian on VirtualBox*
-
-Most of the work is done to provide a consistent environment for my spacemacs configuration to run in. (https://github.com/syl20bnr/spacemacs)
+This repository contains scripts to provision my development environment. Currently it supports *Nixos*, *Nixos + Vagrant* and *Mac*
 
 Requirements
 ============
@@ -17,6 +15,10 @@ On Mac:
 
 - Python (use brew)
 - Ansible
+
+On Nixos:
+
+- Just nixos
 
 Usage
 =====
@@ -39,24 +41,10 @@ On Mac:
 On Debian:
 
 - Login: `jake`
-- Open a GUI: `startx`
-- Open a Terminal: `Alt+Shift+Enter`
-- Move the Terminal to Screen 2: `Alt+Shift+2`
-- Move to Screen 2: `Alt+2`
-- Open Emacs: `(emacs &>/dev/null &)`
-- Move Emacs to Screen 1: `Alt+Shift+1`
-- Move to Screen 1: `Alt+1`
+- Use `Alt+P` to open problems. I recommend `emacs`
+- Use `Alt+Shift+Enter` to open a terminal
 
 At this point we should have a fullscreen emacs. Use `Alt+1` and `Alt+2` to swap between Emacs/Terminal (or use emacs's terminal).
-
-Useful Information
-------------------
-
-On Debian:
-
-- Login: `jake` (no password)
-- Start GUI/xmonad: `startx`
-- Start emacs: `(emacs &>/dev/null &)`
 
 Directory Structure
 ===================
