@@ -24,6 +24,7 @@
     rxvt_unicode-with-plugins
     termite
     dmenu
+    feh
     fontconfig
 
     haskellPackages.xmobar
