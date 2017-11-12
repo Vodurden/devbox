@@ -20,6 +20,7 @@
     # X packages
     acpi
     xclip
+    chromium
     firefox
     rxvt_unicode-with-plugins
     termite

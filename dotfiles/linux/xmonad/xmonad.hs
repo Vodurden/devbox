@@ -19,7 +19,8 @@ main = do
   xmonad $ xmonadConfig {
     logHook = do
         dynamicLogWithPP xmobarPP {
-          ppOutput = hPutStrLn xmobarProc
+            ppOutput = hPutStrLn xmobarProc
+          , ppTitle = xmobarColor "green" "" . shorten 50
         }
         logHook desktopConfig
   }

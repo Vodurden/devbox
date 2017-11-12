@@ -19,12 +19,14 @@ Config {
   -- layout
   sepChar = "%",  -- delineator between plugin names and straight text
   alignSep = "}{", -- separator between left-right alignment
-  template =  "%battery% }{ %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%",
+  template =  "%StdinReader% }{ | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%",
 
    -- plugins
   commands = [
+    Run StdinReader
+
     -- battery monitor
-    Run Battery [
+    , Run Battery [
         "--template" , "Batt: <acstatus>"
       , "--Low"      , "10"        -- units: %
       , "--High"     , "80"        -- units: %
