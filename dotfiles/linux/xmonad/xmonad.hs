@@ -14,7 +14,7 @@ xmonadConfig = desktopConfig {
 }
 
 main = do
-  unsafeSpawn "feh --bg-tile ~/.xmonad/wallpapers/black_squares_tileable.png"
+  unsafeSpawn "feh --bg-tile ~/.xmonad/wallpapers/solarized_squares.png"
   xmobarProc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
   xmonad $ xmonadConfig {
     logHook = do
