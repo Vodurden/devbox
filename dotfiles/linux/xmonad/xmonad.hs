@@ -1,9 +1,17 @@
 import XMonad
+import XMonad.Core
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.Run
+
+import System.IO
+
+green = "#859900"     -- Solarized green
+yellow = "#b58900"    -- Solarized yellow
+blue = "#268bd2"      -- Solarized blue
+red = "#dc322f"       -- Solarized red
 
 xmonadConfig = desktopConfig {
   borderWidth = 1,
@@ -13,14 +21,24 @@ xmonadConfig = desktopConfig {
   layoutHook = desktopLayoutModifiers $ smartBorders $ smartSpacingWithEdge 3 $ Tall 1 (3/100) (1/2)
 }
 
+xmobarLogHook :: Handle -> X ()
+xmobarLogHook xmobarHandle = dynamicLogWithPP def {
+    ppOutput = hPutStrLn xmobarHandle
+  , ppSep = " | "
+  , ppOrder = \(workspaces:_:title:_) -> [workspaces, title]
+
+  , ppCurrent = xmobarColor blue "" . wrap "[" "]"
+  , ppVisible = wrap "(" ")"
+  , ppUrgent = xmobarColor red yellow
+
+  , ppTitle = xmobarColor green "" . shorten 50
+}
+
 main = do
   unsafeSpawn "feh --bg-tile ~/.xmonad/wallpapers/solarized_squares.png"
-  xmobarProc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+  xmobarHandle <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
   xmonad $ xmonadConfig {
     logHook = do
-        dynamicLogWithPP xmobarPP {
-            ppOutput = hPutStrLn xmobarProc
-          , ppTitle = xmobarColor "green" "" . shorten 50
-        }
-        logHook desktopConfig
+      xmobarLogHook xmobarHandle
+      logHook desktopConfig
   }
