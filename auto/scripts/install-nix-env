@@ -10,7 +10,8 @@ fi;
 
 NIX_ENV_NAME=$1
 
-ln -f -s "${SOURCE_DIR}/../../nixpkgs" "${HOME}/.nixpkgs"
+rm -f "${HOME}/.nixpkgs"
+ln -s "${SOURCE_DIR}/../../nixpkgs" "${HOME}/.nixpkgs"
 
 echo "Installing '${NIX_ENV_NAME}' environment to local profile"
 nix-env -i ${NIX_ENV_NAME}
