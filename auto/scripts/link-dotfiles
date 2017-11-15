@@ -18,5 +18,5 @@ if [[ ! -d "${DOTFILES_PATH}" ]]; then
 fi;
 
 
-echo "Linking dotfiles from ${DOTFILES_DIR} ..."
-/usr/bin/env rcup -- -d "${DOTFILES_DIR}/${DOTFILES_DIR_NAME}"
+echo "Linking dotfiles from ${DOTFILES_PATH} ..."
+/usr/bin/env rcup -- -d "${DOTFILES_PATH}"
