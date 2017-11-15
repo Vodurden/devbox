@@ -2,12 +2,6 @@
 # .profile
 #
 
-# Source the bash-my-aws functions
-for f in ~/.bash-my-aws/lib/*-functions; do source $f; done
-
-# Enable bash-my-aws auto completion
-source ~/.bash-my-aws/bash_completion.sh
-
 # Source any additional profile scripts in ~/.profile.d
 if [[ -d "${HOME}/.profile.d" ]]; then
     for script in ${HOME}/.profile.d/*.sh ; do

@@ -11,3 +11,12 @@ PS1='[\u@\h \W]\$ '
 alias gc="git commit"
 alias gf="git fetch --all"
 alias gs="git status"
+
+# Enable dircolors for bash
+eval $(dircolors -b ${HOME}/.dircolors)
+
+# Source the bash-my-aws functions
+for f in ~/.bash-my-aws/lib/*-functions; do source $f; done
+
+# Enable bash-my-aws auto completion
+source ~/.bash-my-aws/bash_completion.sh

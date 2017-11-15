@@ -8,6 +8,10 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "nixos/nixos-16.09-x86_64"
 
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = false
+
   config.vm.provider :virtualbox do |vb|
     vb.gui = true
 
