@@ -1,5 +1,5 @@
 # REA-specific configuration
-export REA_LDAP_USER={{ user.name }}
+export REA_LDAP_USER=jake.woods
 export AWS_DEFAULT_REGION=ap-southeast-2
 export PATH="$HOME/.rea-slip-utils/bin:$PATH"
 
