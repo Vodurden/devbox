@@ -1,10 +1,37 @@
 {
   allowUnfree = true;
+  allowBroken = true;
 
   packageOverrides = pkgs_: with pkgs_; {
     scalastyle = callPackage ./scalastyle {};
 
-    all = with pkgs; buildEnv {
+    nixosDevEnv = with pkgs; buildEnv {
+      name = "nixos-dev-env";
+
+      paths = [
+        glibc.static
+
+        # apply-refact doesn't seem to compile on osx
+        haskellPackages.apply-refact
+
+        # scalafmt is marked as linux only for some reason
+        scalafmt
+
+        common
+      ];
+    };
+
+    osxDevEnv = with pkgs; buildEnv {
+      name = "osx-dev-env";
+
+      paths = [
+        hack-font
+
+        common
+      ];
+    };
+
+    common = with pkgs; buildEnv {
       name = "all";
 
       paths = [
@@ -12,7 +39,6 @@
         rcm
 
         stdenv
-        glibc.static
 
         # Editors
         emacs
@@ -22,7 +48,6 @@
         # Haskell
         ghc
         stack
-        haskellPackages.apply-refact
         haskellPackages.hlint
         haskellPackages.stylish-haskell
         haskellPackages.hasktags
@@ -33,7 +58,6 @@
         # Scala
         scala
         sbt
-        scalafmt
         scalastyle
 
         # Idris

@@ -3,12 +3,12 @@ set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Provisioning nixos home configuration."
+echo "Provisioning osx home configuration."
 
-${SOURCE_DIR}/scripts/install-nix-env nixos-dev-env
+${SOURCE_DIR}/scripts/install-nix-env osx-dev-env
 ${SOURCE_DIR}/scripts/sync-spacemacs
 ${SOURCE_DIR}/scripts/sync-bash-my-aws
 ${SOURCE_DIR}/scripts/link-dotfiles common
-${SOURCE_DIR}/scripts/link-dotfiles linux
+${SOURCE_DIR}/scripts/link-dotfiles work-rea
 
 echo "Provisioning complete."
