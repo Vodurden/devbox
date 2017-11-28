@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+SYNC_NAME="vundle" \
+    SYNC_REPO=https://github.com/VundleVim/Vundle.vim.git \
+    SYNC_REF=v0.10.2 \
+    SYNC_TARGET_DIR=$HOME/.vim/bundle/Vundle.vim \
+    ${SOURCE_DIR}/sync-git-repo
+
+echo "Installing vim plugins"
+vim +PluginInstall +qall

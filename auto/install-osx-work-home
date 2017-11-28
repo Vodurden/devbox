@@ -7,6 +7,7 @@ echo "Provisioning osx home configuration."
 
 ${SOURCE_DIR}/scripts/install-nix-env osx-dev-env
 ${SOURCE_DIR}/scripts/sync-spacemacs
+${SOURCE_DIR}/scripts/sync-vim
 ${SOURCE_DIR}/scripts/sync-bash-my-aws
 ${SOURCE_DIR}/scripts/link-dotfiles common
 ${SOURCE_DIR}/scripts/link-dotfiles work-rea
