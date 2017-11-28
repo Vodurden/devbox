@@ -61,7 +61,7 @@
         scalastyle
 
         # Idris
-        haskellPackages.idris
+        idris
 
         # Java
         jdk
