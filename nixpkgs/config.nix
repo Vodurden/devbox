@@ -4,6 +4,7 @@
 
   packageOverrides = pkgs_: with pkgs_; {
     scalastyle = callPackage ./scalastyle {};
+    reaAs = callPackage ./rea/rea-as {};
 
     nixosDevEnv = with pkgs; buildEnv {
       name = "nixos-dev-env";
@@ -35,6 +36,8 @@
       name = "all";
 
       paths = [
+        nix-prefetch-git
+
         # Dotfile management
         rcm
 

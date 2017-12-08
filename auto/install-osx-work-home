@@ -4,11 +4,15 @@ set -euo pipefail
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning osx home configuration."
-
 ${SOURCE_DIR}/scripts/install-nix-env osx-dev-env
 ${SOURCE_DIR}/scripts/sync-spacemacs
 ${SOURCE_DIR}/scripts/sync-vim
 ${SOURCE_DIR}/scripts/sync-bash-my-aws
+
+echo "Provisioning rea configuration"
+${SOURCE_DIR}/scripts/rea/install-private-nixpkgs
+
+echo "Provisioning dotfiles"
 ${SOURCE_DIR}/scripts/link-dotfiles common
 ${SOURCE_DIR}/scripts/link-dotfiles work-rea
 

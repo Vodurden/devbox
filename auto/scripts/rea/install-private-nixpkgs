@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# We need to prefetch our sources since the nix build user doesn't have permission.
+echo "Prefetching rea-as"
+nix-prefetch-git \
+    git@git.realestate.com.au:cowbell/rea-as.git \
+    e76e1cbfe7b8010f845e51379d3bbcd889dfe6c8 \
+    10ipnni2b68y36bxjnmy8y6jrrm26n1q84kl00pzsb19v4zjn9f7
+
+echo "Installing rea-as"
+nix-env -iA nixpkgs.reaAs
+
+echo "Done."
