@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: oracle-java, java_version: 8, java_subversion: 131 }

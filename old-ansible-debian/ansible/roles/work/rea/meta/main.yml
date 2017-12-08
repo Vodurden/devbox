@@ -1,4 +1,0 @@
----
-dependencies:
-  - role: tools/terminal
-  - role: lang/json

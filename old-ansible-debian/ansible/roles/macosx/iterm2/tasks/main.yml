@@ -1,5 +1,0 @@
----
-- name: Install iterm2
-  homebrew_cask: package=iterm2 state=present
-  become: yes
-  become_user: "{{ system_install_user | default('root') }}"

@@ -1,5 +1,0 @@
----
-- name: Install idris
-  command: stack install idris
-  become: yes
-  become_user: "{{ user.name }}"

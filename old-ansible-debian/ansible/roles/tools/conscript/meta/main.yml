@@ -1,5 +1,0 @@
----
-dependencies:
-  - role: lang/java
-  - role: lang/scala
-  - role: tools/terminal

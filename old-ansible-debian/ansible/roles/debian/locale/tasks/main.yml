@@ -1,3 +1,0 @@
----
-- name: Ensure the locale is en_US.UTF-8
-  locale_gen: name=en_US.UTF-8 state=present
