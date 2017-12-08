@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+SYNC_NAME="aws-shortcuts" \
+    SYNC_REPO=git@git.realestate.com.au:resi-lob/aws-shortcuts.git \
+    SYNC_REF=a9a1da4fe5c55f9ec84f09b43387c017dad31050 \
+    SYNC_TARGET_DIR=$HOME/.aws-shortcuts \
+    ${SOURCE_DIR}/../sync-git-repo
