@@ -1,0 +1,11 @@
+[core]
+  editor = vim
+[color]
+  ui = auto
+[push]
+  default = simple
+[rebase]
+  autosquash = true
+[user]
+  name = Jake Woods
+  email = jake@jakewoods.net
