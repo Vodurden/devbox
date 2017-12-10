@@ -9,6 +9,15 @@ nix-prefetch-git \
     10ipnni2b68y36bxjnmy8y6jrrm26n1q84kl00pzsb19v4zjn9f7
 
 echo "Installing rea-as"
-nix-env -iA nixpkgs.reaAs
+nix-env -iA nixpkgs.rea-as
+
+echo "Prefetching aws-console-url"
+nix-prefetch-git \
+    git@git.realestate.com.au:david-yeung/aws-console-url.git \
+    620d18e5989afa9ed3cd4390bd7e441872f49bd6 \
+    1vh7c9wfhdc7amvan0wzywdsvqbj8csrpsbiz4r50n7xhv6alh5v
+
+echo "Installing aws-console-url"
+nix-env -iA nixpkgs.aws-console-url
 
 echo "Done."

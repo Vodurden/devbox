@@ -4,7 +4,8 @@
 
   packageOverrides = pkgs_: with pkgs_; {
     scalastyle = callPackage ./scalastyle {};
-    reaAs = callPackage ./rea/rea-as {};
+    rea-as = callPackage ./rea/rea-as {};
+    aws-console-url = callPackage ./rea/aws-console-url {};
 
     nixosDevEnv = with pkgs; buildEnv {
       name = "nixos-dev-env";
@@ -85,12 +86,15 @@
         ruby
         bundler
 
+        # Go
+        go
+        go2nix
+
         # Tools
         awscli
         ag
         ncat
         ipcalc
-        # shush
       ];
     };
   };
