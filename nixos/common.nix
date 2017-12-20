@@ -92,7 +92,7 @@
 
   # Define our user accounts. Don't forget to set a password with `passwd`
   users.extraUsers.jake = {
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "audio" ];
     isNormalUser = true;
     uid = 1000;
   };
