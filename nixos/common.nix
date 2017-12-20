@@ -29,8 +29,6 @@
     fontconfig
 
     haskellPackages.xmobar
-
-    steam
   ];
 
 

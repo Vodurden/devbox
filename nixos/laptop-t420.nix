@@ -46,4 +46,8 @@
   };
 
   sound.mediaKeys.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    steam
+  ];
 }
