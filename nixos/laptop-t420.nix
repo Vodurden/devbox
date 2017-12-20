@@ -14,7 +14,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  boot.kernelPackages = pkgs.linuxPackages_4_13;
+  boot.kernelPackages = pkgs.linuxPackages_4_14;
   boot.kernelParams = ["video=SVIDEO-1:d"];
 
   networking.hostName = "jake-laptop"; # Define your hostname.

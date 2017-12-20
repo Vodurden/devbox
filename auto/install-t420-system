@@ -5,8 +5,8 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning nixos system configuration."
 
-echo "Using nixos version 17.09"
-nix-channel --add https://nixos.org/channels/nixos-17.09 nixos
+echo "Using nixos unstable"
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 
 echo "Updating OS configuration"
 cp ${SOURCE_DIR}/../nixos/common.nix /etc/nixos/common.nix
