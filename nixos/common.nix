@@ -27,6 +27,7 @@
     dmenu
     feh
     fontconfig
+    xorg.xev
 
     haskellPackages.xmobar
   ];

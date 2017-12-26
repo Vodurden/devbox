@@ -4,10 +4,16 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
+import XMonad.Actions.Volume
 import XMonad.Util.Run
 
 import System.IO
 import Control.Monad
+
+import Data.Map      (fromList, union)
+import Data.Monoid   (mappend)
+
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as S
 
@@ -17,13 +23,20 @@ blue = "#268bd2"      -- Solarized blue
 red = "#dc322f"       -- Solarized red
 
 xmonadConfig = desktopConfig {
-    borderWidth = 1
-  , normalBorderColor = "#586e75"
-  , focusedBorderColor = "#839496"
-  , terminal = "termite"
+      borderWidth = 1
+    , normalBorderColor = "#586e75"
+    , focusedBorderColor = "#839496"
+    , terminal = "termite"
 
-  , workspaces = ["1:code", "2:term", "3:web"] ++ map show [4..9]
-}
+    , workspaces = ["1:code", "2:term", "3:web"] ++ map show [4..9]
+    , keys = \c -> keys desktopConfig c `union` myKeys
+    }
+  where
+    myKeys = fromList
+      [ ((0, xF86XK_AudioLowerVolume), void (lowerVolume 4))
+      , ((0, xF86XK_AudioRaiseVolume), void (raiseVolume 4))
+      , ((0, xF86XK_AudioMute), void toggleMute)
+      ]
 
 xmobarLogHook :: Handle -> X ()
 xmobarLogHook xmobarHandle = dynamicLogWithPP def {

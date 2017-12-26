@@ -19,11 +19,14 @@ Config {
   -- layout
   sepChar = "%",  -- delineator between plugin names and straight text
   alignSep = "}{", -- separator between left-right alignment
-  template =  "%StdinReader% }{ | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%",
+  template =  "%StdinReader% }{ | %default:Master% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%",
 
    -- plugins
   commands = [
     Run StdinReader
+
+    -- volume
+    , Run Volume "default" "Master" [] 10
 
     -- battery monitor
     , Run Battery [
