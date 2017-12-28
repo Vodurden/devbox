@@ -4,6 +4,8 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageHelpers
 import XMonad.Actions.Volume
 import XMonad.Util.Run
 
@@ -22,7 +24,7 @@ yellow = "#b58900"    -- Solarized yellow
 blue = "#268bd2"      -- Solarized blue
 red = "#dc322f"       -- Solarized red
 
-xmonadConfig = desktopConfig {
+xmonadConfig = ewmh $ desktopConfig {
       borderWidth = 1
     , normalBorderColor = "#586e75"
     , focusedBorderColor = "#839496"
@@ -62,6 +64,10 @@ defaultAppWorkspaceManageHook = composeAll
   ]
   where viewShift = doF . liftM2 (.) S.greedyView S.shift
 
+-- Manage fullscreen applications
+myFullscreenManageHook :: ManageHook
+myFullscreenManageHook = isFullscreen --> doFullFloat
+
 main = do
   unsafeSpawn "feh --bg-tile ~/.xmonad/wallpapers/solarized_squares.png"
   xmobarHandle <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
@@ -72,6 +78,7 @@ main = do
 
     , manageHook = composeAll
         [ defaultAppWorkspaceManageHook
+        , myFullscreenManageHook
         , manageHook desktopConfig
         ]
 
