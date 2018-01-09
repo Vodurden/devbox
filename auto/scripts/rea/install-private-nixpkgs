@@ -20,4 +20,13 @@ nix-prefetch-git \
 echo "Installing aws-console-url"
 nix-env -iA nixpkgs.aws-console-url
 
+echo "Prefetching rea-slip-utils"
+nix-prefetch-git \
+    git@git.realestate.com.au:cowbell/rea-slip-utils.git \
+    v1.1.0 \
+    0bdw004w5z6vv53dpms7sv751wj0cg0zga4yisv31l5prlksj4pb
+
+echo "Installing rea-slip-utils"
+nix-env -iA nixpkgs.rea-slip-utils
+
 echo "Done."

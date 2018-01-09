@@ -6,6 +6,7 @@
     scalastyle = callPackage ./scalastyle {};
     rea-as = callPackage ./rea/rea-as {};
     aws-console-url = callPackage ./rea/aws-console-url {};
+    rea-slip-utils = callPackage ./rea/rea-slip-utils {};
 
     nixosDevEnv = with pkgs; buildEnv {
       name = "nixos-dev-env";
