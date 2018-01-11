@@ -1,4 +1,6 @@
-{
+let
+  unstable = import <nixos-unstable> {};
+in {
   allowUnfree = true;
   allowBroken = true;
 
@@ -53,7 +55,7 @@
 
         # Haskell
         ghc
-        stack
+        unstable.stack
         haskellPackages.hlint
         haskellPackages.stylish-haskell
         haskellPackages.hasktags
