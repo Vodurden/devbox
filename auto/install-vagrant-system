@@ -5,8 +5,11 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning vagrant nixos system configuration."
 
-echo "Using nixos version 17.09"
+echo "Using nixos-17.09 as default channel"
 nix-channel --add https://nixos.org/channels/nixos-17.09 nixos
+
+echo "Using nixos-unstable as optional channel"
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
 
 echo "Updating OS configuration"
 cp ${SOURCE_DIR}/../nixos/common.nix /etc/nixos/common.nix
