@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  unstable = import <nixos-unstable> {};
+in {
   nixpkgs.config.allowUnfree = true;
 
   # Internationalisation
@@ -21,7 +23,7 @@
     acpi
     xclip
     chromium
-    firefox
+    unstable.firefox
     rxvt_unicode-with-plugins
     termite
     dmenu
