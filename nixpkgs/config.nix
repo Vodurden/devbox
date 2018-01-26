@@ -53,8 +53,11 @@ in {
         vim
         vimPlugins.vundle
 
+        # C/C++
+        gcc
+
         # Haskell
-        ghc
+        unstable.ghc
         unstable.stack
         haskellPackages.hlint
         haskellPackages.stylish-haskell
