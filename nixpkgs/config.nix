@@ -80,6 +80,7 @@ in {
 
         # JavaScript
         nodejs-8_x
+        flow
         nodePackages.bower
         nodePackages.tern
         nodePackages.js-beautify

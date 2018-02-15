@@ -85,7 +85,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(editorconfig)
+   dotspacemacs-additional-packages '(editorconfig flycheck-flow)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -387,6 +387,17 @@ you should place your code here."
 
   ;; Editor config support
   (editorconfig-mode 1)
+
+  ;; Flow support for javascript
+  (require 'flycheck-flow)
+  (flycheck-add-mode 'javascript-flow 'js2-mode)
+  (flycheck-add-mode 'javascript-flow 'react-mode)
+  (add-hook 'js2-init-hook
+            '(lambda ()
+               (setq next-error-function 'flycheck-next-error)))
+
+  ;; React-mode works better for flow files so use it if the buffer starts with @flow
+  (add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . react-mode))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
