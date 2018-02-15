@@ -16,6 +16,10 @@ in {
       paths = [
         glibc.static
 
+        # C/C++. We don't want this on OSX as we want to rely on apple's distribution
+        gcc
+        clang
+
         # apply-refact doesn't seem to compile on osx
         haskellPackages.apply-refact
 
@@ -52,9 +56,6 @@ in {
         emacs
         vim
         vimPlugins.vundle
-
-        # C/C++
-        gcc
 
         # Haskell
         unstable.ghc
