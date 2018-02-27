@@ -73,7 +73,7 @@ in {
         scalastyle
 
         # Idris
-        # unstable.idris
+        unstable.idris
 
         # Java
         jdk
