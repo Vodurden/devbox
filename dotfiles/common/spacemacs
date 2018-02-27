@@ -47,9 +47,6 @@ values."
      ;; Languages
      haskell
      (scala :variables
-            scala-indent:default-run-on-strategy 'reluctant
-            scala-indent:align-parameters nil
-            scala-indent:align-forms nil
             flycheck-scalastylerc (substitute-in-file-name "$HOME/.scalastyle_config.xml"))
      elixir
      erlang
@@ -370,6 +367,14 @@ you should place your code here."
 
   ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/6578
   (add-hook 'scala-mode-hook (lambda() (require 'ensime)))
+
+
+  ;; The scala layer forces some of these values so we want to override them
+  ;; after the fact.
+  (add-hook 'scala-mode-hook (lambda()
+                               (setq scala-indent:default-run-on-strategy 'reluctant
+                                     scala-indent:align-parameters nil
+                                     scala-indent:align-forms nil)))
 
   ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/7144
   (spacemacs/set-leader-keys-for-minor-mode 'ensime-mode
