@@ -10,6 +10,7 @@ On Windows:
 - A bash-compatible terminal (I'm using Msys2)
 - VirtualBox
 - Vagrant on the path
+- vagrant-disksize plugin installed (`vagrant plugin install vagrant-disksize`)
 
 On Mac:
 

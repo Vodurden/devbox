@@ -12,6 +12,9 @@ Vagrant.configure("2") do |config|
   config.ssh.password = "vagrant"
   config.ssh.insert_key = false
 
+  # Provided by the vagrant-disksize plugin
+  config.disksize.size = '50GB'
+
   config.vm.provider :virtualbox do |vb|
     vb.gui = true
 
