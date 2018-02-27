@@ -390,6 +390,9 @@ you should place your code here."
                               (c-set-offset 'arglist-cont-nonempty '+)
                               (c-set-offset 'arglist-close '0)))
 
+  ;; Nix works better when we don't try to load PATH from an arbitrary shell
+  (setq exec-path-from-shell-variables '("MANPATH" "GOPATH"))
+
   ;; Editor config support
   (editorconfig-mode 1)
 
