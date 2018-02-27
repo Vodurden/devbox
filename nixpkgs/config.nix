@@ -14,14 +14,14 @@ in {
       name = "nixos-dev-env";
 
       paths = [
-        glibc.static
+        unstable.glibc.static
 
         # C/C++. We don't want this on OSX as we want to rely on apple's distribution
         gcc
         clang
 
         # apply-refact doesn't seem to compile on osx
-        haskellPackages.apply-refact
+        unstable.haskellPackages.apply-refact
 
         # scalafmt is marked as linux only for some reason
         scalafmt
@@ -59,13 +59,15 @@ in {
 
         # Haskell
         unstable.ghc
-        unstable.stack
-        haskellPackages.hlint
-        haskellPackages.stylish-haskell
-        haskellPackages.hasktags
-        haskellPackages.hoogle
+        stack
+        unstable.haskellPackages.hlint
+        unstable.haskellPackages.stylish-haskell
+        unstable.haskellPackages.hasktags
+        unstable.haskellPackages.hoogle
         haskellPackages.ghc-mod
-        haskellPackages.intero
+        unstable.haskellPackages.intero
+        unstable.cabal2nix
+        unstable.cabal-install
 
         # Scala
         scala
