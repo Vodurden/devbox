@@ -11,7 +11,9 @@ Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 filetype plugin indent on
 
+
 " Configuration
+let g:solarized_termtrans=1
 set background=dark
 silent! colorscheme solarized
 syntax on
