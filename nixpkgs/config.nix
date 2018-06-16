@@ -14,8 +14,6 @@ in {
       name = "nixos-dev-env";
 
       paths = [
-        unstable.glibc.static
-
         # C/C++. We don't want this on OSX as we want to rely on apple's distribution
         clang
 
