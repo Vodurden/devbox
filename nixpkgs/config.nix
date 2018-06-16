@@ -17,7 +17,6 @@ in {
         unstable.glibc.static
 
         # C/C++. We don't want this on OSX as we want to rely on apple's distribution
-        gcc
         clang
 
         # apply-refact doesn't seem to compile on osx
@@ -59,12 +58,10 @@ in {
 
         # Haskell
         unstable.ghc
-        stack
         unstable.haskellPackages.hlint
         unstable.haskellPackages.stylish-haskell
         unstable.haskellPackages.hasktags
         unstable.haskellPackages.hoogle
-        haskellPackages.ghc-mod
         unstable.haskellPackages.intero
         unstable.cabal2nix
         unstable.cabal-install
@@ -95,7 +92,6 @@ in {
 
         # Ruby
         ruby
-        bundler
 
         # Go
         go
@@ -106,6 +102,7 @@ in {
         ag
         ncat
         ipcalc
+        evince
       ];
     };
   };
