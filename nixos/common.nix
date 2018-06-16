@@ -45,7 +45,6 @@
   services.compton.enable = true;
   services.xserver = {
     enable = true;
-    videoDrivers = ["modesetting"];
     useGlamor = true;
 
     windowManager.xmonad = {

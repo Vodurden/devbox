@@ -32,6 +32,7 @@
 
   # Enable guest additions.
   virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.guest.x11 = true;
 
   # Packages for Vagrant
   environment.systemPackages = with pkgs; [
@@ -44,6 +45,11 @@
     nfs-utils
     rsync
   ];
+
+  services.xserver.videoDrivers = ["virtualbox"];
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
 
   # Creates a "vagrant" users with password-less sudo access
   users = {
