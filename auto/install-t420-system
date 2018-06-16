@@ -5,8 +5,8 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning nixos system configuration."
 
-echo "Using nixos-17.09 as default channel"
-nix-channel --add https://nixos.org/channels/nixos-17.09 nixos
+echo "Using nixos-18.03 as default channel"
+nix-channel --add https://nixos.org/channels/nixos-18.03 nixos
 
 echo "Using nixos-unstable as optional channel"
 nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
