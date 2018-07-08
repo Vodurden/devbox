@@ -4,11 +4,12 @@ set -euo pipefail
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 : ${SYNC_NAME:?"SYNC_NAME must be provided"}
-: ${SYNC_REPO:?"SYNC_REPO must be provided"}
-: ${SYNC_REF:?"SYNC_REF must be provided"}
+: ${SYNC_REPO?"SYNC_REPO must be provided"}
 : ${SYNC_TARGET_DIR:?"SYNC_TARGET_DIR must be provided"}
 
-echo "Syncing ${SYNC_NAME} to version ${SYNC_REF} ..."
+SYNC_VERSION=${SYNC_BRANCH:-$SYNC_REF:?"SYNC_BRANCH or SYNC_REF must be provided"}
+
+echo "Syncing ${SYNC_NAME} to version ${SYNC_VERSION} ..."
 
 if [ ! -d "${SYNC_TARGET_DIR}" ]; then
     echo "No ${SYNC_NAME} installation found. Cloning."
@@ -19,9 +20,18 @@ fi
 
 pushd ${PWD} > /dev/null
 cd ${SYNC_TARGET_DIR}
-echo "Syncing to ${SYNC_REF}"
-git fetch --tags origin "${SYNC_REF}"
-git reset --keep ${SYNC_REF}
+if [[ ! -z "${SYNC_BRANCH:-}" ]]; then
+    echo "Checking out ${SYNC_BRANCH}"
+    git fetch origin
+    git checkout "${SYNC_BRANCH}"
+    git reset --keep "origin/${SYNC_BRANCH}"
+fi;
+
+if [[ ! -z "${SYNC_REF:-}" ]]; then
+    echo "Syncing to ${SYNC_REF}"
+    git fetch --tags origin "${SYNC_REF}"
+    git reset --keep ${SYNC_REF}
+fi;
 popd > /dev/null
 
 echo "Done."
