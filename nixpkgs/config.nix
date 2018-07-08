@@ -1,6 +1,7 @@
 let
-  unstable = import <nixos-unstable> {};
-in {
+  unstable = import <nixpkgs-unstable> {};
+in
+{
   allowUnfree = true;
   allowBroken = true;
 
@@ -58,7 +59,6 @@ in {
         unstable.ghc
         unstable.haskellPackages.hlint
         unstable.haskellPackages.stylish-haskell
-        unstable.haskellPackages.hasktags
         unstable.haskellPackages.hoogle
         unstable.haskellPackages.intero
         unstable.cabal2nix

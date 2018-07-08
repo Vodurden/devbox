@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> {};
-in {
+{
   nixpkgs.config.allowUnfree = true;
 
   # Internationalisation
@@ -23,7 +21,7 @@ in {
     acpi
     xclip
     chromium
-    unstable.firefox
+    firefox
     rxvt_unicode-with-plugins
     termite
     dmenu
@@ -42,18 +40,6 @@ in {
 
   # Replace nptd by timesyncd
   services.timesyncd.enable = true;
-
-  # Enable X11
-  services.compton.enable = true;
-  services.xserver = {
-    enable = true;
-    useGlamor = true;
-
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-    };
-  };
 
   fonts = {
     fontconfig = {
