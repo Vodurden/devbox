@@ -20,6 +20,7 @@
   boot.extraModprobeConfig = ''
     options i915 alpha_support=1
     options snd-hda-intel model=no-primary-hp power_save=1
+    options iwlwifi 11n_disable=8  # Resolve occasional issue where the wifi fails to load on boot
   '';
 
   hardware.nvidia.modesetting.enable = true;
@@ -39,18 +40,6 @@
     "nixpkgs-unstable=/nix/nixpkgs-unstable"
     "nixos-config=/etc/nixos/configuration.nix"
   ];
-  #nixpkgs.config.packageOverrides = super: {
-    # On the metabox the "Headpohne" line is actually a master audio controller. It needs
-    # to always be set or audio won't work.
-    #
-    # This override prevents the headphones from being muted when the jack is unplugged
-    #pulseaudioFull = super.pulseaudioFull.overrideAttrs (oldAttrs: rec {
-      #postPtarget_pathhases = oldAttrs.postPhases ++ [ "metaboxHeadphoneHack" ];
-      #postInstall = oldAttrs.postInstall + ''
-      #  echo "it works!" > $out/proof
-      #'';
-    #});
-  #};
 
   networking.hostName = "jake-metabox"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

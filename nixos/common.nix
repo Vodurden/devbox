@@ -29,7 +29,12 @@
     fontconfig
     xorg.xev
 
+    ntfs3g
+
     haskellPackages.xmobar
+
+    steam
+    calibre
   ];
 
 
