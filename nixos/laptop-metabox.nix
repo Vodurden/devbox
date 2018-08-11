@@ -14,13 +14,35 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.blacklistedKernelModules = [ "mesa" "nouveau" "mesa-noglu" ];
-  boot.kernelParams = [
-    "acpi_mask_gpe=0x6f" # Resolves AE_NOT_FOUND (see https://superuser.com/a/1237529)
+
+
+  boot.kernelPackages = pkgs.linuxPackages_4_17;
+  boot.kernelModules = [
+    "coretemp"
   ];
+
+  # acpi_mask_gpi - Resolves AE_NOT_FOUND (see https://superuser.com/a/1237529)
+  boot.kernelParams = [
+    "acpi_mask_gpe=0x6f"
+    "acpi_osi=! \"acpi_osi=Windows 2009\""
+  ];
+
+  # thermald needed CONFIG_POWERCAP and CONFIG_INTEL_RAPL and they don't seem to be on by default in NixOS
+  boot.kernelPatches = [ {
+    name = "rapl-config";
+    patch = null;
+    extraConfig = ''
+      POWERCAP y
+      INTEL_RAPL y
+    '';
+  }];
+
+  # i915 alpha_support=1  - Enables support for intel i915 graphics. Might not be needed with kernel >=4.15
+  # iwlwifi 11n_disable=8 - Resolve occasional issue where the wifi fails to load on boot
   boot.extraModprobeConfig = ''
     options i915 alpha_support=1
     options snd-hda-intel model=no-primary-hp power_save=1
-    options iwlwifi 11n_disable=8  # Resolve occasional issue where the wifi fails to load on boot
+    options iwlwifi 11n_disable=8
   '';
 
   hardware.nvidia.modesetting.enable = true;
@@ -34,6 +56,10 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
+
+  environment.systemPackages = with pkgs; [
+    vulkan-loader
+  ];
 
   nix.nixPath = [
     "nixpkgs=/nix/nixpkgs"
@@ -70,11 +96,77 @@
 
   # Laptop specific services:
   services.upower.enable = true;
-  services.tlp.enable = true;
+
+  services.thermald = {
+    enable = true;
+    configFile.platforms = [{
+      Name = "Override CPU default passive";
+      ProductName = "*";
+      Preference = "QUIET";
+      ThermalZones = [{
+        Type = "x86_pkg_temp";
+        TripPoints = [{
+          SensorType = "x86_pkg_temp";
+          Type = "passive";
+          Temperature = 80000;
+          CoolingDevices = [{
+            Index = 1;
+            Type = "rapl_controller";
+            Influence = 50;
+            SamplingPeriod = 10;
+          } {
+            Index = 2;
+            Type = "intel_pstate";
+            Influence = 40;
+            SamplingPeriod = 10;
+          } {
+            Index = 3;
+            Type = "intel_powerclamp";
+            Influence = 30;
+            SamplingPeriod = 10;
+          } {
+            Index = 4;
+            Type = "cpufreq";
+            Influence = 20;
+            SamplingPeriod = 8;
+          } {
+            Index = 5;
+            Type = "Processor";
+            Influence = 10;
+            SamplingPeriod = 5;
+          }];
+        }];
+      }];
+    }];
+  };
+
+  services.tlp = {
+    enable = true;
+    extraConfig = ''
+      CPU_SCALING_GOVERNOR_ON_AC=powersave
+      CPU_SCALING_GOVERNOR_ON_BAT=powersave
+      CPU_HWP_ON_AC=balance_power
+      CPU_HWP_ON_BAT=balance_power
+      SCHED_POWERSAVE_ON_AC=1
+      SCHED_POWERSAVE_ON_BAT=1
+      ENERGY_PERF_POLICY_ON_AC=balance_power
+      ENERGY_PERF_POLICY_ON_BAT=balance_power
+    '';
+  };
+  services.undervolt = {
+    enable = true;
+    coreOffset = "-110";
+    gpuOffset = "-75";
+    uncoreOffset = "-110";
+    analogioOffset = "-110";
+  };
 
   sound.enable = true;
   sound.enableOSSEmulation = false;
   sound.mediaKeys.enable = true;
 
-  powerManagement.enable = true;
+
+  powerManagement.cpuFreqGovernor = pkgs.lib.mkForce null;
+  # powerManagement.enable = true;
+  # powerManagement.cpuFreqGovernor = "powersave";
 }
