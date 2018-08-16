@@ -5,7 +5,13 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning nixos system configuration."
 
-${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+FORK_NAME="nixpkgs" \
+         FORK_BRANCH="origin/release-18.03" \
+         ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+
+FORK_NAME="nixpkgs-unstable" \
+         FORK_BRANCH="channels/nixpkgs-unstable" \
+         ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
 
 echo "Removing existing channels"
 nix-channel --remove nixos

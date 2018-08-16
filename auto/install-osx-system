@@ -5,7 +5,13 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning osx system configuration."
 
-${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+FORK_NAME="nixpkgs-darwin" \
+         FORK_BRANCH="channels/nixpkgs-18.03-darwin" \
+         ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+
+FORK_NAME="nixpkgs-unstable" \
+         FORK_BRANCH="channels/nixpkgs-unstable" \
+         ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
 
 echo "Overwriting default NIX_PATH with nixpkg forks"
 

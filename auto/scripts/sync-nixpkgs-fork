@@ -2,35 +2,23 @@
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Using nixpkgs 18.03 fork"
+: ${FORK_NAME:?"FORK_NAME must be provided"}
+: ${FORK_BRANCH:?"FORK_BRANCH must be provided"}
 
-mkdir -p /nix
+FORK_TARGET_DIR="/nix/${FORK_NAME}"
 
-echo "Syncing nixpkgs to /nix/nixpkgs"
 SYNC_NAME="nixpkgs" \
          SYNC_REPO=https://github.com/Vodurden/nixpkgs.git \
-         SYNC_BRANCH=release-18.03 \
-         SYNC_TARGET_DIR=/nix/nixpkgs \
+         SYNC_BRANCH=${master} \
+         SYNC_TARGET_DIR=${FORK_TARGET_DIR} \
          ${SOURCE_DIR}/sync-git-repo
 
-echo "Adding channels remote to nixpkgs"
-pushd /nix/nixpkgs
-git remote add channels git://github.com/NixOS/nixpkgs-channels.git
-git fetch channels
-popd
+pushd ${FORK_TARGET_DIR}
 
-echo "Syncing nixpkgs-unstable to /nix/nixpkgs-unstable"
-rm -rf /nix/nixpkgs-unstable
-cp -r /nix/nixpkgs /nix/nixpkgs-unstable
-pushd /nix/nixpkgs-unstable
-git fetch channels
-git checkout channels/nixpkgs-unstable
-popd
+  echo "Adding 'channels' remote"
+  git remote add channels git://github.com/NixOS/nixpkgs-channels.git
+  git fetch channels
 
-echo "Syncing nixpkgs-darwin to /nix/nixpkgs-darwin"
-rm -rf /nix/nixpkgs-darwin
-cp -r /nix/nixpkgs /nix/nixpkgs-darwin
-pushd /nix/nixpkgs-darwin
-git fetch channels
-git checkout channels/nixpkgs-18.03-darwin
+  echo "Using ${FORK_BRANCH} as ${FORK_NAME}"
+  git checkout "${FORK_BRANCH}"
 popd
