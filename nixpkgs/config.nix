@@ -13,24 +13,13 @@ in
 
     nixosDevEnv = with pkgs; buildEnv {
       name = "nixos-dev-env";
-
       paths = [
-        # C/C++. We don't want this on OSX as we want to rely on apple's distribution
-        clang
-
-        # apply-refact doesn't seem to compile on osx
-        unstable.haskellPackages.apply-refact
-
-        # scalafmt is marked as linux only for some reason
-        scalafmt
-
         common
       ];
     };
 
     osxDevEnv = with pkgs; buildEnv {
       name = "osx-dev-env";
-
       paths = [
         postgresql
         hack-font
@@ -39,43 +28,9 @@ in
       ];
     };
 
-    common = with pkgs; buildEnv {
-      name = "all";
-
+    node8Env = with pkgs; buildEnv {
+      name = "node8-env";
       paths = [
-        nix-prefetch-git
-
-        # Dotfile management
-        rcm
-
-        stdenv
-
-        # Editors
-        emacs
-        vim
-        vimPlugins.vundle
-
-        # Haskell
-        unstable.ghc
-        unstable.haskellPackages.hlint
-        unstable.haskellPackages.stylish-haskell
-        unstable.haskellPackages.hoogle
-        unstable.haskellPackages.intero
-        unstable.cabal2nix
-        unstable.cabal-install
-
-        # Scala
-        scala
-        sbt
-        scalastyle
-
-        # Idris
-        unstable.idris
-
-        # Java
-        jdk
-
-        # JavaScript
         nodejs-8_x
         flow
         nodePackages.bower
@@ -83,17 +38,81 @@ in
         nodePackages.js-beautify
         nodePackages.eslint
         nodePackages.yarn
+      ];
+    };
 
-        # JSON
-        jq
-        jmespath
+    haskellEnv = with pkgs; buildEnv {
+      name = "haskell-env";
+      paths = [
+        unstable.ghc
+        unstable.cabal2nix
+        unstable.cabal-install
+        unstable.haskellPackages.hlint
+        unstable.haskellPackages.stylish-haskell
+        unstable.haskellPackages.hoogle
+        unstable.haskellPackages.intero
+
+        # The tests fail on OSX
+        (unstable.haskellPackages.apply-refact.override {
+          ghc-exactprint = (haskell.lib.dontCheck unstable.haskellPackages.ghc-exactprint);
+        })
+      ];
+    };
+
+    cppEnv = with pkgs; buildEnv {
+      name = "c++-env";
+      paths = [
+        clang
+      ];
+    };
+
+    scalaEnv = with pkgs; buildEnv {
+      name = "scala-env";
+      paths = [
+        scala
+        sbt
+        scalastyle
+        scalafmt
+      ];
+    };
+
+    idrisEnv = with pkgs; buildEnv {
+      name = "idris-env";
+      paths = [
+        unstable.idris
+      ];
+    };
+
+    goEnv = with pkgs; buildEnv {
+      name = "go-env";
+      paths = [
+        go
+        go2nix
+      ];
+    };
+
+    # Packages that should always be installed
+    common = with pkgs; buildEnv {
+      name = "common";
+      paths = [
+        coreutils
+        nix-prefetch-git
+
+        # Dotfile management
+        rcm
+        stdenv
+
+        # Editors
+        emacs
+        vim
+        vimPlugins.vundle
+
+
+        # Java
+        jdk
 
         # Ruby
         ruby
-
-        # Go
-        go
-        go2nix
 
         # Tools
         awscli
@@ -101,6 +120,9 @@ in
         ncat
         ipcalc
         evince
+        lzop
+        jq
+        jmespath
       ];
     };
   };
