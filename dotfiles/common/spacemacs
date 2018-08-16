@@ -74,7 +74,7 @@ values."
      (html :variables
            css-indent-offset 2)
      markdown
-     org
+     (org :variables org-enable-reveal-js-support t)
      yaml
      sql
      )
