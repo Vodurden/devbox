@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Using nixpkgs 18.03 fork"
+
+mkdir -p /nix
+
+echo "Syncing nixpkgs to /nix/nixpkgs"
+SYNC_NAME="nixpkgs" \
+         SYNC_REPO=https://github.com/Vodurden/nixpkgs.git \
+         SYNC_BRANCH=release-18.03 \
+         SYNC_TARGET_DIR=/nix/nixpkgs \
+         ${SOURCE_DIR}/sync-git-repo
+
+echo "Adding channels remote to nixpkgs"
+pushd /nix/nixpkgs
+git remote add channels git://github.com/NixOS/nixpkgs-channels.git
+git fetch channels
+popd
+
+echo "Syncing nixpkgs-unstable to /nix/nixpkgs-unstable"
+rm -rf /nix/nixpkgs-unstable
+cp -r /nix/nixpkgs /nix/nixpkgs-unstable
+pushd /nix/nixpkgs-unstable
+git fetch channels
+git checkout channels/nixpkgs-unstable
+popd
+
+echo "Syncing nixpkgs-darwin to /nix/nixpkgs-darwin"
+rm -rf /nix/nixpkgs-darwin
+cp -r /nix/nixpkgs /nix/nixpkgs-darwin
+pushd /nix/nixpkgs-darwin
+git fetch channels
+git checkout channels/nixpkgs-18.03-darwin
+popd

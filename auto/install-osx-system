@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Provisioning osx system configuration."
+
+${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+
+echo "Overwriting default NIX_PATH with nixpkg forks"
+
+# Only write NIX_PATH if we haven't already written NIX_PATH to this file
+LINE='export NIX_PATH="nixpkgs=/nix/nixpkgs-darwin:nixpkgs-unstable=/nix/nixpkgs-unstable"'
+FILE=/etc/profile
+grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"

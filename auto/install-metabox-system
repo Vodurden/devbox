@@ -5,20 +5,7 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning nixos system configuration."
 
-echo "Using nixpkgs 18.03 fork"
-SYNC_NAME="nixpkgs" \
-         SYNC_REPO=https://github.com/Vodurden/nixpkgs.git \
-         SYNC_BRANCH=release-18.03 \
-         SYNC_TARGET_DIR=/nix/nixpkgs \
-         ${SOURCE_DIR}/scripts/sync-git-repo
-
-echo "Using nixpkgs-unstable 18.03 fork"
-cp -r /nix/nixpkgs /nix/nixpkgs-unstable
-SYNC_NAME="nixpkgs-unstable" \
-         SYNC_REPO=https://github.com/Vodurden/nixpkgs.git \
-         SYNC_BRANCH=master \
-         SYNC_TARGET_DIR=/nix/nixpkgs-unstable \
-         ${SOURCE_DIR}/scripts/sync-git-repo
+${SOURCE_DIR}/scripts/sync-nixpkgs-fork
 
 echo "Removing existing channels"
 nix-channel --remove nixos
