@@ -12,8 +12,10 @@ alias gc="git commit"
 alias gf="git fetch --all"
 alias gs="git status"
 
-# Enable dircolors for bash
-eval $(dircolors -b ${HOME}/.dircolors)
+# Enable dircolors for bash if it exists
+if [ -x "$(command -v foo)" ]; then
+    eval $(dircolors -b ${HOME}/.dircolors)
+fi;
 
 # Source the bash-my-aws functions
 for f in ~/.bash-my-aws/lib/*-functions; do source $f; done
