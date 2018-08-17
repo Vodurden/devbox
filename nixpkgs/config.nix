@@ -14,6 +14,8 @@ in
     nixosDevEnv = with pkgs; buildEnv {
       name = "nixos-dev-env";
       paths = [
+        evince
+
         common
       ];
     };
@@ -121,7 +123,6 @@ in
         ag
         ncat
         ipcalc
-        evince
         lzop
         jq
         jmespath
