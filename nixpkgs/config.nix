@@ -107,6 +107,8 @@ in
         vim
         vimPlugins.vundle
 
+        # Environment management
+        direnv
 
         # Java
         jdk

@@ -17,6 +17,9 @@ if [ -x "$(command -v foo)" ]; then
     eval $(dircolors -b ${HOME}/.dircolors)
 fi;
 
+# Enable direnv
+eval "$(direnv hook bash)"
+
 # Source the bash-my-aws functions
 for f in ~/.bash-my-aws/lib/*-functions; do source $f; done
 
