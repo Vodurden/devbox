@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<!--
+Key Concepts:
+
+  - Thermal Sensor: An interface to read the temperature of a thermal zone.
+    Example: A hardware temperature sensor.
+
+  - Thermal Zone: A physical space containing devices, sensors and cooling controls.
+    Example: A CPU or laptop cover.
+
+  - Cooling Devices: A device to reduce the temperature of one or more thermal zones.
+    Example: A fan or some linux driver that can throttle a device.
+
+Sensors, Zones and Devices all have a `Type` field. If this type matches an existing device
+then the configuration will be merged with the default settings. Otherwise it will define
+a new device.
+
+To list existing thermal zone types run:
+
+    cat /sys/class/thermal/thermal_zone*/type
+
+Thermal sensors are derived from thermal zone types. So to list existing thermal sensor types run:
+
+    cat /sys/class/thermal/thermal_zone*/type
+
+It can be useful to check which sensors correspond to which temperature. You can see the
+temperature output of a sensor by reading the `temperature` file like so:
+
+    cat /sys/class/thermal/thermal_zone*/temp
+
+Thermald has some built-in cooling device types, these are:
+
+  - rapl_controller: Running Average Power Limit controller
+    (this needs the kernel to be compiled with `CONFIG_INTEL_RAPL y`)
+
+  - intel_pstate: CPU throttling by asking the CPU to change it's performance targeting
+
+  - cpufreq: CPU throttling by changing the frequency of the CPU.
+
+  - LCD: ???
+
+Additionally thermald can use cooling devices from the `sys` filesystem. To list available
+cooling devices run:
+
+    cat /sys/class/thermal/cooling_device*/type
+
+This will commonly include:
+
+  - intel_powercap: Throttle the cpu by spinning up `kidle` processes that reduce the effective
+    cpu utilisation. (this needs the kernel to be compiled with `CONFIG_POWERCLAMP y`)
+
+  - Processor: ???
+
+-->
+<ThermalConfiguration>
+  <Platform>
+    <Name>Keep CPU below 80C</Name>
+    <ProductName>*</ProductName>
+
+    <!-- `quiet` or `performance`: only use passive/active devices respectively -->
+    <Preference>quiet</Preference>
+    <ThermalZones>
+      <ThermalZone>
+        <Type>x86_pkg_temp</Type>
+        <TripPoints>
+          <TripPoint>
+            <SensorType>x86_pkg_temp</SensorType>
+            <Type>passive</Type>
+            <!-- Temperature to activate cooling in millidegrees celcius -->
+            <Temperature>80000</Temperature>
+
+            <CoolingDevice>
+              <Index>1</Index>
+              <Type>rapl_controller</Type>
+              <Influence>50</Influence>
+              <!-- Sampling period in seconds -->
+              <SamplingPeriod>10</SamplingPeriod>
+            </CoolingDevice>
+
+            <CoolingDevice>
+              <Index>2</Index>
+              <Type>intel_pstate</Type>
+              <Influence>40</Influence>
+              <SamplingPeriod>10</SamplingPeriod>
+            </CoolingDevice>
+
+            <CoolingDevice>
+              <Index>3</Index>
+              <Type>intel_powerclamp</Type>
+              <Influence>30</Influence>
+              <SamplingPeriod>10</SamplingPeriod>
+            </CoolingDevice>
+
+            <CoolingDevice>
+              <Index>4</Index>
+              <Type>cpufreq</Type>
+              <Influence>20</Influence>
+              <SamplingPeriod>8</SamplingPeriod>
+            </CoolingDevice>
+
+            <CoolingDevice>
+              <Index>5</Index>
+              <Type>Processor</Type>
+              <Influence>10</Influence>
+              <SamplingPeriod>5</SamplingPeriod>
+            </CoolingDevice>
+          </TripPoint>
+        </TripPoints>
+      </ThermalZone>
+    </ThermalZones>
+  </Platform>
+</ThermalConfiguration>

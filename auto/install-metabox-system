@@ -21,6 +21,9 @@ echo "Hardlinking OS configuration"
 ln -f ${SOURCE_DIR}/../nixos/common.nix /etc/nixos/common.nix
 ln -f ${SOURCE_DIR}/../nixos/laptop-metabox.nix /etc/nixos/configuration.nix
 
+echo "Symlinking OS files"
+ln -s ${SOURCE_DIR}/../nixos/metabox /etc/nixos/metabox
+
 echo "Giving edit permissions to jake"
 chown -R jake: /etc/nixos
 

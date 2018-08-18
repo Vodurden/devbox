@@ -53,6 +53,7 @@
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.enableAllFirmware = true;
+
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
@@ -69,7 +70,6 @@
 
   networking.hostName = "jake-metabox"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 
   # Enable X11
   services.xserver = {
@@ -99,45 +99,7 @@
 
   services.thermald = {
     enable = true;
-    configFile.platforms = [{
-      Name = "Override CPU default passive";
-      ProductName = "*";
-      Preference = "QUIET";
-      ThermalZones = [{
-        Type = "x86_pkg_temp";
-        TripPoints = [{
-          SensorType = "x86_pkg_temp";
-          Type = "passive";
-          Temperature = 80000;
-          CoolingDevices = [{
-            Index = 1;
-            Type = "rapl_controller";
-            Influence = 50;
-            SamplingPeriod = 10;
-          } {
-            Index = 2;
-            Type = "intel_pstate";
-            Influence = 40;
-            SamplingPeriod = 10;
-          } {
-            Index = 3;
-            Type = "intel_powerclamp";
-            Influence = 30;
-            SamplingPeriod = 10;
-          } {
-            Index = 4;
-            Type = "cpufreq";
-            Influence = 20;
-            SamplingPeriod = 8;
-          } {
-            Index = 5;
-            Type = "Processor";
-            Influence = 10;
-            SamplingPeriod = 5;
-          }];
-        }];
-      }];
-    }];
+    configFile = ./metabox/etc/thermald/thermal-conf.xml;
   };
 
   services.tlp = {
@@ -165,8 +127,5 @@
   sound.enableOSSEmulation = false;
   sound.mediaKeys.enable = true;
 
-
   powerManagement.cpuFreqGovernor = pkgs.lib.mkForce null;
-  # powerManagement.enable = true;
-  # powerManagement.cpuFreqGovernor = "powersave";
 }
