@@ -1,8 +1,15 @@
 { config, pkgs, ... }:
 
-{
-  nixpkgs.config.allowUnfree = true;
+let
+  baseConfig = {
+    allowUnfree = true;
 
+    wine.build = "wineWow";
+  };
+
+  pkgsUnstable = import <nixpkgs-unstable> { config = baseConfig; };
+in
+{
   # Internationalisation
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -11,6 +18,8 @@
   };
 
   time.timeZone = "Australia/Sydney";
+
+  nixpkgs.config = baseConfig;
 
   environment.systemPackages = with pkgs; [
     acpi
@@ -35,6 +44,9 @@
 
     steam
     calibre
+    wine
+    pkgsUnstable.winetricks
+    playonlinux
   ];
 
 
