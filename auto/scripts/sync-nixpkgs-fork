@@ -3,22 +3,30 @@
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 : ${FORK_NAME:?"FORK_NAME must be provided"}
+: ${FORK_REMOTE:?"FORK_REMOTE must be provided"}
 : ${FORK_BRANCH:?"FORK_BRANCH must be provided"}
 
 FORK_TARGET_DIR="/nix/${FORK_NAME}"
 
 SYNC_NAME="nixpkgs" \
          SYNC_REPO=https://github.com/Vodurden/nixpkgs.git \
-         SYNC_BRANCH=${master} \
+         SYNC_BRANCH=master \
          SYNC_TARGET_DIR=${FORK_TARGET_DIR} \
          ${SOURCE_DIR}/sync-git-repo
 
 pushd ${FORK_TARGET_DIR}
 
+  echo "Adding 'upstream' remote"
+  git remote add upstream git://github.com/NixOS/nixpkgs.git
+
   echo "Adding 'channels' remote"
   git remote add channels git://github.com/NixOS/nixpkgs-channels.git
-  git fetch channels
 
-  echo "Using ${FORK_BRANCH} as ${FORK_NAME}"
+  echo "Fetching remote branches"
+  git fetch --all
+
+  echo "Checking out ${FORK_B}"
+  echo "Preparing ${FORK_NAME} on ${FORK_BRANCH} with upstream ${FORK_REMOTE}/${FORK_BRANCH}"
   git checkout "${FORK_BRANCH}"
+  git branch --set-upstream-to "${FORK_REMOTE}/${FORK_BRANCH}"
 popd
