@@ -406,6 +406,11 @@ you should place your code here."
 
   ;; React-mode works better for flow files so use it if the buffer starts with @flow
   (add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . react-mode))
+
+  ;; Allow org-mode to evaluate some languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

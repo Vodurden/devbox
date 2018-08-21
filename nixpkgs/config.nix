@@ -126,6 +126,7 @@ in
         lzop
         jq
         jmespath
+        graphviz
       ];
     };
   };
