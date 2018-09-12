@@ -38,6 +38,9 @@ in
     feh
     fontconfig
     xorg.xev
+    xbindkeys
+    xautomation
+    evtest
 
     ntfs3g
 
