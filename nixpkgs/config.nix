@@ -93,6 +93,13 @@ in
       ];
     };
 
+    prologEnv = with pkgs; buildEnv {
+      name = "prolog-env";
+      paths = [
+        gprolog
+      ];
+    };
+
     # Packages that should always be installed
     common = with pkgs; buildEnv {
       name = "common";
