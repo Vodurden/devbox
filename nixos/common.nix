@@ -5,6 +5,7 @@ let
     allowUnfree = true;
 
     wine.build = "wineWow";
+    wineUnstable.build = "wineWow";
   };
 
   pkgsUnstable = import <nixpkgs-unstable> { config = baseConfig; };
