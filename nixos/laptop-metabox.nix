@@ -92,6 +92,7 @@
     synaptics.tapButtons = false;
     synaptics.additionalOptions = ''
       Option "VertScrollDelta" "-100"
+      Option "AccelFactor" "0"
     '';
   };
 
