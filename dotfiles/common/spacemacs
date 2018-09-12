@@ -473,8 +473,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
   ;; Nix works better when we don't try to load PATH from an arbitrary shell
-  (setq-default exec-path-from-shell-variables '("MANPATH" "GOPATH"))
-  )
+  (setq-default exec-path-from-shell-variables
+                '("PATH" "MANPATH" "GOPATH" "NIX_PROFILES"
+                  "NIX_REMOTE" "NIX_PATH" "NIX_SSL_CERT_FILE" "NIX_USER_PROFILE_DIR"))
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
