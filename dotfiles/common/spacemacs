@@ -46,7 +46,9 @@ values."
           git-gutter-use-fringe t)
 
      ;; Languages
-     haskell
+     (haskell :variables
+              haskell-completion-backend 'dante
+              haskell-process-type 'cabal-new-repl)
      (scala :variables
             flycheck-scalastylerc (substitute-in-file-name "$HOME/.scalastyle_config.xml"))
      elixir
@@ -81,11 +83,12 @@ values."
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
+   ;; packages, then consider creating a layer. You can alskeyo put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(editorconfig
                                       direnv
-                                      flycheck-flow)
+                                      flycheck-flow
+                                      dante)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -374,6 +377,39 @@ you should place your code here."
   ;; Use alien indexing as it's *much* faster and works with .gitignore
   (setq projectile-indexing-method 'alien)
 
+  ;; Direnv mode, mostly used to get nix shells to load for emacs
+  (use-package direnv
+    :config
+    (direnv-mode))
+
+  ;; Workaround for direnv failing to load before flycheck:
+  ;; See: https://github.com/wbolster/emacs-direnv/issues/17#issuecomment-401700057
+  (setq flycheck-executable-find
+        (lambda (cmd)
+          (direnv-update-environment default-directory)
+          (executable-find cmd)))
+
+  ;; Haskell setttings
+  (use-package dante
+    :defer t
+    :ensure t
+    :after haskell-mode
+    :commands 'dante-mode
+
+    :init
+    (add-hook 'haskell-mode-hook 'dante-mode)
+    (add-hook 'haskell-mode-hook 'flycheck-mode)
+
+    (setq dante-repl-command-line '("cabal" "new-repl"))
+    (add-hook 'dante-mode-hook
+              '(lambda () (flycheck-add-next-checker 'haskell-dante
+                                                      '(warning . haskell-hlint))))
+    (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+      "gg" 'xref-find-definitions
+      "ht" 'dante-type-at
+      "hi" 'dante-info)
+    )
+
   ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/6578
   (add-hook 'scala-mode-hook (lambda() (require 'ensime)))
 
@@ -428,7 +464,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (nix-mode helm-nixos-options company-nixos-options nixos-options ob-elixir yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit spaceline powerline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file omnisharp shut-up org-plus-contrib noflet neotree mwim multi-term move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc intero info+ indent-guide idris-mode prop-menu hydra hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-hoogle helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-rust seq flycheck-pos-tip pos-tip flycheck-mix flycheck-haskell flycheck-credo flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help erlang ensime sbt-mode scala-mode enh-ruby-mode emmet-mode elisp-slime-nav editorconfig dumb-jump diminish define-word cython-mode csharp-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-anaconda column-enforce-mode coffee-mode cmm-mode clean-aindent-mode chruby cargo rust-mode bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic f alchemist s company elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))))
+    (dante lcr direnv ox-reveal nix-mode helm-nixos-options company-nixos-options nixos-options ob-elixir yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit spaceline powerline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file omnisharp shut-up org-plus-contrib noflet neotree mwim multi-term move-text mmm-mode minitest markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc intero info+ indent-guide idris-mode prop-menu hydra hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-hoogle helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-rust seq flycheck-pos-tip pos-tip flycheck-mix flycheck-haskell flycheck-credo flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help erlang ensime sbt-mode scala-mode enh-ruby-mode emmet-mode elisp-slime-nav editorconfig dumb-jump diminish define-word cython-mode csharp-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-anaconda column-enforce-mode coffee-mode cmm-mode clean-aindent-mode chruby cargo rust-mode bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic f alchemist s company elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
