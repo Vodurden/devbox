@@ -113,10 +113,11 @@
       CPU_HWP_ON_BAT=balance_power
       SCHED_POWERSAVE_ON_AC=1
       SCHED_POWERSAVE_ON_BAT=1
-      ENERGY_PERF_POLICY_ON_AC=balance_power
-      ENERGY_PERF_POLICY_ON_BAT=balance_power
+      ENERGY_PERF_POLICY_ON_AC=balance-power
+      ENERGY_PERF_POLICY_ON_BAT=balance-power
     '';
   };
+
   services.undervolt = {
     enable = true;
     coreOffset = "-110";
