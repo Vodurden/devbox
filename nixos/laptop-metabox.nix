@@ -57,6 +57,7 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
+  hardware.pulseaudio.configFile = ./metabox/etc/pulse/default.pa;
 
   environment.systemPackages = with pkgs; [
     vulkan-loader
