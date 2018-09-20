@@ -48,8 +48,6 @@ in
 
     steam
     calibre
-    wine
-    pkgsUnstable.winetricks
     playonlinux
   ];
 

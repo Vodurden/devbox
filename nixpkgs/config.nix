@@ -30,6 +30,21 @@ in
       ];
     };
 
+    wineStableEnv = with pkgs; buildEnv {
+      name = "wine-stable-env";
+      paths = [
+        wine
+        winetricks
+      ];
+    };
+
+    wineUnstableEnv = with pkgs; buildEnv {
+      name = "wine-unstable-env";
+      paths = [
+        unstable.wineWowPackages.unstable
+      ];
+    };
+
     node8Env = with pkgs; buildEnv {
       name = "node8-env";
       paths = [
