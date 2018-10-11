@@ -16,7 +16,7 @@
   boot.blacklistedKernelModules = [ "mesa" "nouveau" "mesa-noglu" ];
 
 
-  boot.kernelPackages = pkgs.linuxPackages_4_17;
+  boot.kernelPackages = pkgs.linuxPackages_4_18;
   boot.kernelModules = [
     "coretemp"
   ];

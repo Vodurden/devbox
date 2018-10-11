@@ -7,7 +7,7 @@ echo "Provisioning nixos system configuration."
 
 FORK_NAME="nixpkgs" \
          FORK_REMOTE="origin" \
-         FORK_BRANCH="nixos-18.03" \
+         FORK_BRANCH="nixos-18.09" \
          ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
 
 FORK_NAME="nixpkgs-unstable" \
