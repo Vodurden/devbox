@@ -70,7 +70,7 @@
   ];
 
   networking.hostName = "jake-metabox"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = true;
 
   # Enable X11
   services.xserver = {
