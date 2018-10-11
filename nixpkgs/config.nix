@@ -42,6 +42,9 @@ in
       name = "wine-unstable-env";
       paths = [
         unstable.wineWowPackages.unstable
+        (unstable.winetricks.override {
+          wine = unstable.wineWowPackages.unstable;
+        })
       ];
     };
 
