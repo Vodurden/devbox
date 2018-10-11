@@ -48,7 +48,6 @@ in
 
     steam
     calibre
-    playonlinux
   ];
 
 
