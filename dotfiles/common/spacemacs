@@ -82,7 +82,31 @@ values."
      (html :variables
            css-indent-offset 2)
      markdown
-     (org :variables org-enable-reveal-js-support t)
+     (org :variables
+          org-enable-reveal-js-support t
+          org-agenda-files (append '("~/org/schedule.org")
+                                   (file-expand-wildcards "~/org/projects/*"))
+
+          org-todo-keywords '((sequence "TODO" "NEXT" "WAITING" "|" "DONE"))
+          org-todo-keyword-faces '(("TODO" . (:foreground "red" :weight bold))
+                                    ("NEXT" . (:foreground "blue" :weight bold))
+                                    ("WAITING" . (:foreground "orange" :weight bold))
+                                    ("DONE" . (:foreground "forest green" :weight bold)))
+
+          org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+                                     (todo . " %i %-36:c")
+                                     (tags . " %i %-12:c")
+                                     (search . " %i %-12:c"))
+
+          org-agenda-custom-commands '(("w" todo "WAITING" nil)
+                                       ("n" todo "NEXT" nil)
+                                       ("d" "Daily View" ((agenda) (todo "NEXT") (todo "WAITING"))))
+
+          org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %i%?")
+                                  ("s" "Schedule" entry (file+headline "~/org/schedule.org" "Schedule") "* %i%? \n %U"))
+
+          org-refile-targets '(("~/org/projects.org" :maxlevel . 2)
+                               ("~/org/schedule.org" :maxlevel . 2)))
      yaml
      sql
      )
