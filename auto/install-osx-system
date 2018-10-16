@@ -7,7 +7,7 @@ echo "Provisioning osx system configuration."
 
 FORK_NAME="nixpkgs-darwin" \
          FORK_REMOTE="channels" \
-         FORK_BRANCH="nixpkgs-18.03-darwin" \
+         FORK_BRANCH="nixpkgs-18.09-darwin" \
          ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
 
 FORK_NAME="nixpkgs-unstable" \
