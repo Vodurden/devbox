@@ -547,7 +547,8 @@ you should place your code here."
   (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
 
   ;; Use alien indexing as it's *much* faster and works with .gitignore
-  (setq projectile-indexing-method 'alien)
+  (setq projectile-indexing-method 'alien
+        projectile-enable-caching t)
 
   ;; Direnv mode, mostly used to get nix shells to load for emacs
   (use-package direnv
