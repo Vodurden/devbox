@@ -30,6 +30,6 @@ stdenv.mkDerivation rec {
     description = "Scalastyle examines your Scala code and indicates potential problems with it.";
     homepage = http://scalastyle.org;
     license = licenses.asl20;
-    platforms = platforms.linux;
+    platforms = platforms.linux ++ platforms.darwin;
   };
 }
