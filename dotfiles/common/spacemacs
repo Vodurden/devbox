@@ -116,6 +116,9 @@ values."
           org-refile-project-targets (file-expand-wildcards "~/org/projects/*")
           org-refile-targets '((org-refile-root-targets :maxlevel . 2)
                                (org-refile-project-targets :maxlevel . 1))
+          org-refile-use-outline-path 'file
+          org-refile-allow-creating-parent-nodes 'confirm
+          org-outline-path-complete-in-steps nil
           )
      yaml
      sql
