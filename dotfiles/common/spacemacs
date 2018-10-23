@@ -102,6 +102,8 @@ values."
                                      (tags . " %i %-12:c")
                                      (search . " %i %-12:c"))
 
+          org-agenda-window-setup 'only-window
+
           org-agenda-custom-commands '(("w" todo "WAITING" nil)
                                        ("n" todo "NEXT" nil)
                                        ("d" "Daily View" ((agenda) (todo "NEXT") (todo "WAITING"))))
