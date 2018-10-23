@@ -112,7 +112,8 @@ values."
           org-refile-root-targets '("~/org/next.org"
                                     "~/org/research.org"
                                     "~/org/someday.org"
-                                    "~/org/schedule.org")
+                                    "~/org/schedule.org"
+                                    "~/org/done.org")
           org-refile-project-targets (file-expand-wildcards "~/org/projects/*")
           org-refile-targets '((org-refile-root-targets :maxlevel . 2)
                                (org-refile-project-targets :maxlevel . 1))
