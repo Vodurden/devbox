@@ -25,11 +25,8 @@ fi;
 echo "Provisioning nixos system configuration for: ${NIXOS_CONFIG}"
 
 echo "Provisoning local nixpkg forks"
-FORK_NAME="nixpkgs" FORK_REMOTE="origin" FORK_BRANCH="nixos-18.09" \
-  ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
-
-FORK_NAME="nixpkgs-unstable" FORK_REMOTE="channels" FORK_BRANCH="nixpkgs-unstable" \
-  ${SOURCE_DIR}/scripts/sync-nixpkgs-fork
+${SOURCE_DIR}/scripts/sync-nixpkgs
+${SOURCE_DIR}/scripts/sync-nixpkgs-unstable
 
 echo "Removing existing channels"
 nix-channel --remove nixos

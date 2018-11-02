@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+FORK_NAME="nixpkgs" \
+         FORK_REMOTE="origin" \
+         FORK_BRANCH="nixos-18.09" \
+         ${SOURCE_DIR}/sync-nixpkgs-repo
