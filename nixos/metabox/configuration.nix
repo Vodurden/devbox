@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix   # Include the results of the hardware scan.
-      ./common.nix                   # Common across all of our nixos machines
+      ../common.nix                  # Common across all of our nixos machines
     ];
 
   # Configuration below here should be specific to the laptop setup.
@@ -23,8 +23,7 @@
 
   # acpi_mask_gpi - Resolves AE_NOT_FOUND (see https://superuser.com/a/1237529)
   boot.kernelParams = [
-    "acpi_mask_gpe=0x6f"
-    "acpi_osi=! \"acpi_osi=Windows 2009\""
+    "acpi_rev_override=1"
   ];
 
   # thermald needed CONFIG_POWERCAP and CONFIG_INTEL_RAPL and they don't seem to be on by default in NixOS
@@ -49,6 +48,7 @@
   hardware.nvidia.optimus_prime.enable = true;
   hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:1:0:0";
   hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
+
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
@@ -57,7 +57,7 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
-  hardware.pulseaudio.configFile = ./metabox/etc/pulse/default.pa;
+  hardware.pulseaudio.configFile = ./etc/pulse/default.pa;
 
   environment.systemPackages = with pkgs; [
     vulkan-loader
@@ -92,7 +92,9 @@
     synaptics.tapButtons = false;
     synaptics.additionalOptions = ''
       Option "VertScrollDelta" "-100"
-      Option "AccelFactor" "0"
+      Option "MinSpeed"   "0.7"
+      Option "MaxSpeed"   "1.4"
+      Option "AccelFactor"   "0.1"
     '';
   };
 
@@ -101,7 +103,7 @@
 
   services.thermald = {
     enable = true;
-    configFile = ./metabox/etc/thermald/thermal-conf.xml;
+    configFile = ./etc/thermald/thermal-conf.xml;
   };
 
   services.tlp = {

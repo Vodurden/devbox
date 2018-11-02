@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix   # Include the results of the hardware scan.
-      ./common.nix                   # Common across all of our nixos machines
+      ../common.nix                  # Common across all of our nixos machines
     ];
 
   # Configuration below here should be specific to the vagrant setup.
