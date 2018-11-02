@@ -15,7 +15,6 @@ SYNC_NAME="nixpkgs" \
          ${SOURCE_DIR}/sync-git-repo
 
 pushd ${FORK_TARGET_DIR}
-
   echo "Adding 'upstream' remote"
   git remote add upstream git://github.com/NixOS/nixpkgs.git
 
@@ -25,7 +24,7 @@ pushd ${FORK_TARGET_DIR}
   echo "Fetching remote branches"
   git fetch --all
 
-  echo "Checking out ${FORK_B}"
+  echo "Checking out ${FORK_BRANCH}"
   echo "Preparing ${FORK_NAME} on ${FORK_BRANCH} with upstream ${FORK_REMOTE}/${FORK_BRANCH}"
   git checkout "${FORK_BRANCH}"
   git branch --set-upstream-to "${FORK_REMOTE}/${FORK_BRANCH}"
