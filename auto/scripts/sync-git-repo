@@ -7,7 +7,7 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 : ${SYNC_REPO?"SYNC_REPO must be provided"}
 : ${SYNC_TARGET_DIR:?"SYNC_TARGET_DIR must be provided"}
 
-SYNC_VERSION=${SYNC_BRANCH:-$SYNC_REF:?"SYNC_BRANCH or SYNC_REF must be provided"}
+SYNC_VERSION=${SYNC_BRANCH:-${SYNC_REF:?"SYNC_BRANCH or SYNC_REF must be provided"}}
 
 echo "Syncing ${SYNC_NAME} to version ${SYNC_VERSION} ..."
 
