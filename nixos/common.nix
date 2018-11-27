@@ -48,6 +48,7 @@ in
 
     steam
     calibre
+    libreoffice
   ];
 
 
