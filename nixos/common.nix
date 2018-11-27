@@ -49,6 +49,8 @@ in
     steam
     calibre
     libreoffice
+    partition-manager
+    gparted
   ];
 
 
