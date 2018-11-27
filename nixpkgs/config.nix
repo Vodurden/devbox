@@ -41,9 +41,9 @@ in
     wineUnstableEnv = with pkgs; buildEnv {
       name = "wine-unstable-env";
       paths = [
-        unstable.wineWowPackages.unstable
-        (unstable.winetricks.override {
-          wine = unstable.wineWowPackages.unstable;
+        wineWowPackages.unstable
+        (winetricks.override {
+          wine = wineWowPackages.unstable;
         })
       ];
     };
