@@ -153,6 +153,7 @@ in
         jq
         jmespath
         graphviz
+        unzip
       ];
     };
   };
