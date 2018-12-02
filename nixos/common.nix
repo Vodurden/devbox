@@ -22,6 +22,14 @@ in
 
   nixpkgs.config = baseConfig;
 
+  nix.nixPath = [
+    "nixpkgs=/nix/nixpkgs"
+    "nixpkgs-unstable=/nix/nixpkgs-unstable"
+    "nixos-config=/etc/nixos/configuration.nix"
+  ];
+
+  services.nixosManual.showManual = true;
+
   environment.systemPackages = with pkgs; [
     acpi
     wget
@@ -52,9 +60,6 @@ in
     partition-manager
     gparted
   ];
-
-
-  services.nixosManual.showManual = true;
 
   # Enable DBus
   services.dbus.enable = true;

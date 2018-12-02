@@ -36,17 +36,26 @@
     sensor = "/sys/devices/virtual/hwmon/hwmon0/temp1_input";
   };
 
-  services.xserver.videoDrivers = ["modesetting"];
-  services.xserver.synaptics = {
+  services.xserver = {
     enable = true;
-    palmDetect = true;
-    twoFingerScroll = true;
-    additionalOptions = ''
-      Option "VertScrollDelta" "-100"
-      Option "MinSpeed"   "0.7"
-      Option "MaxSpeed"   "1.4"
-      Option "AccelFactor"   "0.1"
-    '';
+    exportConfiguration = true;
+
+    videoDrivers = ["modesetting"];
+
+    displayManager.lightdm.enable = true;
+    desktopManager.plasma5.enable = true;
+
+    synaptics = {
+      enable = true;
+      palmDetect = true;
+      twoFingerScroll = true;
+      additionalOptions = ''
+        Option "VertScrollDelta" "-100"
+        Option "MinSpeed"   "0.7"
+        Option "MaxSpeed"   "1.4"
+        Option "AccelFactor"   "0.1"
+      '';
+    };
   };
 
   sound.mediaKeys.enable = true;

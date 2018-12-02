@@ -37,6 +37,6 @@ ln -fs ${NIXOS_CONFIG_PATH}/configuration.nix /etc/nixos/configuration.nix
 ln -fs ${NIXOS_CONFIG_PATH}/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
 
 echo "Switching to new system configuration"
-nixos-rebuild switch
+NIX_PATH="nixpkgs=/nix/nixpkgs:nixpkgs-unstable=/nix/nixpkgs-unstable:nixos-config=/etc/nixos/configuration.nix" nixos-rebuild switch
 
 echo "Provisioning complete."

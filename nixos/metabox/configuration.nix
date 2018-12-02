@@ -63,12 +63,6 @@
     vulkan-loader
   ];
 
-  nix.nixPath = [
-    "nixpkgs=/nix/nixpkgs"
-    "nixpkgs-unstable=/nix/nixpkgs-unstable"
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
-
   networking.hostName = "jake-metabox"; # Define your hostname.
   networking.wireless.enable = true;
   # Open required ports in in-home streaming
