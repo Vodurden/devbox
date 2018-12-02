@@ -59,6 +59,7 @@ in
     libreoffice
     partition-manager
     gparted
+    pinta
   ];
 
   # Enable DBus
