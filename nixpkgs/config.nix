@@ -15,6 +15,7 @@ in
       name = "nixos-dev-env";
       paths = [
         evince
+        steam-run
 
         common
       ];
