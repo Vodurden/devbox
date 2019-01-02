@@ -147,13 +147,13 @@ in
         # Tools
         awscli
         ag
-        ncat
-        ipcalc
-        lzop
-        jq
-        jmespath
         gawk
         graphviz
+        ipcalc
+        jq
+        jmespath
+        lzop
+        ncat
         python36Packages.pydot
         unzip
         wget
