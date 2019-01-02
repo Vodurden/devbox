@@ -152,8 +152,11 @@ in
         lzop
         jq
         jmespath
+        gawk
         graphviz
+        python36Packages.pydot
         unzip
+        wget
       ];
     };
   };
