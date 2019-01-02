@@ -25,7 +25,6 @@ in
       name = "osx-dev-env";
       paths = [
         postgresql
-        hack-font
 
         common
       ];

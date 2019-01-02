@@ -14,3 +14,8 @@ echo "Overwriting default NIX_PATH with nixpkg forks"
 LINE='export NIX_PATH="nixpkgs=/nix/nixpkgs-darwin:nixpkgs-unstable=/nix/nixpkgs-unstable"'
 FILE=/etc/profile
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+
+# Font installation under nix isn't as easy for OSX as it is for NixOS so
+# we need a few manual steps
+echo "Installing Fonts"
+${SOURCE_DIR}/scripts/osx/install-font hack-font
