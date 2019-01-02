@@ -3,6 +3,6 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 SYNC_NAME="spacemacs" \
     SYNC_REPO=https://github.com/syl20bnr/spacemacs.git \
-    SYNC_REF=69a89cc41243cfb189238a2297fde4498d7fcf6d \
+    SYNC_REF=2c28c7d219c82214c1a7b88ec906fed4ad60f0d9 \
     SYNC_TARGET_DIR=$HOME/.emacs.d \
     ${SOURCE_DIR}/sync-git-repo
