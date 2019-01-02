@@ -4,7 +4,7 @@ set -euo pipefail
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning osx nix user configuration."
-${SOURCE_DIR}/scripts/install-nixpkgs-as-default-expression
+${SOURCE_DIR}/scripts/install-default-nixpkgs nixpkgs-darwin
 
 echo "Provisioning osx home configuration."
 ${SOURCE_DIR}/scripts/install-nix-env osx-dev-env

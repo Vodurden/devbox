@@ -4,7 +4,7 @@ set -euo pipefail
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning nixos home configuration."
-${SOURCE_DIR}/scripts/install-nixpkgs-as-default-expression
+${SOURCE_DIR}/scripts/install-default-nixpkgs nixpkgs
 
 echo "Provisioning nixos home configuration"
 ${SOURCE_DIR}/scripts/install-nix-env nixos-dev-env

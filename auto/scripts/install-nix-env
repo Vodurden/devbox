@@ -14,10 +14,6 @@ echo "Linking nix config"
 rm -rf "${HOME}/.config/nixpkgs"
 ln -s "${SOURCE_DIR}/../../nixpkgs" "${HOME}/.config/nixpkgs"
 
-echo "Overriding .nix-defexpr"
-rm -rf "${HOME}/.nix-defexpr"
-ln -s /nix/nixpkgs "${HOME}/.nix-defexpr"
-
 echo "Installing '${NIX_ENV_NAME}' environment to local profile"
 nix-env -i ${NIX_ENV_NAME}
 echo "Done."

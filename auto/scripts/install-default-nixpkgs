@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+NIXPKGS_DIR="/nix"
+
+if [[ "${1:-}" == "" ]]; then
+    echo "No arguments provided. Usage: install-default-nixpkgs nixpkgs"
+    echo
+    echo "Valid nixpkgs are:"
+    echo
+    find "${NIXPKGS_DIR}" -name "nixpkgs*" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;
+    echo
+    exit 1
+fi;
+
+NIXPKGS_NAME=$1
+NIXPKGS_PATH="${NIXPKGS_DIR}/${NIXPKGS_NAME}"
+
+if [[ -d "$HOME/.nix-defexpr" ]]; then
+    echo "Found existing '~/.nix-defexpr' folder: deleting"
+    rm -rf $HOME/.nix-defexpr
+fi;
+
+if [[ -L "$HOME/.nix-defexpr" ]]; then
+    echo "Found existing '~/.nix-defexpr' symlink: deleting"
+    rm $HOME/.nix-defexpr
+fi;
+
+echo "Linking ${NIXPKGS_PATH} to $HOME/.nix-defexpr"
+ln -s "${NIXPKGS_PATH}" "$HOME/.nix-defexpr"

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-echo "Linking /nix/nixpkgs to $HOME/.nix-defexpr"
-rm $HOME/.nix-defexpr
-ln -s /nix/nixpkgs $HOME/.nix-defexpr
