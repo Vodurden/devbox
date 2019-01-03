@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-FORK_NAME="nixpkgs-darwin" \
-         FORK_REMOTE="channels" \
-         FORK_BRANCH="nixpkgs-18.09-darwin" \
-         ${SOURCE_DIR}/sync-nixpkgs-repo

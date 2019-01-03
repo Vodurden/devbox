@@ -25,8 +25,8 @@ fi;
 echo "Provisioning nixos system configuration for: ${NIXOS_CONFIG}"
 
 echo "Provisoning local nixpkg forks"
-${SOURCE_DIR}/scripts/sync-nixpkgs
-${SOURCE_DIR}/scripts/sync-nixpkgs-unstable
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs-unstable
 
 echo "Removing existing channels"
 nix-channel --remove nixos

@@ -5,8 +5,8 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Provisioning osx system configuration."
 
-${SOURCE_DIR}/scripts/sync-nixpkgs-darwin
-${SOURCE_DIR}/scripts/sync-nixpkgs-unstable
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs-darwin
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs-unstable
 ${SOURCE_DIR}/scripts/osx/use-nix-forks
 
 # Load the nixpath so we can use our nix forks in this script.

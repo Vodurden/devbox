@@ -3,7 +3,100 @@ set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-FORK_NAME="nixpkgs" \
-         FORK_REMOTE="origin" \
-         FORK_BRANCH="nixos-18.09" \
-         ${SOURCE_DIR}/sync-nixpkgs-repo
+print_valid_fork_names()
+{
+    echo "Valid fork names are:"
+    echo
+    echo "- nixpkgs"
+    echo "- nixpkgs-unstable"
+    echo "- nixpkgs-darwin"
+}
+
+# Adds the 'upstream' and 'channels' remotes and fetches all the refs
+#
+# Assumes that we are in the correct git repository
+fetch_nixpkgs_remotes()
+{
+    if ! git config remote.upstream.url > /dev/null; then
+        echo "Adding 'upstream' remote"
+        git remote add upstream git://github.com/NixOS/nixpkgs.git
+    fi
+
+    if ! git config remote.channels.url > /dev/null; then
+        echo "Adding 'channels' remote"
+        git remote add channels git://github.com/NixOS/nixpkgs-channels.git
+    fi
+
+    echo "Fetching all remotes"
+    git fetch --all --tags
+}
+
+if [[ "${1:-}" == "" ]]; then
+    echo "No arguments provided. Usage: sync-nixpkgs fork-name"
+    echo
+    print_valid_fork_names
+    echo
+    exit 1
+fi;
+
+FORK_NAME=$1
+
+if [ "${FORK_NAME}" == 'nixpkgs' ]; then
+    export FORK_REMOTE="origin"
+    export FORK_BRANCH="nixos-18.09"
+    export FORK_REF="db561c90ef34cc64287ee1c366ab9eec85b2af50"
+elif [ "${FORK_NAME}" == 'nixpkgs-unstable' ]; then
+    export FORK_REMOTE="channels"
+    export FORK_BRANCH="nixpkgs-unstable"
+    export FORK_REF="45779f013c885b5c0da6852c0c01ec1c50670c5b"
+elif [ "${FORK_NAME}" == 'nixpkgs-darwin' ]; then
+    export FORK_REMOTE="channels"
+    export FORK_BRANCH="nixpkgs-18.09-darwin"
+    export FORK_REF="eb0480ad6c5f414929a85e92b6ebf5401f44e313"
+else
+    echo "Unknown fork name provided: ${FORK_NAME}"
+    print_valid_fork_names
+    echo
+    exit 1
+fi;
+
+echo
+echo "Synchronizing ${FORK_NAME}"
+
+# Nixpkgs is pretty big and we need a few copies of it, but we only want to clone once to speed
+# things up. We use the "do-not-touch-base-nixpkgs-cache" folder as our cache of the remote
+# nixpkgs so we only update the delta of what has changed in each of our active repos.
+NIXPKGS_BASE_TARGET_DIR="/nix/do-not-touch-base-nixpkgs-cache"
+if [ ! -d "${NIXPKGS_BASE_TARGET_DIR}" ]; then
+    echo "No ${NIXPKGS_BASE_TARGET_DIR} found. Cloning..."
+    git clone https://github.com/Vodurden/nixpkgs.git "${NIXPKGS_BASE_TARGET_DIR}"
+
+    pushd "${NIXPKGS_BASE_TARGET_DIR}"
+      fetch_nixpkgs_remotes
+    popd
+fi;
+
+FORK_TARGET_DIR="/nix/${FORK_NAME}"
+FORK_REMOTE_BRANCH="${FORK_REMOTE}/${FORK_BRANCH}"
+
+if [ ! -d "${FORK_TARGET_DIR}" ]; then
+    echo "No ${FORK_TARGET_DIR} installation found. Copying from ${NIXPKGS_BASE_TARGET_DIR}..."
+    cp -r "${NIXPKGS_BASE_TARGET_DIR}" "${FORK_TARGET_DIR}"
+fi;
+
+pushd ${FORK_TARGET_DIR}
+  fetch_nixpkgs_remotes
+
+  # Determine if $FORK_REF actually exists on the remote branch
+  if ! git merge-base --is-ancestor ${FORK_REF} "${FORK_REMOTE_BRANCH}"; then
+      echo "${FORK_REF} is not on ${FORK_REMOTE_BRANCH}! Please choose a commit from ${FORK_REMOTE_BRANCH}"
+      exit 1
+  fi;
+
+  echo "Checking out ${FORK_BRANCH} at commit ${FORK_REF}"
+  git checkout -B "${FORK_BRANCH}"
+  git reset --keep "${FORK_REF}"
+  git branch --set-upstream-to "${FORK_REMOTE_BRANCH}"
+popd
+
+echo
