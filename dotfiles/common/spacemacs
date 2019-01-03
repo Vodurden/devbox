@@ -513,13 +513,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; Force melpa on ensime so we can use scala 2.12. Move back to stable when ensime 2 releases.
-  ;; (push '("melpa" . "melpa.org/packages/") configuration-layer--elpa-archives)
-  ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
-  ;; (push '(ensime . "melpa") package-pinned-packages)
-  ;; (setq ensime-startup-notification nil)
-  ;; (setq ensime-startup-snapshot-notification nil)
-
   ;; Freeze-on-load fix (should be obsoleted by Emacs 25). See: https://github.com/emacs-helm/helm/issues/1000
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
