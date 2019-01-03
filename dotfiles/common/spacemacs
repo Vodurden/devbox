@@ -554,6 +554,11 @@ you should place your code here."
 
   (setq shell-file-name "/bin/sh")
 
+  ;; Make relative lines work with folded code.
+  (add-hook 'display-line-numbers-mode-hook
+            (lambda ()
+              (setq display-line-numbers 'visual)))
+
   ;; Smoother mouse wheel scrolling
   (setq
    mouse-wheel-scroll-amount '(3 ((shift) . 1))
