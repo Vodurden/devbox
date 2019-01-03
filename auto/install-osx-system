@@ -7,13 +7,10 @@ echo "Provisioning osx system configuration."
 
 ${SOURCE_DIR}/scripts/sync-nixpkgs-darwin
 ${SOURCE_DIR}/scripts/sync-nixpkgs-unstable
+${SOURCE_DIR}/scripts/osx/use-nix-forks
 
-echo "Overwriting default NIX_PATH with nixpkg forks"
-
-# Only write NIX_PATH if we haven't already written NIX_PATH to this file
-LINE='export NIX_PATH="nixpkgs=/nix/nixpkgs-darwin:nixpkgs-unstable=/nix/nixpkgs-unstable"'
-FILE=/etc/profile
-grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+# Load the nixpath so we can use our nix forks in this script.
+source /etc/nixpath
 
 # Font installation under nix isn't as easy for OSX as it is for NixOS so
 # we need a few manual steps

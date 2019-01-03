@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Creating /etc/nixpath"
+echo 'export NIX_PATH="nixpkgs=/nix/nixpkgs-darwin:nixpkgs-unstable=/nix/nixpkgs-unstable"' \
+     > /etc/nixpath
+
+echo "Overwriting default NIX_PATH with nixpkg forks"
+
+NIX_PATH_LINE='source /etc/nixpath'
+grep -qF -- "$NIX_PATH_LINE" /etc/profile || echo "$NIX_PATH_LINE" >> /etc/profile
