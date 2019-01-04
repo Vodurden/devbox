@@ -526,6 +526,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default exec-path-from-shell-variables
                 '("PATH" "MANPATH" "GOPATH" "NIX_PROFILES"
                   "NIX_REMOTE" "NIX_PATH" "NIX_SSL_CERT_FILE" "NIX_USER_PROFILE_DIR"))
+
+  ;; Move custom settings to their own file
+  (setq custom-file "~/.emacs.d/.cache/.custom-settings")
+  (load custom-file)
 )
 
 (defun dotspacemacs/user-load ()
