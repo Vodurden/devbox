@@ -9,7 +9,7 @@ if [[ "${1:-}" == "" ]]; then
     echo
     echo "Valid configurations are:"
     echo
-    find "${NIXOS_CONFIG_DIR}" -mindepth 1 -maxdepth 1 -type d -printf "- %f\n"
+    find "${NIXOS_CONFIG_DIR}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;
     echo
     exit 1
 fi;

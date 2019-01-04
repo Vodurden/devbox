@@ -9,7 +9,7 @@ if [[ "${1:-}" == "" ]]; then
     echo
     echo "Valid dotfiles are:"
     echo
-    find "${DOTFILES_DIR}" -mindepth 1 -maxdepth 1 -type d -printf "- %f\n"
+    find "${DOTFILES_DIR}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;
     echo
     exit 1
 fi;
