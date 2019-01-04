@@ -592,6 +592,10 @@ you should place your code here."
           (direnv-update-environment default-directory)
           (executable-find cmd)))
 
+  ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/11640
+  ;; Remove once https://github.com/syl20bnr/spacemacs/pull/11646 is merged
+  (ido-mode -1)
+
   ;; The scala layer forces some of these values so we want to override them
   ;; after the fact.
   (add-hook 'scala-mode-hook (lambda()
