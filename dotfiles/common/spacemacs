@@ -55,6 +55,7 @@ values."
               haskell-completion-backend 'dante)
               ;haskell-process-type 'cabal-new-repl)
      (scala :variables
+            ensime-startup-notification nil
             flycheck-scalastylerc (substitute-in-file-name "$HOME/.scalastyle_config.xml"))
      elixir
      erlang
@@ -517,6 +518,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Freeze-on-load fix (should be obsoleted by Emacs 25). See: https://github.com/emacs-helm/helm/issues/1000
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
+  ;; Pin ensime to melpa-stable
+  (add-to-list 'configuration-layer-elpa-archives '("melpa-stable" . "stable.melpa.org/packages/"))
+  (add-to-list 'package-pinned-packages '(ensime . "melpa-stable"))
 
   ;; Nix works better when we don't try to load PATH from an arbitrary shell
   (setq-default exec-path-from-shell-variables
