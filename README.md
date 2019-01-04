@@ -27,18 +27,24 @@ On Windows:
 
 - Load the VM by executing `vagrant up`
 - Log in to the vm as `vagrant`/`vagrant`
-- Execute `sudo auto/install-vagrant-system`
 - Log in as `jake` (no password)
+- Execute `sudo auto/install-nixos-system vagrant`
 - Execute `auto/install-nixos-home`
 
 On Mac:
 
+- Execute `sudo auto/install-osx-system`
 - Execute `auto/install-osx-work-home`
+
+On Nixos + Metabox:
+
+- Execute `sudo auto/install-nixos-system metabox`
+- Execute `auto/install-nixos-home metabox`
 
 On Nixos + T420:
 
-- Execute `sudo auto/install-t420-system`
-- Execute `auto/install-nixos-home`
+- Execute `sudo auto/install-nixos-system t420`
+- Execute `auto/install-nixos-home metabox`
 
 Development Flow
 ----------------
