@@ -14,8 +14,14 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  boot.kernelPackages = pkgs.linuxPackages_4_14;
-  boot.kernelParams = ["video=SVIDEO-1:d"];
+  boot.kernelPackages = pkgs.linuxPackages_4_18;
+  boot.kernelParams = [
+    "video=SVIDEO-1:d"
+    "i915.modeset=1"
+    "i915.enable_fbc=1"
+    "i915.enable_psr=1"
+    "i915.disable_power_well=0"
+  ];
 
   networking.hostName = "jake-laptop"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
