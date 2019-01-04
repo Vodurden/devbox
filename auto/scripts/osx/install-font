@@ -17,4 +17,4 @@ find "${FONT_PACKAGE_DIR}" -type f \( -name "*.ttf" -o -name "*.otf" \) \
      -exec echo "Installing {} to /Library/Fonts" \; \
      -exec cp {} /Library/Fonts/ \;
 
-fc-cache -f -v
+$(nix-build --no-out-link '<nixpkgs>' -A fontconfig)/bin/fc-cache -f -v
