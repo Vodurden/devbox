@@ -96,8 +96,7 @@ values."
                                     ("WAITING" . (:foreground "orange" :weight bold))
                                     ("DONE" . (:foreground "forest green" :weight bold)))
 
-          org-agenda-files (append '("~/org/next.org"
-                                     "~/org/gtd.org"))
+          org-agenda-files (append '("~/org/gtd.org"))
 
           org-agenda-window-setup 'only-window
 
