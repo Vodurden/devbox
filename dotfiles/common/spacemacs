@@ -592,10 +592,6 @@ you should place your code here."
           (direnv-update-environment default-directory)
           (executable-find cmd)))
 
-  ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/6578
-  (add-hook 'scala-mode-hook (lambda() (require 'ensime)))
-
-
   ;; The scala layer forces some of these values so we want to override them
   ;; after the fact.
   (add-hook 'scala-mode-hook (lambda()
