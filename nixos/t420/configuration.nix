@@ -41,7 +41,7 @@
     enable = true;
     sensors = ''
       hwmon /sys/devices/virtual/thermal/thermal_zone0/temp
-      hwmon /sys/devices/virtual/hwmon/hwmon0/temp1_input
+      hwmon /sys/devices/virtual/hwmon/hwmon1/temp1_input
       hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
       hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp2_input
       hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp3_input
