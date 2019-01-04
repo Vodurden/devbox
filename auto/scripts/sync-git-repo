@@ -149,17 +149,17 @@ if [[ "${SYNC_CACHE_DIR:-}" != "" ]]; then
   fi
 fi
 
+
 # Ensure SYNC_TARGET_DIR exists, either from the cache or by cloning
-if [[ ! -d "${SYNC_TARGET_DIR}" ]]; then
-  if [[ "${SYNC_CACHE_DIR:-}" != "" ]]; then
+if [[ "${SYNC_CACHE_DIR:-}" != "" ]]; then
+  if [[ ! -d "${SYNC_TARGET_DIR}" ]]; then
     echo "No target ${SYNC_TARGET_DIR} found. Copying from ${SYNC_CACHE_DIR}"
     cp -r "${SYNC_CACHE_DIR}" "${SYNC_TARGET_DIR}"
-  else
-    clone_and_fetch_remotes "${SYNC_REPO}" "${SYNC_TARGET_DIR}"
   fi
-else
-  echo "Using existing ${SYNC_TARGET_DIR} as target directory"
 fi
+
+echo "Using ${SYNC_TARGET_DIR} as target directory"
+clone_and_fetch_remotes "${SYNC_REPO}" "${SYNC_TARGET_DIR}"
 
 # Ensure $SYNC_REF actually exists on the remote branch
 if ! git -C "${SYNC_TARGET_DIR}" merge-base --is-ancestor "${SYNC_REF}" "${SYNC_REMOTE_BRANCH}"; then
