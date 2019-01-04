@@ -64,6 +64,8 @@ values."
      csharp
      java
      idris
+     (shell-scripts :variables
+                    sh-basic-offset 2)
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-enable-enh-ruby-mode t
