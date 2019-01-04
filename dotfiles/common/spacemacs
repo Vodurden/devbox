@@ -604,10 +604,6 @@ you should place your code here."
                                      scala-indent:align-parameters nil
                                      scala-indent:align-forms nil)))
 
-  ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/7144
-  (spacemacs/set-leader-keys-for-minor-mode 'ensime-mode
-    "mgg" 'ensime-edit-definition)
-
   ;; Elixir-Layer custom bindings
   (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
     "md" (lambda() (interactive) (alchemist-execute "mix dialyzer")))
