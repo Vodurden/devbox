@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-SYNC_NAME="bash-my-aws" \
-  SYNC_REPO=https://github.com/realestate-com-au/bash-my-aws.git \
-  SYNC_REF=master \
-  SYNC_TARGET_DIR=$HOME/.bash-my-aws \
-  ${SOURCE_DIR}/sync-git-repo
+${SOURCE_DIR}/sync-git-repo \
+             --repo https://github.com/bash-my-universe/bash-my-aws.git \
+             --branch master \
+             --remote-branch origin/master \
+             --ref 850109172c0926d387ff64ea3c4e9dec81ed88bd \
+             --target-dir "$HOME/.bash-my-aws"

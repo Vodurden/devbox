@@ -3,32 +3,12 @@ set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-print_valid_fork_names()
-{
+print_valid_fork_names() {
     echo "Valid fork names are:"
     echo
     echo "- nixpkgs"
     echo "- nixpkgs-unstable"
     echo "- nixpkgs-darwin"
-}
-
-# Adds the 'upstream' and 'channels' remotes and fetches all the refs
-#
-# Assumes that we are in the correct git repository
-fetch_nixpkgs_remotes()
-{
-    if ! git config remote.upstream.url > /dev/null; then
-        echo "Adding 'upstream' remote"
-        git remote add upstream git://github.com/NixOS/nixpkgs.git
-    fi
-
-    if ! git config remote.channels.url > /dev/null; then
-        echo "Adding 'channels' remote"
-        git remote add channels git://github.com/NixOS/nixpkgs-channels.git
-    fi
-
-    echo "Fetching all remotes"
-    git fetch --all --tags
 }
 
 if [[ "${1:-}" == "" ]]; then
@@ -60,43 +40,16 @@ else
     exit 1
 fi;
 
-echo
-echo "Synchronizing ${FORK_NAME}"
-
-# Nixpkgs is pretty big and we need a few copies of it, but we only want to clone once to speed
-# things up. We use the "do-not-touch-base-nixpkgs-cache" folder as our cache of the remote
-# nixpkgs so we only update the delta of what has changed in each of our active repos.
-NIXPKGS_BASE_TARGET_DIR="/nix/do-not-touch-base-nixpkgs-cache"
-if [ ! -d "${NIXPKGS_BASE_TARGET_DIR}" ]; then
-    echo "No ${NIXPKGS_BASE_TARGET_DIR} found. Cloning..."
-    git clone https://github.com/Vodurden/nixpkgs.git "${NIXPKGS_BASE_TARGET_DIR}"
-
-    pushd "${NIXPKGS_BASE_TARGET_DIR}"
-      fetch_nixpkgs_remotes
-    popd
-fi;
-
+FORK_CACHE_DIR="/nix/do-not-touch-base-nixpkgs-cache"
 FORK_TARGET_DIR="/nix/${FORK_NAME}"
 FORK_REMOTE_BRANCH="${FORK_REMOTE}/${FORK_BRANCH}"
 
-if [ ! -d "${FORK_TARGET_DIR}" ]; then
-    echo "No ${FORK_TARGET_DIR} installation found. Copying from ${NIXPKGS_BASE_TARGET_DIR}..."
-    cp -r "${NIXPKGS_BASE_TARGET_DIR}" "${FORK_TARGET_DIR}"
-fi;
-
-pushd ${FORK_TARGET_DIR}
-  fetch_nixpkgs_remotes
-
-  # Determine if $FORK_REF actually exists on the remote branch
-  if ! git merge-base --is-ancestor ${FORK_REF} "${FORK_REMOTE_BRANCH}"; then
-      echo "${FORK_REF} is not on ${FORK_REMOTE_BRANCH}! Please choose a commit from ${FORK_REMOTE_BRANCH}"
-      exit 1
-  fi;
-
-  echo "Checking out ${FORK_BRANCH} at commit ${FORK_REF}"
-  git checkout -B "${FORK_BRANCH}"
-  git reset --keep "${FORK_REF}"
-  git branch --set-upstream-to "${FORK_REMOTE_BRANCH}"
-popd
-
-echo
+${SOURCE_DIR}/sync-git-repo \
+  --repo https://github.com/Vodurden/nixpkgs.git \
+  --branch "${FORK_BRANCH}" \
+  --remote-branch "${FORK_REMOTE_BRANCH}" \
+  --ref "${FORK_REF}" \
+  --remote channels git://github.com/NixOS/nixpkgs-channels.git \
+  --remote upstream git://github.com/NixOS/nixpkgs.git \
+  --cache-dir "${FORK_CACHE_DIR}" \
+  --target-dir "${FORK_TARGET_DIR}"

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-SYNC_NAME="spacemacs" \
-    SYNC_REPO=https://github.com/syl20bnr/spacemacs.git \
-    SYNC_REF=2c28c7d219c82214c1a7b88ec906fed4ad60f0d9 \
-    SYNC_TARGET_DIR=$HOME/.emacs.d \
-    ${SOURCE_DIR}/sync-git-repo
+${SOURCE_DIR}/sync-git-repo \
+  --repo https://github.com/syl20bnr/spacemacs.git \
+  --branch develop \
+  --remote-branch origin/develop \
+  --ref 2c28c7d219c82214c1a7b88ec906fed4ad60f0d9 \
+  --target-dir "$HOME/.emacs.d"
