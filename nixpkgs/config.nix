@@ -153,6 +153,7 @@ in
         jmespath
         lzop
         ncat
+        p7zip
         python36Packages.pydot
         unzip
         wget
