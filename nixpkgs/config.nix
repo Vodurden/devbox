@@ -155,6 +155,7 @@ in
         ncat
         p7zip
         python36Packages.pydot
+        s-tui
         unzip
         wget
       ];
