@@ -13,17 +13,17 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.blacklistedKernelModules = [ "mesa" "nouveau" "mesa-noglu" ];
-
+  boot.initrd.luks.devices = [
+    {
+      name = "root";
+      device = "/dev/sdb2";
+      preLVM = true;
+    }
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_4_18;
   boot.kernelModules = [
     "coretemp"
-  ];
-
-  # acpi_mask_gpi - Resolves AE_NOT_FOUND (see https://superuser.com/a/1237529)
-  boot.kernelParams = [
-    "acpi_rev_override=1"
   ];
 
   # thermald needed CONFIG_POWERCAP and CONFIG_INTEL_RAPL and they don't seem to be on by default in NixOS
@@ -36,23 +36,9 @@
     '';
   }];
 
-  # i915 alpha_support=1  - Enables support for intel i915 graphics. Might not be needed with kernel >=4.15
-  # iwlwifi 11n_disable=8 - Resolve occasional issue where the wifi fails to load on boot
-  boot.extraModprobeConfig = ''
-    options i915 alpha_support=1
-    options snd-hda-intel model=no-primary-hp power_save=1
-    options iwlwifi 11n_disable=8
-  '';
-
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.optimus_prime.enable = true;
-  hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:1:0:0";
-  hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
-
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  hardware.enableAllFirmware = true;
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
@@ -120,17 +106,7 @@
     '';
   };
 
-  services.undervolt = {
-    enable = true;
-    coreOffset = "-110";
-    gpuOffset = "-75";
-    uncoreOffset = "-110";
-    analogioOffset = "-110";
-  };
-
   sound.enable = true;
   sound.enableOSSEmulation = false;
   sound.mediaKeys.enable = true;
-
-  powerManagement.cpuFreqGovernor = pkgs.lib.mkForce null;
 }
