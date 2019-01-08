@@ -144,6 +144,9 @@ in
         # Ruby
         ruby
 
+        # Applications
+        unstable.slack-dark
+
         # Tools
         awscli
         ag
