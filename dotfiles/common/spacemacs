@@ -96,13 +96,14 @@ values."
                                     ("WAITING" . (:foreground "orange" :weight bold))
                                     ("DONE" . (:foreground "forest green" :weight bold)))
 
-          org-agenda-files (append '("~/org/gtd.org"))
+          org-agenda-files (append '("~/private/notes/rea/gtd.org"))
 
           org-agenda-window-setup 'only-window
 
-          org-agenda-custom-commands '(("w" todo "WAITING" nil)
-                                       ("n" todo "NEXT" nil)
-                                       ("d" "Daily View" ((agenda) (todo "NEXT") (todo "WAITING"))))
+          org-agenda-custom-commands '(("w" "Work"
+                                        ((agenda)
+                                         (todo "NEXT") (todo "WAITING"))
+                                        ((org-agenda-tag-filter-preset '("+work")))))
 
            org-agenda-prefix-format '((agenda . " %i %?-12t")
                                       (todo . " %i")
@@ -110,15 +111,15 @@ values."
                                       (search . " %i"))
 
 
-          org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/org/inbox.org" "Tasks") "* TODO %i%?")
-                                  ("s" "Schedule" entry (file+headline "~/org/schedule.org" "Schedule") "* %i%? \n %U"))
+          org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/private/notes/inbox.org" "Tasks") "* TODO %i%?")
+                                  ("s" "Schedule" entry (file+headline "~/private/notes/inbox.org" "Tasks") "* %i%? \n %U"))
 
-          org-refile-root-targets '("~/org/next.org"
-                                    "~/org/research.org"
-                                    "~/org/someday.org"
-                                    "~/org/gtd.org"
-                                    "~/org/done.org")
-          org-refile-targets '((org-refile-root-targets :maxlevel . 2))
+          org-refile-root-targets '("~/private/notes/research.org")
+          org-refile-work-targets '("~/private/notes/rea/gtd.org"
+                                    "~/private/notes/rea/done.org"
+                                    "~/private/notes/rea/someday.org")
+          org-refile-targets '((org-refile-root-targets :maxlevel . 2)
+                               (org-refile-worktargets :maxlevel . 2))
           org-refile-use-outline-path 'file
           org-refile-allow-creating-parent-nodes 'confirm
           org-outline-path-complete-in-steps nil
@@ -635,6 +636,17 @@ you should place your code here."
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((dot . t)))
+
+  ;; Add `SPC a o g g' binding for navigating to my org files from anywhere
+  (defun personal/helm-find-file-in-notes ()
+    "Find a file in notes"
+    (interactive)
+    (let ((default-directory "~/private/"))
+      (helm-projectile-find-file)))
+
+  (spacemacs/declare-prefix "aog" "navigate")
+  (spacemacs/set-leader-keys
+    "aogg" 'personal/helm-find-file-in-notes)
 
   (custom-theme-set-faces 'solarized-dark
                           '(org-block-background ((t (:background "#FFFFFF")))))
