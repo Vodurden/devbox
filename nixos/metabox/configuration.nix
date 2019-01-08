@@ -13,13 +13,21 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
-      device = "/dev/sdb2";
-      preLVM = true;
-    }
-  ];
+  boot.initrd.luks = {
+    reusePassphrases = true;
+    devices = [
+      {
+        name = "root";
+        device = "/dev/sdb2";
+        preLVM = true;
+      }
+      {
+        name = "media";
+        device = "/dev/sda1";
+        preLVM = true;
+      }
+    ];
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_4_18;
   boot.kernelModules = [
