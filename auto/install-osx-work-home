@@ -20,4 +20,7 @@ echo "Provisioning dotfiles"
 ${SOURCE_DIR}/scripts/link-dotfiles common
 ${SOURCE_DIR}/scripts/link-dotfiles work-rea
 
+echo "Provisioning private files"
+${SOURCE_DIR}/scripts/sync-private
+
 echo "Provisioning complete."

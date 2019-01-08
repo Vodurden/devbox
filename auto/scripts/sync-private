@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+${SOURCE_DIR}/sync-git-repo \
+             --repo git@github.com:Vodurden/private.git \
+             --branch master \
+             --remote-branch origin/master \
+             --ref origin/master \
+             --target-dir "$HOME/private"
