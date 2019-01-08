@@ -26,5 +26,8 @@ if [[ -L "$HOME/.nix-defexpr" ]]; then
     rm $HOME/.nix-defexpr
 fi;
 
-echo "Linking ${NIXPKGS_PATH} to $HOME/.nix-defexpr"
-ln -s -T "${NIXPKGS_PATH}" "$HOME/.nix-defexpr"
+echo "Creating $HOME/.nix-defexpr"
+mkdir -p "$HOME/.nix-defexpr"
+
+echo "Linking ${NIXPKGS_PATH} to $HOME/.nix-defexpr/${NIXPKGS_NAME}"
+ln -s -T "${NIXPKGS_PATH}" "$HOME/.nix-defexpr/${NIXPKGS_NAME}"
