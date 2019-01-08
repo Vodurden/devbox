@@ -16,6 +16,7 @@ in
       paths = [
         evince
         steam-run
+        gptfdisk
 
         common
       ];
