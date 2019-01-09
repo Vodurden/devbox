@@ -29,5 +29,5 @@ fi;
 echo "Creating $HOME/.nix-defexpr"
 mkdir -p "$HOME/.nix-defexpr"
 
-echo "Linking ${NIXPKGS_PATH} to $HOME/.nix-defexpr/${NIXPKGS_NAME}"
-ln -s -T "${NIXPKGS_PATH}" "$HOME/.nix-defexpr/${NIXPKGS_NAME}"
+echo "Linking ${NIXPKGS_PATH} to $HOME/.nix-defexpr/nixpkgs"
+ln -s "${NIXPKGS_PATH}" "$HOME/.nix-defexpr/nixpkgs"
