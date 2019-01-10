@@ -18,6 +18,9 @@ in
         steam-run
         gptfdisk
 
+        # Applications
+        unstable.slack-dark
+
         common
       ];
     };
@@ -143,9 +146,6 @@ in
 
         # Ruby
         ruby
-
-        # Applications
-        unstable.slack-dark
 
         # Tools
         awscli
