@@ -112,7 +112,8 @@ values."
 
 
           org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/private/notes/inbox.org" "Tasks") "* TODO %i%?")
-                                  ("s" "Schedule" entry (file+headline "~/private/notes/inbox.org" "Tasks") "* %i%? \n %U"))
+                                  ("s" "Schedule" entry (file+headline "~/private/notes/inbox.org" "Tasks") "* %i%? \n %U")
+                                  ("j" "Journal" entry (file+olp+datetree "~/private/notes/journal.org") "* %<%H:%M> %?\n"))
 
           org-refile-root-targets '("~/private/notes/research.org")
           org-refile-work-targets '("~/private/notes/rea/gtd.org"
