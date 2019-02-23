@@ -8,7 +8,7 @@ let
     wineUnstable.build = "wineWow";
   };
 
-  pkgsUnstable = import <nixpkgs-unstable> { config = baseConfig; };
+  unstable = import <nixpkgs-unstable> { config = baseConfig; };
 in
 {
   # Internationalisation
@@ -54,7 +54,8 @@ in
 
     haskellPackages.xmobar
 
-    steam
+    # Unstable steam fixes the friends issue. Switch back for 19.03
+    unstable.steam
     calibre
     libreoffice
     partition-manager
@@ -105,7 +106,7 @@ in
 
   # Define our user accounts. Don't forget to set a password with `passwd`
   users.extraUsers.jake = {
-    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    extraGroups = [ "wheel" "audio" "networkmanager" "dialout" ];
     isNormalUser = true;
     uid = 1000;
   };
