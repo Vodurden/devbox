@@ -53,6 +53,12 @@
   hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
   hardware.pulseaudio.configFile = ./etc/pulse/default.pa;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.extraConfig = "
+    [General]
+    Enable=Source,Sink,Media,Socket
+  ";
+
   environment.systemPackages = with pkgs; [
     vulkan-loader
   ];
