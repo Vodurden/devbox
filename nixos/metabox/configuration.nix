@@ -98,6 +98,12 @@
     '';
   };
 
+  services.compton = {
+    enable = true;
+    backend = "xrender";
+    vSync = "opengl";
+  };
+
   # Laptop specific services:
   services.upower.enable = true;
 
