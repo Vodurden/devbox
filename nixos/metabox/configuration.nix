@@ -104,6 +104,10 @@
     vSync = "opengl";
   };
 
+  services.samba = {
+    enable = true;
+  };
+
   # Laptop specific services:
   services.upower.enable = true;
 
