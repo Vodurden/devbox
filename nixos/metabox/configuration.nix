@@ -29,7 +29,7 @@
     ];
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_4_18;
+  boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernelModules = [
     "coretemp"
   ];
