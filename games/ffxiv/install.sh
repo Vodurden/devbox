@@ -49,7 +49,8 @@ fi
 echo "* Installing DXVK"
 WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" winetricks --force "${DXVK_SETUP_PATH}/setup_dxvk.verb"
 
-FFXIV_BOOT_CFG_PATH="${WINEPREFIX}/drive_c/users/${USER}/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/FFXIV_BOOT.cfg"
+FFXIV_CFG_FOLDER_PATH="${WINEPREFIX}/drive_c/users/${USER}/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/"
+FFXIV_BOOT_CFG_PATH="${FFXIV_CFG_FOLDER_PATH}/FFXIV_BOOT.cfg"
 if [ ! -f "${FFXIV_BOOT_CFG_PATH}" ]; then
   echo "* Launching FFXIV to create FFXIV_BOOT.cfg"
   echo "  This will open a GUI. You _must_:"
@@ -61,6 +62,11 @@ if [ ! -f "${FFXIV_BOOT_CFG_PATH}" ]; then
   sleep 3
   WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" wine "${FFXIV_INSTALL_PATH}/boot/ffxivboot.exe"
 fi;
+
+
+FFXIV_CFG_PATH="${FFXIV_CFG_FOLDER_PATH}/FFXIV.cfg"
+echo "* FFXIV Settings tweak: Setting CutsceneMovieOpening to 1 in FFXIV.cfg"
+sed -i -e 's/CutsceneMovieOpening[[:space:]][[:digit:]]/CutsceneMovieOpening 1/' "${FFXIV_CFG_PATH}"
 
 echo "* FFXIV Settings tweak: Setting BrowserType to 2 in FFXIV_BOOT.cfg"
 sed -i -e 's/BrowserType[[:space:]][[:digit:]]/BrowserType 2/' "${FFXIV_BOOT_CFG_PATH}"
