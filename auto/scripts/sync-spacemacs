@@ -5,5 +5,5 @@ ${SOURCE_DIR}/sync-git-repo \
   --repo https://github.com/syl20bnr/spacemacs.git \
   --branch develop \
   --remote-branch origin/develop \
-  --ref 8bbf6b3f5372f55b0fbcb9cc0bf9ea1ce98c77b7 \
+  --ref 4b195ddfc9228256361e0b264fe974aa86ed51a8 \
   --target-dir "$HOME/.emacs.d"
