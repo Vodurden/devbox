@@ -56,6 +56,7 @@ values."
               ;haskell-process-type 'cabal-new-repl)
      (scala :variables
             ensime-startup-notification nil
+            flycheck-disabled-checkers '(scala-scalastyle)
             flycheck-scalastylerc (substitute-in-file-name "$HOME/.scalastyle_config.xml"))
      elixir
      erlang
