@@ -22,20 +22,20 @@ fi;
 FORK_NAME=$1
 
 if [ "${FORK_NAME}" == 'nixpkgs' ]; then
-    # Last updated: 2019-01-05
+    # Last updated: 2019-03-02
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixos-18.09"
-    export FORK_REF="9d608a6f592144b5ec0b486c90abb135a4b265eb"
+    export FORK_REF="060bcd6df50bf2e61efe7b14b0458e83d72adc87"
 elif [ "${FORK_NAME}" == 'nixpkgs-unstable' ]; then
-    # Last updated: 2019-01-04
+    # Last updated: 2019-03-02
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixpkgs-unstable"
-    export FORK_REF="45779f013c885b5c0da6852c0c01ec1c50670c5b"
+    export FORK_REF="6e5caa3f8ac48750233ef82a94825be238940825"
 elif [ "${FORK_NAME}" == 'nixpkgs-darwin' ]; then
-    # Last updated: 2019-01-04
+    # Last updated: 2019-03-02
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixpkgs-18.09-darwin"
-    export FORK_REF="eb0480ad6c5f414929a85e92b6ebf5401f44e313"
+    export FORK_REF="aabc61049c011b40ef15c354d7d84c840d6b6a6d"
 else
     echo "Unknown fork name provided: ${FORK_NAME}"
     print_valid_fork_names
