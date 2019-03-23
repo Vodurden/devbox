@@ -162,6 +162,9 @@ in
         s-tui
         unzip
         wget
+
+        # Games
+        multimc
       ];
     };
   };
