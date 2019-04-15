@@ -55,7 +55,7 @@ in
     haskellPackages.xmobar
 
     # Unstable steam fixes the friends issue. Switch back for 19.03
-    unstable.steam
+    steam
     calibre
     libreoffice
     partition-manager
@@ -88,7 +88,6 @@ in
       fira
       fira-code
       fira-mono
-      font-droid
 
       hack-font
       terminus_font
