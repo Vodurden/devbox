@@ -52,8 +52,8 @@ values."
 
      ;; Languages
      (haskell :variables
+              haskell-compile-cabal-build-command "cabal new-build --ghc-option=-ferror-spans"
               haskell-completion-backend 'dante)
-              ;haskell-process-type 'cabal-new-repl)
      (scala :variables
             ensime-startup-notification nil
             flycheck-disabled-checkers '(scala-scalastyle)
