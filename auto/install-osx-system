@@ -16,3 +16,4 @@ source /etc/nixpath
 # we need a few manual steps
 echo "Installing Fonts"
 ${SOURCE_DIR}/scripts/osx/install-font hack-font
+${SOURCE_DIR}/scripts/osx/install-font ttf_bitstream_vera
