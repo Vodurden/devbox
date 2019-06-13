@@ -660,7 +660,4 @@ you should place your code here."
   (spacemacs/declare-prefix "aog" "navigate")
   (spacemacs/set-leader-keys
     "aogg" 'personal/helm-find-file-in-notes)
-
-  (custom-theme-set-faces 'solarized-dark
-                          '(org-block-background ((t (:background "#FFFFFF")))))
 )
