@@ -6,7 +6,7 @@ export PATH="$HOME/.rea-slip-utils/bin:$PATH"
 export CP_DOMAIN_ENV=production
 
 # rea-slip-docker-login is too long!
-alias docker-login="rea-slip-docker-login"
+alias docker-login="rea-slip-docker-login && $(aws ecr get-login --region ap-southeast-2 --no-include-email --registry-ids 639347700193)"
 
 # Enable aws-shortcuts
 if [ -e $HOME/.aws-shortcuts/iam-roles.txt ]; then
