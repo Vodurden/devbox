@@ -34,6 +34,13 @@ in
       ];
     };
 
+    manjaroDevEnv = with pkgs; buildEnv {
+      name = "manjaro-dev-env";
+      paths = [
+        common
+      ];
+    };
+
     wineStableEnv = with pkgs; buildEnv {
       name = "wine-stable-env";
       paths = [
@@ -112,6 +119,13 @@ in
       paths = [
         go
         go2nix
+      ];
+    };
+
+    pythonEnv = with pkgs; buildEnv {
+      name = "python-env";
+      paths = [
+        python
       ];
     };
 

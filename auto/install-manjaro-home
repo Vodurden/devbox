@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Provisioning manjaro nix user configuration."
+${SOURCE_DIR}/scripts/install-default-nixpkgs nixpkgs
+
+echo "Provisioning manjaro home configuration."
+${SOURCE_DIR}/scripts/install-nix-env manjaro-dev-env
+${SOURCE_DIR}/scripts/sync-spacemacs
+${SOURCE_DIR}/scripts/sync-vim
+${SOURCE_DIR}/scripts/sync-bash-my-aws
+
+echo "Provisioning dotfiles"
+${SOURCE_DIR}/scripts/link-dotfiles common
+${SOURCE_DIR}/scripts/link-dotfiles linux
+${SOURCE_DIR}/scripts/link-dotfiles manjaro
+
+echo "Provisioning private files"
+# ${SOURCE_DIR}/scripts/sync-private
+
+echo "Provisioning complete."

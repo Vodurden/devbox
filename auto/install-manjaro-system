@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Provisioning manjaro system configuration."
+
+nix-channel --remove nixpkgs
+nix-channel --remove nixpkgs-unstable
+
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs
+${SOURCE_DIR}/scripts/sync-nixpkgs nixpkgs-unstable
+${SOURCE_DIR}/scripts/manjaro/use-nix-forks
+
+# Load the nixpath so we can use our nix forks in this script.
+source /etc/environment
+
+${SOURCE_DIR}/scripts/sync-nixgl

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Adding NIX_PATH with nixpkgs forks to /etc/environment"
+
+NIX_PATH_LINE='NIX_PATH="nixpkgs=/nix/nixpkgs:nixpkgs-unstable=/nix/nixpkgs-unstable"'
+grep -qF -- "$NIX_PATH_LINE" /etc/environment || echo "$NIX_PATH_LINE" >> /etc/environment
