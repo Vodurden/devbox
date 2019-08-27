@@ -75,6 +75,13 @@ in
       ];
     };
 
+    agdaEnv = with pkgs; buildEnv {
+      name = "agdaEnv";
+      paths = [
+        haskellPackages.Agda
+      ];
+    };
+
     stackEnv = with pkgs; buildEnv {
       name = "stack-env";
       paths = [
