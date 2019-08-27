@@ -1,0 +1,15 @@
+Host *
+  IdentityFile ~/.ssh/id_rsa
+
+Host git.realestate.com.au gist.git.realestate.com.au
+  StrictHostKeyChecking no
+  Port 65422
+  IdentitiesOnly yes
+
+Host bastion.resi-product-prod-depth.realestate.com.au
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostName bastion.resi-product-prod-depth.realestate.com.au
+  Port 22
+  User bastion
+  IdentityFile ~/.ssh/resi-product-prod-ap-southeast-2
