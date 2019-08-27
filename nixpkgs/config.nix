@@ -21,6 +21,9 @@ in
         # Applications
         unstable.slack-dark
 
+        # Games
+        multimc
+
         common
       ];
     };
@@ -176,9 +179,6 @@ in
         s-tui
         unzip
         wget
-
-        # Games
-        multimc
       ];
     };
   };
