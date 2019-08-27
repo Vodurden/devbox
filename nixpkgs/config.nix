@@ -75,6 +75,17 @@ in
       ];
     };
 
+    stackEnv = with pkgs; buildEnv {
+      name = "stack-env";
+      paths = [
+        ghc
+        stack
+        libiconv
+        darwin.apple_sdk.frameworks.Cocoa
+        darwin.apple_sdk.frameworks.CoreServices
+      ];
+    };
+
     haskellEnv = with pkgs; buildEnv {
       name = "haskell-env";
       paths = [
