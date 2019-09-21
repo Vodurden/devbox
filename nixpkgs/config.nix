@@ -7,7 +7,7 @@ in
 
   packageOverrides = pkgs_: with pkgs_; {
     scalastyle = callPackage ./scalastyle {};
-    metals-scala = callPackage ./metals-scala {};
+    metals-emacs = callPackage ./metals-emacs {};
     rea-as = callPackage ./rea/rea-as {};
     aws-console-url = callPackage ./rea/aws-console-url {};
     rea-slip-utils = callPackage ./rea/rea-slip-utils {};
@@ -126,7 +126,7 @@ in
         sbt
         scalastyle
         scalafmt
-        metals-scala
+        metals-emacs
       ];
     };
 
