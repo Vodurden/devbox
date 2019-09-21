@@ -22,15 +22,15 @@ fi;
 FORK_NAME=$1
 
 if [ "${FORK_NAME}" == 'nixpkgs' ]; then
-    # Last updated: 2019-04-15
+    # Last updated: 2019-09-21
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixos-19.03"
-    export FORK_REF="5c52b25283a6cccca443ffb7a358de6fe14b4a81"
+    export FORK_REF="021d733ea3f87b8c9232020b4e606d08eaca160b"
 elif [ "${FORK_NAME}" == 'nixpkgs-unstable' ]; then
-    # Last updated: 2019-04-15
+    # Last updated: 2019-09-21
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixpkgs-unstable"
-    export FORK_REF="54f385241e6649128ba963c10314942d73245479"
+    export FORK_REF="c4196cca9acd1c51f62baf10fcbe34373e330bb3"
 elif [ "${FORK_NAME}" == 'nixpkgs-darwin' ]; then
     # Last updated: 2019-03-02
     export FORK_REMOTE="channels"
