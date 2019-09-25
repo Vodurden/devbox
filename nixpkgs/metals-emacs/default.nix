@@ -2,7 +2,7 @@
 
 let
   baseName = "metals-emacs";
-  version = "0.7.5";
+  version = "0.7.6";
   deps = stdenv.mkDerivation {
     name = "${baseName}-deps-${version}";
     buildCommand = ''
@@ -13,7 +13,7 @@ let
     '';
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
-    outputHash = "0pgs26k6nsvrbyyf48mdai9h7l1wfhxi2b2049k2bzlld8jfawww";
+    outputHash = "02ra7lvwh4b3d3d56cypi066kgibz5m0pvv3lqa0rffah8h7pyqi";
   };
 in stdenv.mkDerivation rec {
   name = "${baseName}-${version}";
