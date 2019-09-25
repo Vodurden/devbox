@@ -32,10 +32,10 @@ elif [ "${FORK_NAME}" == 'nixpkgs-unstable' ]; then
     export FORK_BRANCH="nixpkgs-unstable"
     export FORK_REF="c4196cca9acd1c51f62baf10fcbe34373e330bb3"
 elif [ "${FORK_NAME}" == 'nixpkgs-darwin' ]; then
-    # Last updated: 2019-03-02
+    # Last updated: 2019-09-24
     export FORK_REMOTE="channels"
     export FORK_BRANCH="nixpkgs-19.03-darwin"
-    export FORK_REF="e67da9e4cabadb05c3c39de7a8e3aec384784052"
+    export FORK_REF="5051f5435eab17001635549dffd9d06de7c6b661"
 else
     echo "Unknown fork name provided: ${FORK_NAME}"
     print_valid_fork_names
