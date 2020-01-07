@@ -133,6 +133,7 @@ values."
           )
      yaml
      sql
+     terraform
      )
 
    ;; List of additional packages that will be installed without being
