@@ -53,7 +53,8 @@ values."
           git-gutter-use-fringe t)
 
      ;; Languages
-     lsp
+     (lsp :variables
+          lsp-ui-sideline-show-symbol nil)
      (haskell :variables
               haskell-compile-cabal-build-command "cabal new-build --ghc-option=-ferror-spans"
               haskell-completion-backend 'dante)
