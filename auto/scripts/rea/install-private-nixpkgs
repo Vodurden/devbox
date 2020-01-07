@@ -5,8 +5,8 @@ set -euo pipefail
 echo "Prefetching rea-as"
 nix-prefetch-git \
     git@git.realestate.com.au:cowbell/rea-as.git \
-    e76e1cbfe7b8010f845e51379d3bbcd889dfe6c8 \
-    10ipnni2b68y36bxjnmy8y6jrrm26n1q84kl00pzsb19v4zjn9f7
+    88337bfdf733248b533a945648cb5cbe5a07299e \
+    1n8plr45ggyjyv0n509rz59c284hw75nzyf42j5bc2z6lp8gd8ln
 
 echo "Installing rea-as"
 nix-env -iA nixpkgs.rea-as
