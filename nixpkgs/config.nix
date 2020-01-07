@@ -97,17 +97,16 @@ in
     haskellEnv = with pkgs; buildEnv {
       name = "haskell-env";
       paths = [
-        unstable.ghc
-        unstable.cabal2nix
-        unstable.cabal-install
-        unstable.haskellPackages.hlint
-        unstable.haskellPackages.stylish-haskell
-        unstable.haskellPackages.hoogle
-        unstable.haskellPackages.intero
+        ghc
+        cabal2nix
+        cabal-install
+        haskellPackages.hlint
+        haskellPackages.stylish-haskell
+        haskellPackages.hoogle
 
         # The tests fail on OSX
-        (unstable.haskellPackages.apply-refact.override {
-          ghc-exactprint = (haskell.lib.dontCheck unstable.haskellPackages.ghc-exactprint);
+        (haskellPackages.apply-refact.override {
+          ghc-exactprint = (haskell.lib.dontCheck haskellPackages.ghc-exactprint);
         })
       ];
     };
