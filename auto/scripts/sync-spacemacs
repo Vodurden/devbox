@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-${SOURCE_DIR}/sync-git-repo \
-  --repo https://github.com/syl20bnr/spacemacs.git \
-  --branch develop \
-  --remote-branch origin/develop \
-  --ref 37e326e1cf2d56a0f5a19eeab84919da5389bb63 \
-  --target-dir "$HOME/.emacs.d"

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-${SOURCE_DIR}/../sync-git-repo \
-  --repo git@git.realestate.com.au:resi-lob/aws-shortcuts.git \
-  --branch master \
-  --remote-branch origin/master \
-  --ref c141defe4b565fc280552bc8f6f403d77eeec1c1 \
-  --target-dir "$HOME/.aws-shortcuts"

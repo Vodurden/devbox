@@ -1,0 +1,13 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash "../shell.nix"
+set -euo pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Applying system configuration"
+sudo -E nixos-rebuild switch
+
+echo "Applying home configuration"
+home-switch
+
+echo "Install Complete"
