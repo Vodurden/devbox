@@ -2,14 +2,19 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # Applications
     firefox
     termite
-    networkmanagerapplet
-    xscreensaver
-    rofi
     gnome3.seahorse # Keyring Management
+
+    # Theme
     arc-theme
     faba-icon-theme
+
+    # GUI Elements/Addons
+    networkmanagerapplet
+    xscreensaver
+    xfce4-14.xfce4-whiskermenu-plugin
   ];
 
   services.xserver = {
@@ -23,7 +28,6 @@
   services.compton = {
     enable = true;
   };
-
 
   services.gnome3.gnome-keyring.enable = true;
 

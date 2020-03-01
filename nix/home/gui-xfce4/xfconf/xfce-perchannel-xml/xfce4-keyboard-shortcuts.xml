@@ -30,19 +30,19 @@
       <property name="&lt;Alt&gt;F2" type="string" value="xfce4-appfinder --collapsed">
         <property name="startup-notify" type="bool" value="true"/>
       </property>
-      <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
       <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
       <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
       <property name="override" type="bool" value="true"/>
-      <property name="Super_L" type="string" value="rofi -combi-modi window,drun,run -show combi -modi combi">
+      <property name="Super_L" type="empty">
         <property name="startup-notify" type="bool" value="true"/>
       </property>
       <property name="&lt;Super&gt;space" type="empty">
         <property name="startup-notify" type="bool" value="true"/>
       </property>
       <property name="&lt;Alt&gt;grave" type="string" value="termite"/>
+      <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-whiskermenu"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
