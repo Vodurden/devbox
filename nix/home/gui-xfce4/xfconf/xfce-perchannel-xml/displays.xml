@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="displays" version="1.0">
+  <property name="Default" type="empty">
+    <property name="eDP-1" type="string" value="1. LGD 13&quot;">
+      <property name="Active" type="bool" value="true"/>
+      <property name="Resolution" type="string" value="1920x1080"/>
+      <property name="RefreshRate" type="double" value="59.998788"/>
+      <property name="Rotation" type="int" value="0"/>
+      <property name="Reflection" type="string" value="0"/>
+      <property name="Primary" type="bool" value="true"/>
+      <property name="Position" type="empty">
+        <property name="X" type="int" value="970"/>
+        <property name="Y" type="int" value="2160"/>
+      </property>
+    </property>
+    <property name="DP-1" type="string" value="2. Goldstar Company Ltd 27&quot;">
+      <property name="Active" type="bool" value="true"/>
+      <property name="Resolution" type="string" value="3840x2160"/>
+      <property name="RefreshRate" type="double" value="59.996625"/>
+      <property name="Rotation" type="int" value="0"/>
+      <property name="Reflection" type="string" value="0"/>
+      <property name="Primary" type="bool" value="false"/>
+      <property name="Position" type="empty">
+        <property name="X" type="int" value="0"/>
+        <property name="Y" type="int" value="0"/>
+      </property>
+    </property>
+    <property name="eDP1" type="string" value="Laptop">
+      <property name="Active" type="bool" value="true"/>
+      <property name="EDID" type="string" value="8351df8ed7febedf663e1ae4140e2839d0852853"/>
+      <property name="Resolution" type="string" value="1920x1080"/>
+      <property name="RefreshRate" type="double" value="59.998788"/>
+      <property name="Rotation" type="int" value="0"/>
+      <property name="Reflection" type="string" value="0"/>
+      <property name="Primary" type="bool" value="false"/>
+      <property name="Position" type="empty">
+        <property name="X" type="int" value="0"/>
+        <property name="Y" type="int" value="0"/>
+      </property>
+    </property>
+    <property name="DP1" type="string" value="LG 27&quot;">
+      <property name="Active" type="bool" value="true"/>
+      <property name="EDID" type="string" value="bf8e16efda2b9aa89621a29a22a4e096f6706fb8"/>
+      <property name="Resolution" type="string" value="3840x2160"/>
+      <property name="RefreshRate" type="double" value="59.996625"/>
+      <property name="Rotation" type="int" value="0"/>
+      <property name="Reflection" type="string" value="0"/>
+      <property name="Primary" type="bool" value="false"/>
+      <property name="Position" type="empty">
+        <property name="X" type="int" value="0"/>
+        <property name="Y" type="int" value="0"/>
+      </property>
+    </property>
+  </property>
+  <property name="ActiveProfile" type="string" value="Default"/>
+</channel>

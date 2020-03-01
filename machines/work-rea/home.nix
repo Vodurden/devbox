@@ -4,6 +4,8 @@
   imports = [
     ../../nix/home/base.nix
 
+    ../../nix/home/gui-xfce4
+
     ../../nix/home/aws.nix
     ../../nix/home/bash.nix
     ../../nix/home/direnv.nix
