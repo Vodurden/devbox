@@ -35,6 +35,12 @@
   networking.interfaces.enp109s0.useDHCP = true;
   networking.interfaces.wlp112s0.useDHCP = true;
 
+  services.xserver.videoDrivers = ["nvidia"];
+
+  services.thermald.configFile = ./thermald/thermal-conf.xml;
+
+  hardware.pulseaudio.configFile = ./pulseaudio/default.pa;
+
   users.users.jake = {
     createHome = true;
     isNormalUser = true;
