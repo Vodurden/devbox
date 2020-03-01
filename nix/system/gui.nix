@@ -7,16 +7,18 @@
     networkmanagerapplet
     xscreensaver
     rofi
+    gnome3.seahorse # Keyring Management
   ];
 
   services.xserver = {
     enable = true;
     exportConfiguration = true;
 
-    displayManager.sddm.enable = true;
+    displayManager.lightdm.enable = true;
     desktopManager.xfce4-14.enable = true;
-
   };
+
+  services.gnome3.gnome-keyring.enable = true;
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
