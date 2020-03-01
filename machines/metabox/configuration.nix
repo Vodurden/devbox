@@ -42,6 +42,12 @@
 
   hardware.pulseaudio.configFile = ./pulseaudio/default.pa;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.extraConfig = "
+    [General]
+    Enable=Source,Sink,Media,Socket
+  ";
+
   users.users.jake = {
     createHome = true;
     isNormalUser = true;
