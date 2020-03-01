@@ -10,7 +10,7 @@
       <property name="position-locked" type="bool" value="true"/>
       <property name="size" type="uint" value="30"/>
       <property name="plugin-ids" type="array">
-        <value type="int" value="1"/>
+        <value type="int" value="2"/>
         <value type="int" value="3"/>
         <value type="int" value="15"/>
         <value type="int" value="4"/>
@@ -25,9 +25,6 @@
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="applicationsmenu">
-      <property name="button-title" type="string" value=""/>
-    </property>
     <property name="plugin-3" type="string" value="tasklist"/>
     <property name="plugin-15" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
@@ -36,6 +33,7 @@
     <property name="plugin-4" type="string" value="pager"/>
     <property name="plugin-5" type="string" value="clock">
       <property name="mode" type="uint" value="2"/>
+      <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
@@ -45,17 +43,18 @@
         <value type="string" value="albert"/>
       </property>
       <property name="names-ordered" type="array">
-        <value type="string" value="xfce4-power-manager"/>
-        <value type="string" value="zoom"/>
-        <value type="string" value="slack"/>
         <value type="string" value="networkmanager applet"/>
+        <value type="string" value="steam"/>
       </property>
       <property name="size-max" type="uint" value="32"/>
       <property name="square-icons" type="bool" value="false"/>
       <property name="show-frame" type="bool" value="false"/>
+      <property name="names-hidden" type="array">
+      </property>
     </property>
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
+    <property name="plugin-2" type="string" value="whiskermenu"/>
   </property>
 </channel>

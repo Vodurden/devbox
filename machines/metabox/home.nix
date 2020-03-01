@@ -17,4 +17,8 @@
   ];
 
   programs.git.userEmail = "jake@jakewoods.net";
+
+  home.packages = with pkgs; [
+    thunderbird
+  ];
 }
