@@ -9,6 +9,7 @@
     ../../nix/home/aws.nix
     ../../nix/home/bash.nix
     ../../nix/home/direnv.nix
+    ../../nix/home/games.nix
     ../../nix/home/git.nix
     ../../nix/home/termite.nix
     ../../nix/home/vim

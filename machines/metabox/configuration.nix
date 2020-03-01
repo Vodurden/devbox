@@ -10,6 +10,7 @@
     ../../nix/system/gui.nix
     ../../nix/system/audio.nix
     ../../nix/system/laptop.nix
+    ../../nix/system/games.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
