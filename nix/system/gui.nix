@@ -8,6 +8,8 @@
     xscreensaver
     rofi
     gnome3.seahorse # Keyring Management
+    arc-theme
+    faba-icon-theme
   ];
 
   services.xserver = {
@@ -17,6 +19,11 @@
     displayManager.lightdm.enable = true;
     desktopManager.xfce4-14.enable = true;
   };
+
+  services.compton = {
+    enable = true;
+  };
+
 
   services.gnome3.gnome-keyring.enable = true;
 
