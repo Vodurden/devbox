@@ -9,23 +9,17 @@ On NixOS:
 
 - Execute `auto/install {machine-name}`
 
-Usage
-=====
-
-After installation `nixos-rebuild` and `home-manager` will automatically use the correct machine configuration
-regardless of the current working directory.
+After installation `nixos-rebuild` and `home-manager` will automatically use the correct machine configuration regardless of the current working directory.
 
 Directory Structure
 ===================
 
     .
-    +-- auto                Automation scripts used to run/provision the devbox
-    |
-    +-- dotfiles            Dotfiles grouped by machine type
-    |
-    +-- nixos               Nixos configuration files
-    |
-    +-- nixpkgs             Nixpkgs configuration. Includes what programs are installed on the systems
+    +-- auto                Automation scripts used to install and update the devbox
+    +-- doc                 Documentation
+    +-- games               Scripts to force specific games run on linux
+    +-- machines            Machine-specific configuration. Contains the root-level configuration.nix and home.nix
+    +-- nix                 All nix configuration
 
 
 References
