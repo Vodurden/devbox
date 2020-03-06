@@ -10,12 +10,17 @@
 
   time.timeZone = "Australia/Sydney";
 
+  nixpkgs.config.allowBroken = true;
+
   nix.nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") {
     nixos-config = toString <nixos-config>;
     nixpkgs-overlays = toString <nixpkgs-overlays>;
     nixos-hardware = toString <nixos-hardware>;
+    home-manager = toString <home-manager>;
     nixpkgs = toString <nixpkgs>;
   };
+
+  environment.variables.HOME_MANAGER_CONFIG = toString <home-manager-config>;
 
   nix.trustedUsers = [ "root" "jake" ];
 

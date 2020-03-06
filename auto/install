@@ -1,13 +1,25 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i bash "../shell.nix"
+#! /usr/bin/env bash
 set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+MACHINE_DIR="${SOURCE_DIR}/../machines"
+
+if [[ "${1:-}" == "" ]]; then
+  echo "No arguments provided. Usage: install <machine-name>"
+  echo
+  echo "Valid machines are:"
+  echo
+  find "${MACHINE_DIR}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;
+  echo
+  exit 1
+fi;
+
+MACHINE_NAME=$1
 
 echo "Applying system configuration"
-sudo -E nixos-rebuild switch
+sudo -E nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
 
 echo "Applying home configuration"
-home-switch
+nix-shell --argstr "machine" "${MACHINE_NAME}" --run "\$(nix-build '<home-manager>' -A home-manager --no-out-link)/bin/home-manager switch"
 
-echo "Install Complete"
+echo "Install Complete: after restart you can run 'nixos-rebuild switch' and 'home-manager switch' from anywhere!"
