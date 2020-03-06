@@ -5,20 +5,6 @@
 
   services.thermald.enable = true;
 
-  boot.kernelModules = [
-    "coretemp"
-  ];
-
-  # thermald needed CONFIG_POWERCAP and CONFIG_INTEL_RAPL and they don't seem to be on by default in NixOS
-  boot.kernelPatches = [ {
-    name = "rapl-config";
-    patch = null;
-    extraConfig = ''
-      POWERCAP y
-      INTEL_RAPL y
-    '';
-  }];
-
   services.xserver.libinput = {
     enable = true;
     tapping = false;             # Buttons for life
