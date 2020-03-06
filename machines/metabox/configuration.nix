@@ -11,6 +11,7 @@
     ../../nix/system/audio.nix
     ../../nix/system/laptop.nix
     ../../nix/system/games.nix
+    ../../nix/system/firewall.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -14,6 +14,7 @@
     ../../nix/home/termite.nix
     ../../nix/home/vim
     ../../nix/home/spacemacs
+    ../../nix/home/syncthing
   ];
 
   programs.git.userEmail = "jake@jakewoods.net";
