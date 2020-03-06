@@ -16,6 +16,9 @@
   ];
 
   home.packages = with pkgs; [
+    openconnect
+    gnome3.networkmanager-openconnect
+    openssl
     rea-as
     rea-slip-utils
   ];

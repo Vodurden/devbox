@@ -25,6 +25,10 @@
 
   networking.networkmanager.enable = true;
   networking.networkmanager.dhcp = "dhclient";
+  networking.networkmanager.wifi.scanRandMacAddress = false;
+  networking.dhcpcd.enable = true;
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.wlp2s0.useDHCP = true;
 
   environment.systemPackages = with pkgs; [
     jetbrains.datagrip
