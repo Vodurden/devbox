@@ -13,12 +13,14 @@
     ../../nix/home/termite.nix
     ../../nix/home/vim
     ../../nix/home/spacemacs
+    ../../nix/home/syncthing
   ];
 
   home.packages = with pkgs; [
     openconnect
     gnome3.networkmanager-openconnect
     openssl
+
     rea-as
     rea-slip-utils
   ];
