@@ -21,7 +21,7 @@ pushd $PWD > /dev/null
 cd $(dirname "$0")/..
 
 echo "Applying system configuration"
-sudo -E nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
+sudo --preserve-env=NIX_PATH --preserve-env=HOME_MANAGER_CONFIG nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
 
 echo "Applying home configuration"
 nix-shell --argstr "machine" "${MACHINE_NAME}" --run "\$(nix-build '<home-manager>' -A home-manager --no-out-link)/bin/home-manager switch"
