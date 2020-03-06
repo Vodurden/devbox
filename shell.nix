@@ -30,10 +30,6 @@ in
         nixpkgs
         ;
     };
-
-    files = "$(find . -name '*.nix' -not -wholename './nix/sources.nix')";
-    lint = pkgs.writeShellScriptBin "lint" "nix-linter ${files}";
-    format = pkgs.writeShellScriptBin "format" "nixpkgs-fmt ${files}";
   in
     mkShell {
       shellHook = ''
@@ -42,13 +38,6 @@ in
       '';
 
       buildInputs = [
-        # Newer version of niv that should still be cached
-        unstable.niv
-
-        # Utils for lintinga nd formatting nix files in this repo
-        unstable.nix-linter
-        lint
-        unstable.nixpkgs-fmt
-        format
+        (import sources.niv {}).niv
       ];
     }
