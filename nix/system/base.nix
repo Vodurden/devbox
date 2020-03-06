@@ -12,6 +12,8 @@
 
   nixpkgs.config.allowBroken = true;
 
+  # These values are bootstrapped from the root `shell.nix`. On subsequent runs they
+  # will be set to themselves
   nix.nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") {
     nixos-config = toString <nixos-config>;
     nixpkgs-overlays = toString <nixpkgs-overlays>;

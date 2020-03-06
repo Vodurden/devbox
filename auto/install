@@ -16,6 +16,10 @@ fi;
 
 MACHINE_NAME=$1
 
+trap "popd > /dev/null" EXIT
+pushd $PWD > /dev/null
+cd $(dirname "$0")/..
+
 echo "Applying system configuration"
 sudo -E nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
 
