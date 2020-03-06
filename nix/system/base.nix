@@ -34,8 +34,8 @@
     wget
     vim
     emacs
-    rcm
     direnv
+    ripgrep
   ];
 
   services.lorri.enable = true;
