@@ -19,6 +19,7 @@
     nixpkgs-overlays = toString <nixpkgs-overlays>;
     nixos-hardware = toString <nixos-hardware>;
     home-manager = toString <home-manager>;
+    home-manager-config = toString <home-manager-config>;
     nixpkgs = toString <nixpkgs>;
   };
 
