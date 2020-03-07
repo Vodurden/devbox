@@ -11,9 +11,8 @@ in
   with (import nixpkgs {});
   let
     #####################################
-    nixos-config = toString (./machines + "/${machine}" + /configuration.nix);
+    nixos-config = toString (./config/machines + "/${machine}" + /configuration.nix);
     nixpkgs-overlays = toString ./nix/overlays;
-    home-manager-config = toString (./machines + "/${machine}" + /home.nix);
 
     build-nix-path-env-var = path:
       builtins.concatStringsSep ":" (
@@ -25,7 +24,6 @@ in
         nixos-config
         nixpkgs-overlays
         nixos-hardware
-        home-manager-config  # home-manager-config is only used to pass the correct path to `nix/system/base.nix`
         home-manager
         nixpkgs
         ;
@@ -34,7 +32,6 @@ in
     mkShell {
       shellHook = ''
         export NIX_PATH="${nix-path}"
-        export HOME_MANAGER_CONFIG="${home-manager-config}"
       '';
 
       buildInputs = [

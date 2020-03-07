@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-MACHINE_DIR="${SOURCE_DIR}/../machines"
+MACHINE_DIR="${SOURCE_DIR}/../config/machines"
 
 if [[ "${1:-}" == "" ]]; then
   echo "No arguments provided. Usage: install <machine-name>"
@@ -14,6 +14,11 @@ if [[ "${1:-}" == "" ]]; then
   exit 1
 fi;
 
+if [[ $(/usr/bin/env id -u) -ne 0 ]]; then
+  echo "This script must be run as root to avoid symlink creation errors from \`nixos-rebuild switch\`"
+  exit 1
+fi;
+
 MACHINE_NAME=$1
 
 trap "popd > /dev/null" EXIT
@@ -21,9 +26,6 @@ pushd $PWD > /dev/null
 cd $(dirname "$0")/..
 
 echo "Applying system configuration"
-sudo --preserve-env=NIX_PATH --preserve-env=HOME_MANAGER_CONFIG nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
+nix-shell --argstr "machine" "${MACHINE_NAME}" --run "nixos-rebuild switch"
 
-echo "Applying home configuration"
-nix-shell --argstr "machine" "${MACHINE_NAME}" --run "\$(nix-build '<home-manager>' -A home-manager --no-out-link)/bin/home-manager switch"
-
-echo "Install Complete: after restart you can run 'nixos-rebuild switch' and 'home-manager switch' from anywhere!"
+echo "Install Complete: after logging in/out or restarting you can run 'nixos-rebuild switch' from anywhere!"
