@@ -7,7 +7,7 @@ in
 
 {
   imports = [
-    ./nix-path.nix
+    ./nix
 
     home-manager.nixos # All machines support home-manager defined by configuration.nix
 
@@ -22,18 +22,6 @@ in
   };
 
   time.timeZone = "Australia/Sydney";
-
-  # These values are bootstrapped from the root `shell.nix`. On subsequent runs they
-  # will be set to themselves
-  nix.nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") {
-    nixos-config = toString <nixos-config>;
-    nixpkgs-overlays = toString <nixpkgs-overlays>;
-    nixos-hardware = toString <nixos-hardware>;
-    home-manager = toString <home-manager>;
-    nixpkgs = toString <nixpkgs>;
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     git
