@@ -9,7 +9,7 @@
     ./firefox.nix
     ./git.nix
     ./gnome-keyring.nix
-    ./slack.nix
+    ./s-tui.nix
     ./slack.nix
     ./syncthing.nix
     ./termite.nix
