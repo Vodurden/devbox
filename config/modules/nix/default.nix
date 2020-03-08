@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./nix-path.nix
+    ./cachix.nix
   ];
 
   nixpkgs.config = import ./nixpkgs-config.nix;

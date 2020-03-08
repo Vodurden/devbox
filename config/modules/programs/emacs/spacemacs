@@ -57,7 +57,7 @@ values."
           lsp-ui-sideline-show-symbol nil)
      (haskell :variables
               haskell-compile-cabal-build-command "cabal new-build --ghc-option=-ferror-spans"
-              haskell-completion-backend 'dante)
+              haskell-completion-backend 'lsp)
      (scala :variables
             scala-backend 'scala-metals
             ensime-startup-notification nil

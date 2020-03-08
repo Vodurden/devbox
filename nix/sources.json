@@ -1,4 +1,28 @@
 {
+    "all-hies": {
+        "branch": "master",
+        "description": "Cached Haskell IDE Engine Nix builds for all GHC versions",
+        "homepage": "",
+        "owner": "Infinisil",
+        "repo": "all-hies",
+        "rev": "d98bdbff3ebdab408a12a9b7890d4cf400180839",
+        "sha256": "1lr4dw10f37fp68b6ig065dgrl8h1v4xmigy5ncljdz74k0jvhg4",
+        "type": "tarball",
+        "url": "https://github.com/Infinisil/all-hies/archive/d98bdbff3ebdab408a12a9b7890d4cf400180839.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cachix": {
+        "branch": "v0.3.6",
+        "description": "Command line client for Nix binary cache hosting:",
+        "homepage": "https://cachix.org",
+        "owner": "cachix",
+        "repo": "cachix",
+        "rev": "3d6337490452681cbfb5f3d262bb4564fa30f418",
+        "sha256": "1gln527fcxmsxxi59pl8sczg441w2s256mb3cnh901x9rs1jgm5w",
+        "type": "tarball",
+        "url": "https://github.com/cachix/cachix/archive/3d6337490452681cbfb5f3d262bb4564fa30f418.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "release-19.09",
         "description": "Manage a user environment using Nix",

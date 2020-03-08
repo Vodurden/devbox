@@ -20,8 +20,8 @@ in
     ../../modules/hardware/touchpad.nix
     ../../modules/hardware/video-nvidia.nix
 
+    ../../modules/languages
     ../../modules/programs
-
     ../../modules/games
 
     ../../modules/ui/xfce4

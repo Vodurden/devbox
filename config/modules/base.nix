@@ -29,7 +29,10 @@ in
     vim
     direnv
     ripgrep
+    (import sources.cachix)
+    (import sources.niv {}).niv
   ];
+
 
   services.lorri.enable = true;
 
