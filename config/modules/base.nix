@@ -27,7 +27,6 @@ in
     git
     wget
     vim
-    direnv
     ripgrep
     (import sources.cachix)
     (import sources.niv {}).niv

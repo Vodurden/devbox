@@ -6,6 +6,7 @@
     ./vim
     ./awscli.nix
     ./bash.nix
+    ./direnv.nix
     ./firefox.nix
     ./git.nix
     ./gnome-keyring.nix
