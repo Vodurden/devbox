@@ -15,6 +15,7 @@
     ../../modules/hardware/touchpad.nix
     ../../modules/hardware/video-intel.nix
 
+    ../../modules/languages
     ../../modules/programs
     ../../modules/games/steam.nix
 
