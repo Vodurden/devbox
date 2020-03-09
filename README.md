@@ -23,6 +23,7 @@ Directory Structure
     +-- doc                       Documentation
     +-- games                     Scripts to force specific games run on linux
     +-- nix                       Nix extensions for nixpkgs, nixos and home-manager
+      +-- lib                     Helper functions used by other nix expressions
       +-- modules                 Custom modules for nixos and home-manager providing missing programs and systems. Some of these modules may become PRs to nixos and home-manager if they're useful enough.
       +-- overlays                Custom overlays for nixpkgs, typically used to merge custom packages into <nixpkgs>
       +-- pkgs                    Custom packages for nixpkgs
