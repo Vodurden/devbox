@@ -624,6 +624,10 @@ you should place your code here."
   (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
     "md" (lambda() (interactive) (alchemist-execute "mix dialyzer")))
 
+  ;; Nixos Layer custom bindings
+  (spacemacs/set-leader-keys-for-major-mode 'nix-mode
+    "hh" 'helm-nixos-options)
+
   ;; Better indentation for java arguments
   (add-hook 'java-mode-hook (lambda()
                               (c-set-offset 'arglist-intro '+)
