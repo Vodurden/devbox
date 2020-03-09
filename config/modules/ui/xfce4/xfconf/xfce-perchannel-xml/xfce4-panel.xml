@@ -43,7 +43,11 @@
         <value type="string" value="albert"/>
       </property>
       <property name="names-ordered" type="array">
+        <value type="string" value="syncthing"/>
         <value type="string" value=".syncthing-gtk-wrapped"/>
+        <value type="string" value="zoom"/>
+        <value type="string" value="slack"/>
+        <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="steam"/>
       </property>
