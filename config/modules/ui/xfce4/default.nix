@@ -8,10 +8,9 @@
 
     # Better app launcher
     xfce4-14.xfce4-whiskermenu-plugin
-
-    # The ability to lock the desktop
-    xscreensaver
   ];
+
+  programs.slock.enable = true;
 
   services.xserver = {
     enable = true;
