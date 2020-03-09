@@ -16,6 +16,7 @@
     ../../modules/hardware/video-intel.nix
 
     ../../modules/programs
+    ../../modules/games/steam.nix
 
     ../../modules/ui/xfce4
     ../../modules/ui/fonts.nix
