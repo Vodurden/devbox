@@ -101,7 +101,7 @@ values."
                                    ("NEXT" . (:foreground "blue" :weight bold))
                                    ("WAITING" . (:foreground "orange" :weight bold))
                                    ("DONE" . (:foreground "forest green" :weight bold)))
-          org-agenda-files (append '("~/Sync/Tasks.org"))
+          org-agenda-files (append '("~/Sync/Notes/Tasks.org" "~/Sync/Notes/People.org"))
 
           org-agenda-window-setup 'only-window
 
@@ -116,12 +116,11 @@ values."
                                       (search . " %i"))
 
 
-          org-capture-templates '(("w" "Todo [work]" entry (file+headline "~/private/notes/todo.org" "Tasks") "* TODO %i%? :work:")
-                                  ("s" "Schedule" entry (file+headline "~/private/notes/todo.org" "Tasks") "* %i%? \n %U")
-                                  ("j" "Journal" entry (file+olp+datetree "~/private/notes/journal.org") "* %<%H:%M> %?\n")
-                                  ("q" "Question" entry (file+headline "~/private/notes/questions.org" "Questions") "* %i%?"))
+          org-capture-templates '(("w" "Todo [work]" entry (file+headline "~/Sync/Notes/Tasks.org" "Tasks") "* TODO %i%? :work:")
+                                  ("s" "Schedule" entry (file+headline "~/Sync/Notes/Tasks.org" "Tasks") "* %i%? \n %U")
+                                  ("j" "Journal" entry (file+olp+datetree "~/Sync/Notes/Journal.org") "* %<%H:%M> %?\n"))
 
-          org-refile-work-targets '("~/Sync/Tasks.org")
+          org-refile-work-targets '("~/Sync/Notes/Tasks.org" "~/Sync/Notes/People.org" "~/Sync/Notes/Learning.org")
           org-refile-targets '((org-refile-root-targets :maxlevel . 2)
                                (org-refile-work-targets :maxlevel . 2))
           org-refile-use-outline-path 'file
