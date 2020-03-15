@@ -65,10 +65,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "bcc922cea191f0d6b5591d3870ef9b64850fd1ac",
-        "sha256": "1cm32fffgy98dplb6mjbbfayblhfnzl713hk26wdbfa3fkzsk0jx",
+        "rev": "d7843c8add64fa73bdafb6539fe154df477d24b7",
+        "sha256": "0xjadln7syw4bf898y9vlixac5izanjlnxkxnlyazl29w1gna0kb",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/bcc922cea191f0d6b5591d3870ef9b64850fd1ac.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/d7843c8add64fa73bdafb6539fe154df477d24b7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-unstable": {
@@ -89,10 +89,10 @@
         "homepage": "http://spacemacs.org",
         "owner": "syl20bnr",
         "repo": "spacemacs",
-        "rev": "884afe138bf01f5d0d98555ccf194a6358af1693",
-        "sha256": "0m7hp0cifgj02kl54ypkgbcc5290l2p5kr7zyi9g5yv4hk86i10c",
+        "rev": "a18b4d76b2ed0333bcbaa7e7627bb82ee4a416a0",
+        "sha256": "1rfshh0jbsbpdxzswwkmmi2xqgsqq36iya0jqrq61ih9ybf9gb1n",
         "type": "tarball",
-        "url": "https://github.com/syl20bnr/spacemacs/archive/884afe138bf01f5d0d98555ccf194a6358af1693.tar.gz",
+        "url": "https://github.com/syl20bnr/spacemacs/archive/a18b4d76b2ed0333bcbaa7e7627bb82ee4a416a0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
