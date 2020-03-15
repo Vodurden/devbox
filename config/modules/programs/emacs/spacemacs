@@ -659,7 +659,7 @@ you should place your code here."
   (defun personal/helm-find-file-in-notes ()
     "Find a file in notes"
     (interactive)
-    (let ((default-directory "~/private/"))
+    (let ((default-directory "~/Sync/Notes/"))
       (helm-projectile-find-file)))
 
   (spacemacs/declare-prefix "aog" "navigate")
