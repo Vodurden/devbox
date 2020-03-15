@@ -43,6 +43,12 @@
     ];
   };
 
+  services.undervolt = {
+    enable = true;
+    coreOffset = "-100";
+    gpuOffset = "-125";
+  };
+
   networking.interfaces.enp109s0.useDHCP = true;
   networking.interfaces.wlp112s0.useDHCP = true;
 
