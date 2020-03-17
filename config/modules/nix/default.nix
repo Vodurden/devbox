@@ -3,10 +3,6 @@
 let
   load-overlay = overlay: import "${toString <nixpkgs-overlays>}/${overlay}";
   all-overlays = builtins.attrNames (builtins.readDir (toString <nixpkgs-overlays>));
-
-  nixpkgs-config = {
-    allowUnfree = true;
-  };
 in
 
 {
