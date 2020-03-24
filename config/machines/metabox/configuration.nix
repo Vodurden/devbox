@@ -54,8 +54,6 @@
 
   services.thermald.configFile = ./thermald/thermal-conf.xml;
 
-  hardware.pulseaudio.configFile = ./pulseaudio/default.pa;
-
   primary-user.name = "jake";
   primary-user.home-manager.programs.git.userEmail = "jake@jakewoods.net";
 
