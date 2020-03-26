@@ -2,6 +2,8 @@
 { config, pkgs, ... }:
 
 {
+  programs.java.enable = true;
+
   primary-user.home-manager.home.packages = with pkgs; [
     sbt
     scalastyle
