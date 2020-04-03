@@ -56,7 +56,7 @@ values."
      (lsp :variables
           lsp-ui-sideline-show-symbol nil)
      (haskell :variables
-              haskell-compile-cabal-build-command "cabal new-build --ghc-option=-ferror-spans"
+              haskell-process-type 'cabal-new-repl
               haskell-completion-backend 'lsp)
      (scala :variables
             scala-backend 'scala-metals

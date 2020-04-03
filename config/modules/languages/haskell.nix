@@ -8,6 +8,6 @@ in
 
 {
   primary-user.home-manager.home.packages = [
-    (all-hies.selection { selector = p: { inherit (p) ghc864 ghc844; }; })
+    (all-hies.selection { selector = p: { inherit (p) ghc864 ghc865 ghc844; }; })
   ];
 }
