@@ -54,6 +54,7 @@ values."
 
      ;; Languages
      (lsp :variables
+          lsp-ui-doc-enable nil
           lsp-ui-sideline-show-symbol nil)
      (haskell :variables
               haskell-process-type 'cabal-new-repl
