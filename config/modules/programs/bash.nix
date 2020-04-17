@@ -4,6 +4,10 @@
   primary-user.home-manager = {
     programs.bash = {
       enable = true;
+
+      initExtra = ''
+        alias nixpkgs-build="nix-build -E \"with import <nixpkgs> {}; callPackage ./. {}\""
+      '';
     };
 
     programs.readline = {
