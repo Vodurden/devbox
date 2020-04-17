@@ -11,6 +11,7 @@
     ../../modules/hardware/audio.nix
     ../../modules/hardware/battery.nix
     ../../modules/hardware/bluetooth.nix
+    ../../modules/hardware/storage.nix
     ../../modules/hardware/cooling.nix
     ../../modules/hardware/network.nix
     ../../modules/hardware/touchpad.nix
