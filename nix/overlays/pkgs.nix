@@ -4,6 +4,7 @@ self: _: {
   bash-my-aws = self.callPackage ../pkgs/bash-my-aws {};
 
   minion = self.callPackage ../pkgs/minion {};
+  clevo-indicator = self.callPackage ../pkgs/clevo-indicator {};
 
   aws-shortcuts = self.callPackage ../pkgs/rea/aws-shortcuts {};
   rea-as = self.callPackage ../pkgs/rea/rea-as {};

@@ -50,6 +50,8 @@
     gpuOffset = "-125";
   };
 
+  services.clevo-nvidia-autofan.enable = true;
+
   networking.interfaces.enp109s0.useDHCP = true;
   networking.interfaces.wlp112s0.useDHCP = true;
 
