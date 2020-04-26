@@ -67,7 +67,9 @@ values."
      elixir
      erlang
      python
-     rust
+     (rust :variables
+           rust-backend 'lsp
+           lsp-rust-server 'rust-analyzer)
      go
      csharp
      java
