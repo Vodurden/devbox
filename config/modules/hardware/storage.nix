@@ -4,5 +4,7 @@
   environment.systemPackages = with pkgs; [
     ntfs3g
     exfat-utils
+    mtpfs
+    jmtpfs
   ];
 }
