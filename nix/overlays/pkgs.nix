@@ -5,6 +5,7 @@ self: _: {
 
   minion = self.callPackage ../pkgs/minion {};
   clevo-indicator = self.callPackage ../pkgs/clevo-indicator {};
+  notion-so = self.callPackage ../pkgs/notion-so {};
 
   aws-shortcuts = self.callPackage ../pkgs/rea/aws-shortcuts {};
   rea-as = self.callPackage ../pkgs/rea/rea-as {};
