@@ -54,7 +54,10 @@ values."
 
      ;; Languages
      (lsp :variables
+          lsp-signature-render-documentation nil
           lsp-ui-doc-enable nil
+          lsp-ui-sideline-show-code-actions nil
+          lsp-ui-sideline-show-hover nil
           lsp-ui-sideline-show-symbol nil)
      dap
      (haskell :variables
