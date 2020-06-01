@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.zoom-us ];
+  environment.systemPackages = [ pkgs.unstable.zoom-us ];
 }

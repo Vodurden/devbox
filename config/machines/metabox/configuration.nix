@@ -23,6 +23,8 @@
 
     ../../modules/ui/xfce4
     ../../modules/ui/fonts.nix
+
+    ../../modules/work/rea.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -30,18 +32,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks = {
     reusePassphrases = true;
-    devices = [
-      {
-        name = "root";
+    devices = {
+      root = {
         device = "/dev/sdb2";
         preLVM = true;
-      }
-      {
-        name = "media";
+      };
+
+      media = {
         device = "/dev/sda1";
         preLVM = true;
-      }
-    ];
+      };
+    };
   };
 
   services.undervolt = {

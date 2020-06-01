@@ -17,7 +17,7 @@
     exportConfiguration = true;
 
     displayManager.lightdm.enable = true;
-    desktopManager.xfce4-14.enable = true;
+    desktopManager.xfce.enable = true;
   };
 
   services.compton = {

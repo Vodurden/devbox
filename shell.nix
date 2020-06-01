@@ -5,7 +5,7 @@ let
   nixpkgs = sources.nixpkgs;
   home-manager = sources.home-manager;
   nixos-hardware = sources.nixos-hardware;
-  unstable = import sources.nixpkgs-unstable {};
+  nixpkgs-unstable = sources.nixpkgs-unstable;
 
 in
   with (import nixpkgs {});
@@ -19,12 +19,14 @@ in
         pkgs.lib.mapAttrsToList (k: v: "${k}=${v}") path
       );
 
+    # Make sure to update ./config/modules/nix/nix-path.nix if changing this seteting
     nix-path = build-nix-path-env-var {
       inherit
         nixos-config
         nixpkgs-overlays
         nixos-hardware
         home-manager
+        nixpkgs-unstable
         nixpkgs
         ;
     };
