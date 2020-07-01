@@ -5,8 +5,25 @@
   # Ports 27031, 27036 and 27037 are for steam in-home streaming
   # See: https://support.steampowered.com/kb_article.php?ref=3629-RIAV-1617#howdoiuseit
   networking.firewall = {
-    allowedTCPPorts = [ 27036 27037 ];
-    allowedUDPPorts = [ 27031 27036 ];
+    allowedTCPPorts = [
+      # Steam in-home streaming
+      27036 27037
+
+      # Borderlands 3
+    ];
+
+    allowedUDPPorts = [
+      # Steam in-home streaming
+      27031 27036
+
+      # Borderlands 3
+      7777 14001
+    ];
+
+    allowedUDPPortRanges = [
+      # Borderlands 3
+      { from = 5795; to = 5847; }
+    ];
   };
 
   primary-user.home-manager = {
