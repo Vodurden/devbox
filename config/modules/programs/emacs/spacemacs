@@ -48,6 +48,7 @@ values."
 
      ;; Tools
      shell
+     graphviz
      (git :variables
           git-magit-status-fullscreen t
           git-gutter-use-fringe t)
