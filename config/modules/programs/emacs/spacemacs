@@ -658,8 +658,9 @@ you should place your code here."
   (setq treemacs-collapse-dirs 5)
 
   ;; Use h/l as treemacs-tab action
-  (evil-define-key 'treemacs treemacs-mode-map (kbd "h") #'treemacs-TAB-action)
-  (evil-define-key 'treemacs treemacs-mode-map (kbd "l") #'treemacs-TAB-action)
+  (add-hook 'treemacs-mode-hook (lambda()
+                                  (evil-define-key 'treemacs treemacs-mode-map (kbd "h") #'treemacs-TAB-action)
+                                  (evil-define-key 'treemacs treemacs-mode-map (kbd "l") #'treemacs-TAB-action)))
 
   ;; Flow support for javascript
   (require 'flycheck-flow)
