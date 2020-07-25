@@ -41,9 +41,7 @@ values."
      auto-completion
      better-defaults
      emacs-lisp
-     ;; Make sure to run all-the-icons-install-fonts
-     (neotree :variables
-              neo-theme 'icons)
+     treemacs
      syntax-checking
 
      ;; Tools
@@ -643,6 +641,25 @@ you should place your code here."
 
   ;; Editor config support
   (editorconfig-mode 1)
+
+  ;; Treemacs: Find python3 from nixpkgs instead of requiring it to be installed locally.
+  ;; (Assumes that nix-build is installed and the NIX_PATH environment variable contains
+  ;; and up-to-date nixpkgs reference)
+  (defun personal/treemacs-find-python3-nix ()
+    (interactive)
+    (print
+     (concat
+      (->> "nix-build '<nixpkgs>' -A python3 --no-out-link"
+           (shell-command-to-string)
+           (s-trim))
+      "/bin/python")))
+
+  (setq treemacs-python-executable (personal/treemacs-find-python3-nix))
+  (setq treemacs-collapse-dirs 5)
+
+  ;; Use h/l as treemacs-tab action
+  (evil-define-key 'treemacs treemacs-mode-map (kbd "h") #'treemacs-TAB-action)
+  (evil-define-key 'treemacs treemacs-mode-map (kbd "l") #'treemacs-TAB-action)
 
   ;; Flow support for javascript
   (require 'flycheck-flow)
