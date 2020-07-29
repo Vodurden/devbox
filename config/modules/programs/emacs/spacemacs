@@ -596,7 +596,7 @@ you should place your code here."
 
   ;; Remove trailing whitespace before saving a file
   (add-hook 'before-save-hook 'whitespace-cleanup)
-  (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+  (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
 
   ;; Use alien indexing as it's *much* faster and works with .gitignore
   (setq projectile-indexing-method 'alien
@@ -620,18 +620,41 @@ you should place your code here."
 
   ;; The scala layer forces some of these values so we want to override them
   ;; after the fact.
-  (add-hook 'scala-mode-hook (lambda()
+  (add-hook 'scala-mode-hook (lambda ()
                                (setq scala-indent:default-run-on-strategy 'reluctant
                                      scala-indent:align-parameters nil
                                      scala-indent:align-forms nil)))
 
   ;; Elixir-Layer custom bindings
   (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
-    "md" (lambda() (interactive) (alchemist-execute "mix dialyzer")))
+    "md" (lambda () (interactive) (alchemist-execute "mix dialyzer")))
 
   ;; Nixos Layer custom bindings
   (spacemacs/set-leader-keys-for-major-mode 'nix-mode
     "hh" 'helm-nixos-options)
+
+  ;; Scala Layer custom bindings (scala with metals doesn't seem to have a test binding!)
+
+  ;; (spacemacs/declare-prefix "aog" "navigate")
+  (defun personal/scala/test-all ()
+    "Run all tests in the current sbt project"
+    (interactive)
+    (sbt-command "test"))
+
+  (defun personal/scala/test-current-file ()
+    "Run all tests for the current file
+
+    Assumes that the corresponding test file will contain the current filename
+    without the extension. I.e. the tests for 'Foo.scala' will contain the word 'Foo'
+    in the spec name, such as 'FooSpec' or 'FooTest' or 'TestFoo'"
+    (interactive)
+    (sbt-command
+     (concat "testOnly *" (file-name-base buffer-file-name) "*")))
+
+  (spacemacs/declare-prefix-for-mode 'scala-mode "mt" "test")
+  (spacemacs/set-leader-keys-for-major-mode 'scala-mode
+    "ta" 'personal/scala/test-all
+    "tt" 'personal/scala/test-current-file)
 
   ;; Better indentation for java arguments
   (add-hook 'java-mode-hook (lambda()
@@ -643,9 +666,11 @@ you should place your code here."
   (editorconfig-mode 1)
 
   ;; Treemacs: Find python3 from nixpkgs instead of requiring it to be installed locally.
-  ;; (Assumes that nix-build is installed and the NIX_PATH environment variable contains
-  ;; and up-to-date nixpkgs reference)
   (defun personal/treemacs-find-python3-nix ()
+    "Find a python3 binary using the local <nixpkgs> definition
+
+    Assumes that nix-build is on the path and that <nixpkgs> exists under the
+    NIX_PATH environment variable"
     (interactive)
     (print
      (concat
@@ -658,7 +683,7 @@ you should place your code here."
   (setq treemacs-collapse-dirs 5)
 
   ;; Use h/l as treemacs-tab action
-  (add-hook 'treemacs-mode-hook (lambda()
+  (add-hook 'treemacs-mode-hook (lambda ()
                                   (evil-define-key 'treemacs treemacs-mode-map (kbd "h") #'treemacs-TAB-action)
                                   (evil-define-key 'treemacs treemacs-mode-map (kbd "l") #'treemacs-TAB-action)))
 
