@@ -7,7 +7,7 @@ buildGoModule rec {
 
   goPackagePath = "git.realestate.com.au/cowbell/rea-as";
 
-  modSha256 = "1hyp2js69ysazrbfl853c3c4wkravvx9ylfjwp5pkf1ndmnk7i6a";
+  modSha256 = "1k7lwl9mjkbhxmz5x26zyg521qf0wcikzb98mcwcdgb9amr59zb7";
 
   # Private modules work best with builtins.fetchGit instead of fetchgit. Make sure to use the `ssh://` style as it seems
   # to be the only one that works with your user's ssh config
