@@ -18,6 +18,9 @@
 
       # Borderlands 3
       7777 14001
+
+      # Factorio
+      34197
     ];
 
     allowedUDPPortRanges = [
