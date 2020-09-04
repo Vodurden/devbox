@@ -19,7 +19,7 @@ in
         pkgs.lib.mapAttrsToList (k: v: "${k}=${v}") path
       );
 
-    # Make sure to update ./config/modules/nix/nix-path.nix if changing this seteting
+    # Make sure to update ./config/modules/nix/nix-path.nix if changing this setting
     nix-path = build-nix-path-env-var {
       inherit
         nixos-config
