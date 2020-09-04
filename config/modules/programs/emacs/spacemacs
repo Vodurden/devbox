@@ -66,6 +66,7 @@ values."
      (scala :variables
             scala-backend 'scala-metals
             ensime-startup-notification nil
+            lsp-metals-treeview-show-when-views-received nil
             flycheck-disabled-checkers '(scala-scalastyle)
             flycheck-scalastylerc (substitute-in-file-name "$HOME/.scalastyle_config.xml"))
      elixir
