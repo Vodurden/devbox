@@ -47,6 +47,7 @@ values."
      ;; Tools
      shell
      graphviz
+     latex
      (git :variables
           git-magit-status-fullscreen t
           git-gutter-use-fringe t)
@@ -706,6 +707,9 @@ you should place your code here."
   ;; Workaround for inconsistent TODO/DONE highlighting in org-mode:
   ;; See: https://github.com/syl20bnr/spacemacs/issues/9950
   (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
+
+  ;; LaTeX auto-build pdfs
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; Add `SPC a o g g' binding for navigating to my org files from anywhere
   (defun personal/helm-find-file-in-notes ()
