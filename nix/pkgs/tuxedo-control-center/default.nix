@@ -1,13 +1,28 @@
-{ stdenv, makeDesktopItem,
+{ pkgs, lib, stdenv, makeDesktopItem,
 
   dpkg, autoPatchelfHook,
+
+  makeWrapper, nodejs, yarn, electron_7,
 
   glib, glibc, gnome3, gcc-unwrapped, nss, libX11, xorg, libXScrnSaver, alsaLib, nspr
 }:
 
 let
   baseName = "tuxedo-control-center";
-  version = "1.0.1";
+  version = "1.0.4";
+
+  # packageName = lib.concatStrings (
+  #   map (entry: (lib.concatStrings (lib.mapAttrsToList (key: value: "${key}-${value}") entry))) (lib.importJSON ./package.json)
+  # );
+
+  baseNodeDependencies = (import ./node-dependencies {
+    inherit pkgs nodejs;
+    inherit (stdenv.hostPlatform) system;
+  }).package;
+
+  nodeDependencies = baseNodeDependencies.override {
+    dontNpmInstall = true;
+  };
 
   desktopItem = makeDesktopItem {
     name = "tuxedo-control-center";
@@ -20,57 +35,80 @@ let
 
 in
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   name = "${baseName}-${version}";
 
-  src = builtins.fetchurl {
-    url = "http://deb.tuxedocomputers.com/ubuntu/pool/main/t/tuxedo-control-center/tuxedo-control-center_${version}_amd64.deb";
+  src = builtins.fetchGit {
+    url = git://github.com/tuxedocomputers/tuxedo-control-center;
+    rev = "1919006c5bf758919f85afe4689b875b82aa506d";
   };
 
-  dontUnpack = true;
-
-  nativeBuildInputs = [
-    autoPatchelfHook
-    dpkg
-  ];
-
-  # Required at running time
   buildInputs = [
-    glib
-    glibc
-    gcc-unwrapped
-    gnome3.gtk
-    xorg.libXtst
-    nss # libnss3
-    alsaLib # libasound
-    libX11
-    libXScrnSaver # libXss
-    nspr
+    nodejs
+
+    nodeDependencies
   ];
 
-  # Extract and copy executable in $out/bin
-  installPhase = ''
-    mkdir -p $out
-    dpkg -x $src $out
-    chmod go-w $out
 
-    mv $out/usr/share $out/share
-    rm -rf $out/usr
+    # ln -s ${nodeDependencies.package}/lib/node_modules ./node_modules
+    # export PATH="${nodeDependencies.package}/bin:$PATH"
 
-    mkdir -p $out/bin
-    ln -s $out/bin/tuxedo-control-center $out/opt/tuxedo-control-center/tuxedo-control-center
+    # echo "PATHS: ."
+    # ls .
 
-    ${desktopItem.buildCommand}
+    # echo "PATHS: NODE MODULES"
+    # ls ./node_modules/tuxedo-control-center/node_modules/
 
-    # cp -av $out/opt/Wolfram/WolframScript/* $out
-    # rm -rf $out/opt
+    # mkdir -p node_modules/@types
+    # ln -s ${nodeDependencies."@types/node"}/lib/node_modules/@types/node ./node_modules/@types/node
+
+  buildPhase = ''
+
+    echo "ls"
+    ls
+
+    npm run clean
+    npm run build-electron
+    # npm run build-service
+    # npm run build-native
+    # npm run build-ng
+    # npm run copy-files
   '';
 
-  meta = with stdenv.lib; {
-    description = "Tuxedo Control Center";
-    # homepage = https://www.wolfram.com/wolframscript/;
-    # license = licenses.mit;
-    # maintainers = with stdenv.lib.maintainers; [ ];
-    # platforms = [ "x86_64-linux" ];
-  };
+  installPhase = ''
+    mkdir $out
+    cp -R . $out
+  '';
 }
+# stdenv.mkDerivation rec {
+#   name = "${baseName}-${version}";
+
+#   src = builtins.fetchGit {
+#     url = git://github.com/tuxedocomputers/tuxedo-control-center;
+#     rev = "1919006c5bf758919f85afe4689b875b82aa506d";
+#   };
+
+#   buildInputs = [ nodejs ];
+
+#   buildPhase = ''
+#     npm build
+#   '';
+
+#   installPhase = ''
+#     mkdir $out
+#     cp -R . $out
+#   '';
+
+#   meta = with stdenv.lib; {
+#     description = "Tuxedo Control Center";
+#     # homepage = https://www.wolfram.com/wolframscript/;
+#     # license = licenses.mit;
+#     # maintainers = with stdenv.lib.maintainers; [ ];
+#     # platforms = [ "x86_64-linux" ];
+#   };
+# }
+
+
+# nodePackages."tuxedo-control-center".override {
+#   nativeBuildInputs = [ pkgs.makeWrapper ];
+# }
