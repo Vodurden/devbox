@@ -111,30 +111,49 @@ stdenv.mkDerivation rec {
     # We need to tell npm where to find node or `node-gyp` will try to download it.
     # This also _needs_ to be lowercase or `npm` won't detect it
     export npm_config_nodedir=${nodejs}
-    npm run build-native
-    cp ./build/Release/TuxedoWMIAPI.node ./dist/tuxedo-control-center/service-app/
+    npm run build-native   # Builds to ./build/Release/TuxedoWMIAPI.node
 
     # npm run build-native
     # npm run build-ng-prod
   '';
 
   installPhase = ''
-    mkdir -p $out/src
-    cp -R . $out/src
+    mkdir -p $out/build-output
+    cp -R . $out/build-output
 
-    ls $out/
-    cp -r dist/tuxedo-control-center/service-app $out/tccd
-    cp -r dist/tuxedo-control-center/e-app $out/control-center
+    cp -R ./dist/tuxedo-control-center/* $out
 
     ln -s ${nodeModules} $out/node_modules
 
-    makeWrapper ${nodejs}/bin/node $out/bin/tccd \
-                --add-flags "$out/tccd/service-app/main.js" \
-                --prefix NODE_PATH : $out/tccd \
-                --prefix NODE_PATH : $out/node_modules
+    # Parts of the code expect the icons to live under `data/dist-data`. Let's just
+    # copy the whole thing since the system assumes it has access to all the `dist-data`
+    # files.
+    mkdir -p $out/data/dist-data
+    cp -R ./src/dist-data/* $out/data/dist-data/
 
-    # makeWrapper ${nodejs}/bin/node $out/new-bin/tccd \
-    #   --add-flags "$out/dist/tuxedo-control-center/service-app/service-app/main.js"
+    # Install `tccd`
+    mkdir -p $out/data/service
+    cp ./build/Release/TuxedoWMIAPI.node $out/data/service/TuxedoWMIAPI.node
+    makeWrapper ${nodejs}/bin/node $out/data/service/tccd \
+                --add-flags "$out/service-app/service-app/main.js" \
+                --prefix NODE_PATH : $out/data/service \
+                --prefix NODE_PATH : $out/node_modules
+    mkdir -p $out/bin
+    ln -s $out/data/service/tccd $out/bin/tccd
+
+    # Install the bits of `$out/data/dist-data` into the FHS-appropriate locations
+    mkdir -p $out/usr/share/applications
+    cp $out/data/dist-data/tuxedo-control-center.desktop $out/usr/share/applications/tuxedo-control-center.desktop
+
+    mkdir -p $out/etc/skel/.config/autostart
+    cp $out/data/dist-data/tuxedo-control-center-tray.desktop \
+       $out/etc/skel/.config/autostart/tuxedo-control-center-tray.desktop
+
+    mkdir -p $out/share/polkit-1/actions/
+    cp $out/data/dist-data/de.tuxedocomputers.tcc.policy $out/share/polkit-1/actions/de.tuxedocomputers.tcc.policy
+
+    mkdir -p $out/etc/dbus-1/system.d/
+    cp $out/data/dist-data/com.tuxedocomputers.tccd.conf  $out/etc/dbus-1/system.d/com.tuxedocomputers.tccd.conf
   '';
 }
 # stdenv.mkDerivation rec {

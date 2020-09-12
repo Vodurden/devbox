@@ -12,8 +12,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.tuxedo-cc-wmi ];
+    environment.systemPackages = [
+      pkgs.tuxedo-cc-wmi
+      pkgs.tuxedo-control-center
+    ];
+
     boot.extraModulePackages = [ pkgs.tuxedo-cc-wmi ];
     boot.kernelModules = [ "tuxedo-cc-wmi "];
+
+    services.dbus.packages = [ pkgs.tuxedo-control-center ];
   };
 }
