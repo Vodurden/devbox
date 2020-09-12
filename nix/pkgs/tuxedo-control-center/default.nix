@@ -4,7 +4,7 @@
 
   mkYarnPackage, python,
 
-  makeWrapper, nodejs, yarn, electron_7,
+  makeWrapper, nodejs, yarn, electron_8,
 
   glib, glibc, gnome3, gcc-unwrapped, nss, libX11, xorg, libXScrnSaver, alsaLib, nspr
 }:
@@ -113,8 +113,7 @@ stdenv.mkDerivation rec {
     export npm_config_nodedir=${nodejs}
     npm run build-native   # Builds to ./build/Release/TuxedoWMIAPI.node
 
-    # npm run build-native
-    # npm run build-ng-prod
+    npm run build-ng-prod
   '';
 
   installPhase = ''
@@ -141,6 +140,12 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     ln -s $out/data/service/tccd $out/bin/tccd
 
+    # Install `tuxedo-control-center`
+    makeWrapper ${electron_8}/bin/electron $out/bin/tuxedo-control-center \
+                --add-flags "$out/e-app/e-app/main.js" \
+                --add-flags "--no-tccd-version-check" \
+                --prefix NODE_PATH : $out/node_modules
+
     # Install the bits of `$out/data/dist-data` into the FHS-appropriate locations
     mkdir -p $out/usr/share/applications
     cp $out/data/dist-data/tuxedo-control-center.desktop $out/usr/share/applications/tuxedo-control-center.desktop
@@ -156,35 +161,3 @@ stdenv.mkDerivation rec {
     cp $out/data/dist-data/com.tuxedocomputers.tccd.conf  $out/etc/dbus-1/system.d/com.tuxedocomputers.tccd.conf
   '';
 }
-# stdenv.mkDerivation rec {
-#   name = "${baseName}-${version}";
-
-#   src = builtins.fetchGit {
-#     url = git://github.com/tuxedocomputers/tuxedo-control-center;
-#     rev = "1919006c5bf758919f85afe4689b875b82aa506d";
-#   };
-
-#   buildInputs = [ nodejs ];
-
-#   buildPhase = ''
-#     npm build
-#   '';
-
-#   installPhase = ''
-#     mkdir $out
-#     cp -R . $out
-#   '';
-
-#   meta = with stdenv.lib; {
-#     description = "Tuxedo Control Center";
-#     # homepage = https://www.wolfram.com/wolframscript/;
-#     # license = licenses.mit;
-#     # maintainers = with stdenv.lib.maintainers; [ ];
-#     # platforms = [ "x86_64-linux" ];
-#   };
-# }
-
-
-# nodePackages."tuxedo-control-center".override {
-#   nativeBuildInputs = [ pkgs.makeWrapper ];
-# }
