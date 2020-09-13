@@ -1,4 +1,5 @@
 self: _: {
+  tuxedo-cc-wmi = self.callPackage ../pkgs/tuxedo-cc-wmi {};
   scalastyle = self.callPackage ../pkgs/scalastyle {};
   metals-emacs = self.callPackage ../pkgs/metals-emacs {};
   bash-my-aws = self.callPackage ../pkgs/bash-my-aws {};
