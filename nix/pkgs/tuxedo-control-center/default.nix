@@ -1,4 +1,4 @@
-{ pkgs, stdenv, makeDesktopItem,
+{ pkgs, lib, stdenv, makeDesktopItem,
 
   python,
 
@@ -9,12 +9,14 @@ let
   baseName = "tuxedo-control-center";
   version = "1.0.4";
 
-  baseNodeDependencies = (import ./node-dependencies {
+  packageName = with lib; concatStrings (map (entry: (concatStrings (mapAttrsToList (key: value: "${key}-${value}") entry))) (importJSON ./package.json));
+
+  baseNodePackages = (import ./node-composition.nix {
     inherit pkgs nodejs;
     inherit (stdenv.hostPlatform) system;
-  }).package;
+  })."${packageName}";
 
-  nodeDependencies = baseNodeDependencies.override {
+  nodePackages = baseNodePackages.override {
     # Electron tries to download itself if this isn't set. We don't
     # like that in nix so let's prevent it.
     #
@@ -30,7 +32,7 @@ let
     NG_CLI_ANALYTICS="false";
   };
 
-  nodeModules = "${nodeDependencies}/lib/node_modules/tuxedo-control-center/node_modules";
+  nodeModules = "${nodePackages}/lib/node_modules/tuxedo-control-center/node_modules";
 
   desktopItem = makeDesktopItem {
     name = "tuxedo-control-center";
@@ -60,7 +62,7 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
-    nodeDependencies
+    nodePackages
 
     nodejs
     makeWrapper

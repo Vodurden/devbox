@@ -381,7 +381,7 @@ let
     , buildInputs ? []
     , production ? true
     , npmFlags ? ""
-    , dontNpmInstall ? true
+    , dontNpmInstall ? false
     , bypassCache ? false
     , reconstructLock ? false
     , preRebuild ? ""

@@ -472,13 +472,13 @@ let
         sha512 = "tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==";
       };
     };
-    "@types/node-12.12.56" = {
+    "@types/node-12.12.58" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "12.12.56";
+      version = "12.12.58";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-12.12.56.tgz";
-        sha512 = "8OdIupOIZtmObR13fvGyTvpcuzKmMugkATeVcfNwCjGtHxhjEKmOvLqXwR8U9VOtNnZ4EXaSfNiLVsPinaCXkQ==";
+        url = "https://registry.npmjs.org/@types/node/-/node-12.12.58.tgz";
+        sha512 = "Be46CNIHWAagEfINOjmriSxuv7IVcqbGe+sDSg2SYCEz/0CRBy7LRASGfRbD8KZkqoePU73Wsx3UvOSFcq/9hA==";
       };
     };
     "@types/q-0.0.32" = {
@@ -3172,13 +3172,13 @@ let
         sha512 = "L9X6LzsL3Bt2j0eJ4/MBrI9Vt902KvVUtBB7J4qrL1A9sXqC2fE0lpvUAlOThpJYh6zWO1l86U/YiEN9bDURHw==";
       };
     };
-    "electron-to-chromium-1.3.564" = {
+    "electron-to-chromium-1.3.567" = {
       name = "electron-to-chromium";
       packageName = "electron-to-chromium";
-      version = "1.3.564";
+      version = "1.3.567";
       src = fetchurl {
-        url = "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.564.tgz";
-        sha512 = "fNaYN3EtKQWLQsrKXui8mzcryJXuA0LbCLoizeX6oayG2emBaS5MauKjCPAvc29NEY4FpLHIUWiP+Y0Bfrs5dg==";
+        url = "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.567.tgz";
+        sha512 = "1aKkw0Hha1Bw9JA5K5PT5eFXC/TXbkJvUfNSNEciPUMgSIsRJZM1hF2GUEAGZpAbgvd8En21EA+Lv820KOhvqA==";
       };
     };
     "elliptic-6.5.3" = {
@@ -3323,6 +3323,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/es-abstract/-/es-abstract-1.17.6.tgz";
         sha512 = "Fr89bON3WFyUi5EvAeI48QTWX0AyekGgLA8H+c+7fbfCkJwRWRMLd8CQedNEyJuoYYhmtEqY92pgte1FAhBlhw==";
+      };
+    };
+    "es-abstract-1.18.0-next.0" = {
+      name = "es-abstract";
+      packageName = "es-abstract";
+      version = "1.18.0-next.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/es-abstract/-/es-abstract-1.18.0-next.0.tgz";
+        sha512 = "elZXTZXKn51hUBdJjSZGYRujuzilgXo8vSPQzjGYXLvSlGiCo8VO8ZGV3kjo9a0WNJJ57hENagwbtlRuHuzkcQ==";
       };
     };
     "es-to-primitive-1.2.1" = {
@@ -5125,6 +5134,15 @@ let
         sha1 = "0dfd98f5a9111716dd535dda6492f67bf3d25a80";
       };
     };
+    "is-negative-zero-2.0.0" = {
+      name = "is-negative-zero";
+      packageName = "is-negative-zero";
+      version = "2.0.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/is-negative-zero/-/is-negative-zero-2.0.0.tgz";
+        sha1 = "9553b121b0fac28869da9ed459e20c7543788461";
+      };
+    };
     "is-npm-3.0.0" = {
       name = "is-npm";
       packageName = "is-npm";
@@ -6862,13 +6880,13 @@ let
         sha1 = "f79c4493af0c5377b59fe39d395e41042dd045bb";
       };
     };
-    "object.assign-4.1.0" = {
+    "object.assign-4.1.1" = {
       name = "object.assign";
       packageName = "object.assign";
-      version = "4.1.0";
+      version = "4.1.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/object.assign/-/object.assign-4.1.0.tgz";
-        sha512 = "exHJeq6kBKj58mqGyTQ9DFvrZC/eR6OwxzoM9YRoGBqrXYonaFyGiFMuc9VZrXf7DarreEwMpurG3dd+CNyW5w==";
+        url = "https://registry.npmjs.org/object.assign/-/object.assign-4.1.1.tgz";
+        sha512 = "VT/cxmx5yaoHSOTSyrCygIDFco+RsibY2NM0a4RdEeY/4KgqezwFtK1yr3U67xYhqJSlASm2pKhLVzPj2lr4bA==";
       };
     };
     "object.pick-1.3.0" = {
@@ -10472,11 +10490,17 @@ let
       };
     };
   };
-  args = {
+in
+{
+  "tuxedo-control-center-git+https://github.com/tuxedocomputers/tuxedo-control-center.git#v1.0.4" = nodeEnv.buildNodePackage {
     name = "tuxedo-control-center";
     packageName = "tuxedo-control-center";
     version = "1.0.4";
-    src = ./.;
+    src = fetchgit {
+      url = "https://github.com/tuxedocomputers/tuxedo-control-center.git";
+      rev = "368f46aa6d1b9425f461d308e679c20c704f57a0";
+      sha256 = "042a661b29f6b72b6124480aa287a8d878282085f7f52f21d12e8117d860f5d2";
+    };
     dependencies = [
       sources."7zip-bin-4.1.0"
       sources."@angular-devkit/architect-0.800.6"
@@ -10617,7 +10641,7 @@ let
       sources."@types/jasminewd2-2.0.8"
       sources."@types/marked-0.7.4"
       sources."@types/minimatch-3.0.3"
-      sources."@types/node-12.12.56"
+      sources."@types/node-12.12.58"
       sources."@types/q-0.0.32"
       sources."@types/selenium-webdriver-3.0.17"
       sources."@types/source-list-map-0.1.2"
@@ -11085,7 +11109,7 @@ let
           sources."to-regex-range-5.0.1"
         ];
       })
-      sources."electron-to-chromium-1.3.564"
+      sources."electron-to-chromium-1.3.567"
       (sources."elliptic-6.5.3" // {
         dependencies = [
           sources."bn.js-4.11.9"
@@ -11380,6 +11404,7 @@ let
           sources."is-path-inside-1.0.1"
         ];
       })
+      sources."is-negative-zero-2.0.0"
       sources."is-npm-3.0.0"
       (sources."is-number-3.0.0" // {
         dependencies = [
@@ -11655,7 +11680,11 @@ let
       sources."object-is-1.1.2"
       sources."object-keys-1.1.1"
       sources."object-visit-1.0.1"
-      sources."object.assign-4.1.0"
+      (sources."object.assign-4.1.1" // {
+        dependencies = [
+          sources."es-abstract-1.18.0-next.0"
+        ];
+      })
       sources."object.pick-1.3.0"
       sources."obuf-1.1.2"
       sources."on-finished-2.3.0"
@@ -12395,11 +12424,4 @@ let
     bypassCache = true;
     reconstructLock = true;
   };
-in
-{
-  args = args;
-  sources = sources;
-  tarball = nodeEnv.buildNodeSourceDist args;
-  package = nodeEnv.buildNodePackage args;
-  shell = nodeEnv.buildNodeShell args;
 }
