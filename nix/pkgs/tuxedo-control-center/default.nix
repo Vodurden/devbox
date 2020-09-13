@@ -1,21 +1,13 @@
-{ pkgs, lib, stdenv, makeDesktopItem,
+{ pkgs, stdenv, makeDesktopItem,
 
-  dpkg, autoPatchelfHook,
+  python,
 
-  mkYarnPackage, python,
-
-  makeWrapper, nodejs, yarn, electron_8,
-
-  glib, glibc, gnome3, gcc-unwrapped, nss, libX11, xorg, libXScrnSaver, alsaLib, nspr
+  makeWrapper, nodejs, electron_8
 }:
 
 let
   baseName = "tuxedo-control-center";
   version = "1.0.4";
-
-  # packageName = lib.concatStrings (
-  #   map (entry: (lib.concatStrings (lib.mapAttrsToList (key: value: "${key}-${value}") entry))) (lib.importJSON ./package.json)
-  # );
 
   baseNodeDependencies = (import ./node-dependencies {
     inherit pkgs nodejs;
@@ -43,12 +35,20 @@ let
   desktopItem = makeDesktopItem {
     name = "tuxedo-control-center";
     exec = "tuxedo-control-center %U";
-    comment = "TUXEDO Control Center Application";
+    comment = "An application helping you to tune your TUXEDO";
     desktopName = "TUXEDO Control Center";
     icon = "tuxedo-control-center";
     categories = "System;";
   };
 
+  trayDesktopItem = makeDesktopItem {
+    name = "tuxedo-control-center";
+    exec = "tuxedo-control-center --tray";
+    comment = "Tray icon for TUXEDO Control Center";
+    desktopName = "TUXEDO Control Center";
+    icon = "tuxedo-control-center";
+    categories = "System;TrayIcon";
+  };
 in
 
 stdenv.mkDerivation rec {
@@ -69,34 +69,17 @@ stdenv.mkDerivation rec {
     python
   ];
 
-
-    # ln -s ${nodeDependencies.package}/lib/node_modules ./node_modules
-    # export PATH="${nodeDependencies.package}/bin:$PATH"
-
-    # echo "PATHS: ."
-    # ls .
-
-    # echo "PATHS: NODE MODULES"
-    # ls ./node_modules/tuxedo-control-center/node_modules/
-
-    # mkdir -p node_modules/@types
-    # ln -s ${nodeDependencies."@types/node"}/lib/node_modules/@types/node ./node_modules/@types/node
-
   buildPhase = ''
     # TODO: use `nodeDependencies` attribute of `node2nix` output when a new version of `node2nix`
     # is released. Version `1.8.0` doesn't have the attribute.
     ln -s ${nodeModules} ./node_modules
     export PATH="${nodeModules}/.bin:$PATH"
 
-    echo "ls"
-    ls
+    # Prevent npm from checking for updates
+    export NO_UPDATE_NOTIFIER=true
 
-    echo
-    echo "ls node-dependencies/lib/node_modules/tuxedo-control-center/node_modules/.bin"
-    ls "${nodeDependencies}/lib/node_modules/tuxedo-control-center/node_modules/.bin"
-
-    mkdir -p ./pkg-cache
-    export PKG_CACHE_PATH=./pkg-cache
+    # mkdir -p ./pkg-cache
+    # export PKG_CACHE_PATH=./pkg-cache
 
     # The order of `npm` commands matches what `npm run build-prod` does but we split it out
     # so we can customise the native builds in `npm run build-service`.
@@ -141,23 +124,32 @@ stdenv.mkDerivation rec {
     ln -s $out/data/service/tccd $out/bin/tccd
 
     # Install `tuxedo-control-center`
+    #
+    # We use `--no-tccd-version-check` because the app uses the electron context
+    # to determine the app version, but the electron context is wrong if electron
+    # is invoked directly on a JavaScript file.
+    #
+    # The fix is to run electron on a folder with a `package.json` but the `tuxedo-control-center`
+    # package.json expects all files to live under `dist/` and I'm not a huge fan of that
+    # structure so we just disable the check and call it a day.
     makeWrapper ${electron_8}/bin/electron $out/bin/tuxedo-control-center \
                 --add-flags "$out/e-app/e-app/main.js" \
                 --add-flags "--no-tccd-version-check" \
                 --prefix NODE_PATH : $out/node_modules
 
-    # Install the bits of `$out/data/dist-data` into the FHS-appropriate locations
-    mkdir -p $out/usr/share/applications
-    cp $out/data/dist-data/tuxedo-control-center.desktop $out/usr/share/applications/tuxedo-control-center.desktop
-
-    mkdir -p $out/etc/skel/.config/autostart
-    cp $out/data/dist-data/tuxedo-control-center-tray.desktop \
-       $out/etc/skel/.config/autostart/tuxedo-control-center-tray.desktop
-
     mkdir -p $out/share/polkit-1/actions/
     cp $out/data/dist-data/de.tuxedocomputers.tcc.policy $out/share/polkit-1/actions/de.tuxedocomputers.tcc.policy
 
     mkdir -p $out/etc/dbus-1/system.d/
-    cp $out/data/dist-data/com.tuxedocomputers.tccd.conf  $out/etc/dbus-1/system.d/com.tuxedocomputers.tccd.conf
+    cp $out/data/dist-data/com.tuxedocomputers.tccd.conf $out/etc/dbus-1/system.d/com.tuxedocomputers.tccd.conf
+
+    # Put our icons in the right spot
+    mkdir -p $out/share/icons/hicolor/scalable/apps/
+    cp $out/data/dist-data/tuxedo-control-center_256.svg \
+       $out/share/icons/hicolor/scalable/apps/tuxedo-control-center.svg
+
+    ${desktopItem.buildCommand}
+
+    ${trayDesktopItem.buildCommand}
   '';
 }
