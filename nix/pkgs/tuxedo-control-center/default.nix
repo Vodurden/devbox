@@ -90,6 +90,7 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
+    mkdir -p $out
     cp -R ./dist/tuxedo-control-center/* $out
 
     ln -s $src/node_modules $out/node_modules
