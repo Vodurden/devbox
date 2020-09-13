@@ -64,7 +64,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildPhase = ''
-    # We already have `node_modules` in the current word directory but we
+    # We already have `node_modules` in the current directory but we
     # need it's binaries on `PATH` so we can use them!
     export PATH="./node_modules/.bin:$PATH"
 
