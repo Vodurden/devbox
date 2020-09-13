@@ -46,7 +46,18 @@
   };
 
   # Clevo specific config
-  services.tuxedo-control-center.enable = true;
+  services.tuxedo-control-center = {
+    enable = true;
+    acProfile = "NixOS";
+    batteryProfile = "NixOS";
+    profiles = [{
+      name = "NixOS";
+      cpuGovernor = "powersave";
+      cpuEnergyPerformancePreference = "balance_performance";
+      fanProfile = "Silent";
+    }];
+  };
+
 
   services.undervolt = {
     enable = true;
