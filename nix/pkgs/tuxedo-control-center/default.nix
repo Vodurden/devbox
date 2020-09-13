@@ -14,9 +14,9 @@ let
   baseNodePackages = (import ./node-composition.nix {
     inherit pkgs nodejs;
     inherit (stdenv.hostPlatform) system;
-  })."${packageName}";
+  });
 
-  nodePackages = baseNodePackages.override {
+  nodePackages = baseNodePackages."${packageName}".override {
     # Electron tries to download itself if this isn't set. We don't
     # like that in nix so let's prevent it.
     #
@@ -31,8 +31,6 @@ let
     # (See https://github.com/angular/angular-cli/blob/1a39c5202a6fe159f8d7db85a1c186176240e437/packages/angular/cli/models/analytics.ts#L506)
     NG_CLI_ANALYTICS="false";
   };
-
-  nodeModules = "${nodePackages}/lib/node_modules/tuxedo-control-center/node_modules";
 
   desktopItem = makeDesktopItem {
     name = "tuxedo-control-center";
@@ -55,15 +53,9 @@ in
 
 stdenv.mkDerivation rec {
   name = "${baseName}-${version}";
-
-  src = builtins.fetchGit {
-    url = git://github.com/tuxedocomputers/tuxedo-control-center;
-    rev = "1919006c5bf758919f85afe4689b875b82aa506d";
-  };
+  src = "${nodePackages}/lib/node_modules/tuxedo-control-center/";
 
   buildInputs = [
-    nodePackages
-
     nodejs
     makeWrapper
 
@@ -72,24 +64,20 @@ stdenv.mkDerivation rec {
   ];
 
   buildPhase = ''
-    # TODO: use `nodeDependencies` attribute of `node2nix` output when a new version of `node2nix`
-    # is released. Version `1.8.0` doesn't have the attribute.
-    ln -s ${nodeModules} ./node_modules
-    export PATH="${nodeModules}/.bin:$PATH"
+    # We already have `node_modules` in the current word directory but we
+    # need it's binaries on `PATH` so we can use them!
+    export PATH="./node_modules/.bin:$PATH"
 
     # Prevent npm from checking for updates
     export NO_UPDATE_NOTIFIER=true
 
-    # mkdir -p ./pkg-cache
-    # export PKG_CACHE_PATH=./pkg-cache
-
-    # The order of `npm` commands matches what `npm run build-prod` does but we split it out
-    # so we can customise the native builds in `npm run build-service`.
+    # The order of `npm` commands matches what `npm run build-prod` does but we split
+    # it out so we can customise the native builds in `npm run build-service`.
     npm run clean
     npm run build-electron
 
-    # We don't use `npm run build-service` here because it uses `pkg` which packages node binaries
-    # in a way unsuitable for nix. Instead we're doing it ourself.
+    # We don't use `npm run build-service` here because it uses `pkg` which packages
+    # node binaries in a way unsuitable for nix. Instead we're doing it ourself.
     tsc -p ./src/service-app
     cp ./src/package.json ./dist/tuxedo-control-center/service-app/package.json
 
@@ -102,12 +90,9 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    mkdir -p $out/build-output
-    cp -R . $out/build-output
-
     cp -R ./dist/tuxedo-control-center/* $out
 
-    ln -s ${nodeModules} $out/node_modules
+    ln -s $src/node_modules $out/node_modules
 
     # Parts of the code expect the icons to live under `data/dist-data`. Let's just
     # copy the whole thing since the system assumes it has access to all the `dist-data`
