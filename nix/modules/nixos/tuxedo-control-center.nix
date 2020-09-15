@@ -24,14 +24,39 @@ let
       };
 
       cpuEnergyPerformancePreference = mkOption {
-        type = types.enum [ "balance_performance" ];
+        type = types.str;
         default = "balance_performance";
+        description = ''
+          The energy performance preference that should be applied to your CPU when this profile is active.
+
+          You can find the available performance profiles for your machine by executing:
+
+              cat /sys/devices/system/cpu/cpufreq/policy0/energy_performance_available_preferences
+        '';
       };
 
       cpuNoTurbo = mkOption {
         type = types.bool;
         default = false;
         description = "If true, prevent the CPU from using turbo mode";
+      };
+
+      cpuOnlineCores = mkOption {
+        type = types.nullOr types.int;
+        default = null;
+        description = "The number of cores to enable when this profile is active. `null` implies no restriction.";
+      };
+
+      cpuScalingMinFrequency = mkOption {
+        type = types.nullOr types.float;
+        default = null;
+        description = "The minimum CPU frequency allowed when this profile is active. `null` implies no restriction.";
+      };
+
+      cpuScalingMaxFrequency = mkOption {
+        type = types.nullOr types.float;
+        default = null;
+        description = "The maximum CPU frequency allowed when this profile is active. `null` implies no restriction.";
       };
 
       webcam = mkOption {
@@ -41,9 +66,13 @@ let
       };
 
       fanProfile = mkOption {
-        type = types.nullOr (types.enum ["Balanced" "Quiet" "Silent"]);
+        type = types.nullOr (types.enum ["Silent" "Quiet" "Balanced" "Cool" "Freezy"]);
         default = null;
-        description = "The fan profile, if null this setting will be ignored.";
+        description = ''
+          The fan profile to use when this profile is active, if null this setting will be ignored.
+
+          Valid profile names are derived from https://github.com/tuxedocomputers/tuxedo-control-center/blob/master/src/common/models/TccFanTable.ts
+        '';
       };
     };
   };
@@ -56,15 +85,18 @@ let
     shutdownTime = null;
   };
 
-  mkProfilesJson = profiles: builtins.toJSON (map mkProfileJson profiles);
+  mkProfilesJson = profiles: builtins.toJSON (lib.mapAttrsToList mkProfileJson profiles);
 
-  mkProfileJson = profile: {
-    name = profile.name;
+  mkProfileJson = name: profile: lib.filterAttrsRecursive (name: value: value != null) {
+    name = name;
     display = if profile.displayBrightnessPct != null
               then { brightness = profile.displayBrightnessPct; useBrightness = true; }
               else { brightness = 100; useBrightness = false; };
 
     cpu = {
+      onlineCores = profile.cpuOnlineCores;
+      scalingMinFrequency = profile.cpuScalingMinFrequency;
+      scalingMaxFrequency = profile.cpuScalingMaxFrequency;
       governor = profile.cpuGovernor;
       energyPerformancePreference = profile.cpuEnergyPerformancePreference;
       noTurbo = profile.cpuNoTurbo;
@@ -105,7 +137,7 @@ in
     };
 
     profiles = mkOption {
-      type = lib.types.listOf profileConfig;
+      type = lib.types.attrsOf profileConfig;
       default = [];
       description = ''
         The additional profiles available to Tuxedo Control Center.

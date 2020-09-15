@@ -50,12 +50,11 @@
     enable = true;
     acProfile = "NixOS";
     batteryProfile = "NixOS";
-    profiles = [{
-      name = "NixOS";
+    profiles."NixOS" = {
       cpuGovernor = "powersave";
       cpuEnergyPerformancePreference = "balance_performance";
       fanProfile = "Silent";
-    }];
+    };
   };
 
 
