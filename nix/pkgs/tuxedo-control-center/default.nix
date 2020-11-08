@@ -40,15 +40,6 @@ let
     icon = "tuxedo-control-center";
     categories = "System;";
   };
-
-  trayDesktopItem = makeDesktopItem {
-    name = "tuxedo-control-center";
-    exec = "tuxedo-control-center --tray";
-    comment = "Tray icon for TUXEDO Control Center";
-    desktopName = "TUXEDO Control Center";
-    icon = "tuxedo-control-center";
-    categories = "System;TrayIcon";
-  };
 in
 
 stdenv.mkDerivation rec {
@@ -137,7 +128,5 @@ stdenv.mkDerivation rec {
        $out/share/icons/hicolor/scalable/apps/tuxedo-control-center.svg
 
     ${desktopItem.buildCommand}
-
-    ${trayDesktopItem.buildCommand}
   '';
 }
