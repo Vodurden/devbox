@@ -16,6 +16,7 @@ in
       pkgs.bat
       pkgs.du-dust
       pkgs.fd
+      pkgs.pandoc
       pkgs.procs
       pkgs.s-tui
       pkgs.tokei
