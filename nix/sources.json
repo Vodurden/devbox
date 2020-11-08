@@ -11,6 +11,18 @@
         "url": "https://github.com/cachix/cachix/archive/2c577c719f3528fc78d3d4e387d3ee84bcb152e5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "doom-emacs": {
+        "branch": "develop",
+        "description": "An Emacs framework for the stubborn martian hacker",
+        "homepage": "",
+        "owner": "hlissner",
+        "repo": "doom-emacs",
+        "rev": "92c9127b86f0f843cb47d20c77cb5ad82dc73f1a",
+        "sha256": "16l7sym7b919g9j4hrrjcp5w3qaw8sr01lhcniba6lyqqsvdiqrc",
+        "type": "tarball",
+        "url": "https://github.com/hlissner/doom-emacs/archive/92c9127b86f0f843cb47d20c77cb5ad82dc73f1a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "release-20.09",
         "description": "Manage a user environment using Nix",
