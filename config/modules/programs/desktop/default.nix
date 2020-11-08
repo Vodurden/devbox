@@ -20,6 +20,7 @@ in
       pkgs.aseprite-unfree
       pkgs.audacity
       pkgs.calibre
+      pkgs.drawio
       pkgs.firefox
       pkgs.kdenlive
       pkgs.libreoffice
