@@ -663,25 +663,34 @@ you should place your code here."
                               (c-set-offset 'arglist-cont-nonempty '+)
                               (c-set-offset 'arglist-close '0)))
 
+  ;; Better indentation for csharp arguments
+  (add-hook 'csharp-mode-hook (lambda()
+                                (c-set-offset 'arglist-intro '+)
+                                (c-set-offset 'arglist-cont-nonempty '+)
+                                (c-set-offset 'arglist-close '0)))
+
   ;; Editor config support
   (editorconfig-mode 1)
 
-  ;; Treemacs: Find python3 from nixpkgs instead of requiring it to be installed locally.
-  (defun personal/treemacs-find-python3-nix ()
-    "Find a python3 binary using the local <nixpkgs> definition
+  (defun personal/find-nix-binary (package-name binary-path)
+    "Find the `binary-path` binary inside the nixpkg `package-name` using the local <nixpkgs> definition
 
     Assumes that nix-build is on the path and that <nixpkgs> exists under the
     NIX_PATH environment variable"
-    (interactive)
+    (interactive "sPackage name: \nsBinary Path: ")
     (print
      (concat
-      (->> "nix-build '<nixpkgs>' -A python3 --no-out-link"
+      (->> (concat "nix-build '<nixpkgs>' --quiet --attr " package-name " --no-out-link")
            (shell-command-to-string)
            (s-trim))
-      "/bin/python")))
+      binary-path)))
 
-  (setq treemacs-python-executable (personal/treemacs-find-python3-nix))
+  ;; Treemacs config
+  (setq treemacs-python-executable (personal/find-nix-binary "python3" "/bin/python"))
   (setq treemacs-collapse-dirs 5)
+
+  ;; C# config
+  (setq omnisharp-server-executable-path (personal/find-nix-binary "omnisharp-roslyn" "/bin/omnisharp"))
 
   ;; Use h/l as treemacs-tab action
   (add-hook 'treemacs-mode-hook (lambda ()
