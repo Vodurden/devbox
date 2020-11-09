@@ -8,6 +8,6 @@
     sbt
     scalastyle
     scalafmt
-    metals-emacs
+    metals
   ];
 }

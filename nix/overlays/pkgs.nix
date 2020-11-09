@@ -3,7 +3,6 @@ self: _: {
   tuxedo-control-center = self.callPackage ../pkgs/tuxedo-control-center {};
 
   scalastyle = self.callPackage ../pkgs/scalastyle {};
-  metals-emacs = self.callPackage ../pkgs/metals-emacs {};
   bash-my-aws = self.callPackage ../pkgs/bash-my-aws {};
 
   minion = self.callPackage ../pkgs/minion {};

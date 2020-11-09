@@ -6,7 +6,7 @@ self: super: {
       sbt
       scalastyle
       scalafmt
-      metals-emacs
+      metals
     ];
   };
 
