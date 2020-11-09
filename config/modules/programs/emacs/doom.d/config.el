@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Jake Woods"
@@ -52,11 +51,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Make <SPC><SPC> run a command, like spacemacs.
+;; Spacemacs bindings, they're not all bad!
 (map! :leader
-      :desc "Run command"
-      "SPC"
-      #'counsel-M-x)
+      :desc "Run command" "SPC" #'counsel-M-x
+      "w/" #'evil-window-vsplit)
 
 (defun personal/find-nix-binary (package-name binary-path)
   "Find the `binary-path` binary inside the nixpkg `package-name` using the local <nixpkgs> definition
@@ -66,27 +64,17 @@
   (interactive "sPackage name: \nsBinary Path: ")
   (print
    (concat
-    (->> (concat "nix-build '<nixpkgs>' --quiet --attr " package-name " --no-out-link")
-         (shell-command-to-string)
-         (s-trim))
+    (string-trim
+     (shell-command-to-string
+      (concat "nix-build '<nixpkgs>' --quiet --attr " package-name " --no-out-link")))
     binary-path)))
 
-(after! csharp-mode
-  (setq lsp-csharp-server-path (personal/find-nix-binary "omnisharp-roslyn" "/bin/omnisharp")))
+;; This adds ~0.4s to our startup time but it's worth it for now, rather then installing
+;; a specific Python3 into my user profile.
+(use-package! treemacs
+  :init
+  (setq treemacs-python-executable (personal/find-nix-binary "python3" "/bin/python"))
+  :config
+  (setq treemacs-collapse-dirs 5))
 
-(after! scala-mode
-  (defun personal/sbt-do-test-current-file ()
-    "Run all tests for the current file
-
-        Assumes that the corresponding test file will contain the current filename
-        without the extension. I.e. the tests for 'Foo.scala' will contain the word 'Foo'
-        in the spec name, such as 'FooSpec' or 'FooTest' or 'TestFoo'"
-    (interactive)
-    (sbt-command
-     (concat "testOnly *" (file-name-base buffer-file-name) "*")))
-
-  (map! :map scala-mode-map
-        :localleader
-        (:prefix ("t" . "test")
-         :desc "sbt test" "a" #'sbt-do-test
-         :desc "sbt test this file" "t" 'personal/sbt-do-test-current-file)))
+(load! "lang/scala")
