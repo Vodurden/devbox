@@ -30,8 +30,8 @@ in
       pkgs.speedcrunch
       pkgs.spotify
       pkgs.thunderbird
-      pkgs.unstable.unityhub
-      pkgs.unstable.zoom-us
+      pkgs.unityhub
+      pkgs.zoom-us
     ];
   };
 }
