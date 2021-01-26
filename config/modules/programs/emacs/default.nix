@@ -7,9 +7,14 @@ in
 
 {
   primary-user.home-manager = { config, ... }: {
-    home.packages = [
-      pkgs.emacs
+    programs.emacs = {
+      enable = true;
+      extraPackages = epkgs: [
+        epkgs.vterm
+      ];
+    };
 
+    home.packages = [
       # for doom module: nix
       pkgs.nixfmt
 
