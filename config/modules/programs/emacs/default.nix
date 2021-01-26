@@ -74,10 +74,5 @@ in
     home.sessionVariables = {
       PATH = "$HOME/.emacs.d/bin:$PATH";
     };
-
-    # We want a mutable link for spacemacs so we can edit the file in this repository
-    home.activation.linkSpacemacs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      ln -sf ${toString ./spacemacs} $HOME/.spacemacs
-    '';
   };
 }
