@@ -77,4 +77,8 @@
   :config
   (setq treemacs-collapse-dirs 5))
 
+(use-package! plantuml-mode
+  :config
+  (setq plantuml-jar-path (personal/find-nix-binary "plantuml" "/lib/plantuml.jar")))
+
 (load! "lang/scala")
