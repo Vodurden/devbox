@@ -10,6 +10,8 @@
 
     ../../modules/hardware/audio.nix
     ../../modules/hardware/battery.nix
+    ../../modules/hardware/bluetooth.nix
+    ../../modules/hardware/storage.nix
     ../../modules/hardware/cooling.nix
     ../../modules/hardware/network.nix
     ../../modules/hardware/touchpad.nix
@@ -28,13 +30,12 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
+  boot.initrd.luks.devices = {
+    root = {
       device = "/dev/sda2";
       preLVM = true;
-    }
-  ];
+    };
+  };
 
   # Workarounds for issues on WPA Enterprise
   networking.networkmanager.dhcp = "dhclient";
