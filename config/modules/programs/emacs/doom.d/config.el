@@ -81,4 +81,5 @@
   :config
   (setq plantuml-jar-path (personal/find-nix-binary "plantuml" "/lib/plantuml.jar")))
 
-(load! "lang/scala")
+(load! "modules/org/init")
+(load! "modules/scala")

@@ -20,6 +20,10 @@ in
 
       # for doom module: sh
       pkgs.shellcheck
+
+      # for org-roam
+      pkgs.sqlite
+      pkgs.graphviz
     ];
 
     home.file.".spacemacs.emacs.d" = {
