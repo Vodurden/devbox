@@ -24,6 +24,8 @@ in
       # for org-roam
       pkgs.sqlite
       pkgs.graphviz
+      # for plantuml
+      pkgs.plantuml
     ];
 
     home.file.".spacemacs.emacs.d" = {

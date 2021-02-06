@@ -83,7 +83,7 @@
 
 (use-package! plantuml-mode
   :config
-  (setq plantuml-jar-path (personal/find-nix-binary "plantuml" "/lib/plantuml.jar")))
+  (setq plantuml-jar-path (expand-file-name "~/.nix-profile/lib/plantuml.jar")))
 
 (load! "modules/org/init")
 (load! "modules/scala")
