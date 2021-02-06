@@ -9,6 +9,7 @@ in
   primary-user.home-manager = { config, ... }: {
     programs.emacs = {
       enable = true;
+
       extraPackages = epkgs: [
         epkgs.vterm
       ];
@@ -26,6 +27,10 @@ in
       # for org-roam
       pkgs.sqlite
       pkgs.graphviz
+
+      # for org-download (i.e. +dragndrop)
+      pkgs.xclip
+
       # for plantuml
       pkgs.plantuml
     ];
@@ -78,9 +83,5 @@ in
 
       $HOME/.emacs.d/bin/doom sync
     '';
-
-    home.sessionVariables = {
-      PATH = "$HOME/.emacs.d/bin:$PATH";
-    };
   };
 }

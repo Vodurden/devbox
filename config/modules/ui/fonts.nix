@@ -14,6 +14,7 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       emojione
+      etBook
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji

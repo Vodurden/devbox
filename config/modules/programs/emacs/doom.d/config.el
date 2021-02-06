@@ -75,7 +75,8 @@
 
 (use-package! treemacs
   :config
-  (setq treemacs-collapse-dirs 5))
+  (setq treemacs-collapse-dirs 5
+        doom-themes-treemacs-enable-variable-pitch nil))
 
 (use-package! plantuml-mode
   :config
