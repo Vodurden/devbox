@@ -18,6 +18,10 @@ in
     home.packages = [
       # for treemacs
       pkgs.python3
+
+      # For geiser-mode. It has trouble finding nix-shell driven mit-scheme's in the REPL.
+      pkgs.mitscheme
+
       # for doom module: nix
       pkgs.nixfmt
 
