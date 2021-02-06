@@ -73,11 +73,7 @@
       (concat "nix-build '<nixpkgs>' --quiet --attr " package-name " --no-out-link")))
     binary-path)))
 
-;; This adds ~0.4s to our startup time but it's worth it for now, rather then installing
-;; a specific Python3 into my user profile.
 (use-package! treemacs
-  :init
-  (setq treemacs-python-executable (personal/find-nix-binary "python3" "/bin/python"))
   :config
   (setq treemacs-collapse-dirs 5))
 

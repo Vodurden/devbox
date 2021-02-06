@@ -15,6 +15,8 @@ in
     };
 
     home.packages = [
+      # for treemacs
+      pkgs.python3
       # for doom module: nix
       pkgs.nixfmt
 
