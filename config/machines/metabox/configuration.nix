@@ -60,8 +60,8 @@
 
   services.undervolt = {
     enable = true;
-    coreOffset = -100;
-    gpuOffset = -125;
+    coreOffset = -75;
+    gpuOffset = -100;
   };
 
   networking.interfaces.enp109s0.useDHCP = true;
