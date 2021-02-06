@@ -19,7 +19,7 @@ in
   console.keyMap = "us";
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_AU.UTF-8";
   };
 
   time.timeZone = "Australia/Sydney";
