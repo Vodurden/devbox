@@ -37,7 +37,17 @@ in
 
       # for plantuml
       pkgs.plantuml
+
+      # for text checking
+      pkgs.proselint
     ];
+
+    xdg.configFile."proselint/config".text = builtins.toJSON {
+      checks = {
+        # This causes a false positive with org-mode `TODO` blocks.
+        "annotations.misc" = false;
+      };
+    };
 
     home.file.".spacemacs.emacs.d" = {
       recursive = true;
