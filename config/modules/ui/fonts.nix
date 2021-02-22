@@ -21,6 +21,7 @@
       fira
       fira-code
       fira-mono
+      liberation_ttf
 
       hack-font
       terminus_font
