@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash -p wineUnstableEnv curl
+#! nix-shell -i bash -p wineFull curl
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${HOME}/Games/ffxiv"
