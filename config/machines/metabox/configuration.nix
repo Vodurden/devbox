@@ -72,6 +72,11 @@
   primary-user.name = "jake";
   primary-user.home-manager.programs.git.userEmail = "jake@jakewoods.net";
 
+  # TODO: Remove this once upstream updates the go version
+  nixpkgs.config.permittedInsecurePackages = [
+    "go-1.14.15"
+  ];
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
