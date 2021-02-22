@@ -55,9 +55,3 @@ current buffer only contains completed tasks."
     [:select file
      :from tags
      :where (like tags '"%agenda%")])))
-
-(defun +org-notes-include-in-agenda (&rest _)
-  "Update `org-agenda-file` to include agenda notes"
-  (setq org-agenda-files (+org-notes-agenda-files)))
-
-(advice-add 'org-agenda :before #'+org-notes-include-in-agenda)
