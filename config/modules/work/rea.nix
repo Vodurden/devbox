@@ -31,6 +31,7 @@
     home.packages = with pkgs; [
       rea-as
       rea-slip-utils
+      rea-cli
     ];
 
     programs.bash.initExtra = ''

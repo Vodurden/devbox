@@ -12,4 +12,5 @@ self: _: {
   aws-shortcuts = self.callPackage ../pkgs/rea/aws-shortcuts {};
   rea-as = self.callPackage ../pkgs/rea/rea-as {};
   rea-slip-utils = self.callPackage ../pkgs/rea/rea-slip-utils {};
+  rea-cli = self.callPackage ../pkgs/rea/rea-cli {};
 }
