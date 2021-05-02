@@ -1,7 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-
   # Ports 27031, 27036 and 27037 are for steam in-home streaming
   # See: https://support.steampowered.com/kb_article.php?ref=3629-RIAV-1617#howdoiuseit
   networking.firewall = {
@@ -30,6 +29,11 @@
   };
 
   primary-user.home-manager = {
-    home.packages = [ pkgs.steam ];
+    # Loop Hero patches are only available on master.
+    # TODO: Move to unstable when they get to unstable
+    # TODO: Move to stable when they get to stable
+    home.packages = [ pkgs.nixpkgs-master.steam ];
   };
+
 }
+
