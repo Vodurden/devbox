@@ -11,6 +11,9 @@ in
   # Various desktop programs that don't warrant a configuration file of their own
   environment.systemPackages = [
     pkgs.jetbrains.datagrip
+
+    # Dictionaries only work if this is in systemPackages
+    pkgs.libreoffice
   ];
 
   programs.evince.enable = true;
@@ -23,7 +26,6 @@ in
       pkgs.drawio
       pkgs.firefox
       pkgs.kdenlive
-      pkgs.libreoffice
       pkgs.notion-so
       pkgs.pinta
       pkgs.slack
