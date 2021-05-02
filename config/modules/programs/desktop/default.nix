@@ -31,6 +31,7 @@ in
       pkgs.pinta
       pkgs.slack
       pkgs.speedcrunch
+      pkgs.spideroak
       pkgs.spotify
       pkgs.thunderbird
       pkgs.unityhub
