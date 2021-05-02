@@ -78,6 +78,16 @@
   (setq treemacs-collapse-dirs 5
         doom-themes-treemacs-enable-variable-pitch nil))
 
+;; WORKAROUND: Prevent lsp-treemacs from misaligning treemacs icons
+;;
+;; This forces treemacs to use the doom icons, not `all-the-icons` provided
+;; by lsp. We can't use the lsp icons because they don't align properly and look
+;; terrible.
+;;
+;; Reference: https://github.com/emacs-lsp/lsp-treemacs/issues/89
+(after! lsp-treemacs
+  (load-library "doom-themes-ext-treemacs"))
+
 (use-package! plantuml-mode
   :config
   (setq plantuml-jar-path (expand-file-name "~/.nix-profile/lib/plantuml.jar")))
