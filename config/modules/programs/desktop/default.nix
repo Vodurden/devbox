@@ -24,6 +24,7 @@ in
       pkgs.audacity
       pkgs.calibre
       pkgs.drawio
+      pkgs.discord
       pkgs.firefox
       pkgs.kdenlive
       pkgs.notion-so
