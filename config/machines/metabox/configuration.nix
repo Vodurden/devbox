@@ -16,6 +16,7 @@
     ../../modules/hardware/network.nix
     ../../modules/hardware/touchpad.nix
     ../../modules/hardware/video-nvidia.nix
+    ../../modules/hardware/keyboard-g512
 
     ../../modules/languages
     ../../modules/programs
