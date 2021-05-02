@@ -7,6 +7,8 @@ self: _: {
   scalastyle = self.callPackage ../pkgs/scalastyle {};
   bash-my-aws = self.callPackage ../pkgs/bash-my-aws {};
 
+  kotlin-language-server = self.unstable.callPackage ../pkgs/kotlin-language-server {};
+
   minion = self.callPackage ../pkgs/minion {};
   clevo-indicator = self.callPackage ../pkgs/clevo-indicator {};
   notion-so = self.callPackage ../pkgs/notion-so {};

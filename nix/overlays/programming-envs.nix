@@ -22,4 +22,12 @@ self: super: {
       nodePackages.yarn
     ];
   };
+
+  kotlinEnv = with self; super.buildEnv {
+    name = "kotlin-env";
+    paths = [
+      kotlin
+      kotlin-language-server
+    ];
+  };
 }
