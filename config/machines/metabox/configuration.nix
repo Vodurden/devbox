@@ -73,6 +73,10 @@
   primary-user.name = "jake";
   primary-user.home-manager.programs.git.userEmail = "jake@jakewoods.net";
 
+
+  # Don't turn off the screen when closing the laptop lid, needed for external monitors
+  services.logind.lidSwitch = "ignore";
+
   # TODO: Remove this once upstream updates the go version
   nixpkgs.config.permittedInsecurePackages = [
     "go-1.14.15"
