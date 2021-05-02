@@ -7,4 +7,10 @@ in
 
 {
   inherit imports;
+  primary-user.home-manager = {
+    home.packages = [
+      pkgs.lutris
+      pkgs.minion
+    ];
+  };
 }
