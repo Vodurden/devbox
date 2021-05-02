@@ -6,6 +6,7 @@ let
   home-manager = sources.home-manager;
   nixos-hardware = sources.nixos-hardware;
   nixpkgs-unstable = sources.nixpkgs-unstable;
+  nixpkgs-master = sources.nixpkgs-master;
 
 in
   with (import nixpkgs {});
@@ -27,6 +28,7 @@ in
         nixos-hardware
         home-manager
         nixpkgs-unstable
+        nixpkgs-master
         nixpkgs
         ;
     };

@@ -14,6 +14,7 @@
     nixos-hardware = toString <nixos-hardware>;
     home-manager = toString <home-manager>;
     nixpkgs-unstable = toString <nixpkgs-unstable>;
+    nixpkgs-master = toString <nixpkgs-master>;
     nixpkgs = toString <nixpkgs>;
   };
 

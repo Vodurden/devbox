@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   load-overlay = overlay: import "${toString <nixpkgs-overlays>}/${overlay}";
