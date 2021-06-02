@@ -29,6 +29,7 @@ in
       pkgs.kdenlive
       pkgs.notion-so
       pkgs.pinta
+      pkgs.obsidian
       pkgs.slack
       pkgs.speedcrunch
       pkgs.spideroak
