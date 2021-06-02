@@ -10,6 +10,19 @@
       '';
     };
 
+    programs.starship = {
+      enable = true;
+      settings = {
+        aws = {
+          disabled = true;
+        };
+        directory = {
+          truncation_length = 8;
+          truncation_symbol = "…/";
+        };
+      };
+    };
+
     programs.readline = {
       enable = true;
       extraConfig = ''
