@@ -3,19 +3,17 @@
 let
   sources = (import ../../../../nix/sources.nix);
   doom-emacs = sources.doom-emacs;
+
+  myEmacs = pkgs.unstable.emacsWithPackages (epkgs: [
+    epkgs.vterm
+  ]);
 in
 
 {
   primary-user.home-manager = { config, ... }: {
-    programs.emacs = {
-      enable = true;
-
-      extraPackages = epkgs: [
-        epkgs.vterm
-      ];
-    };
-
     home.packages = [
+      myEmacs
+
       # for treemacs
       pkgs.python3
 
