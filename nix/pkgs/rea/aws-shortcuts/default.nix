@@ -1,4 +1,4 @@
-{ stdenv }:
+{ stdenv, lib }:
 
 stdenv.mkDerivation rec {
   version = "1.0.0";
@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     cp -r "${src}" $out
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Simplifies AWS auth";
     platforms = platforms.linux ++ platforms.darwin;
   };

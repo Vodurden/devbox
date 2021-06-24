@@ -29,10 +29,7 @@
   };
 
   primary-user.home-manager = {
-    # Loop Hero patches are only available on master.
-    # TODO: Move to unstable when they get to unstable
-    # TODO: Move to stable when they get to stable
-    home.packages = [ pkgs.nixpkgs-master.steam ];
+    home.packages = [ pkgs.steam ];
   };
 
 }

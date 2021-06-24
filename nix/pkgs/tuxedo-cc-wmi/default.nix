@@ -1,4 +1,4 @@
-{ linuxPackages, stdenv, fetchurl }:
+{ lib, linuxPackages, stdenv, fetchurl }:
 
 let
   kernel = linuxPackages.kernel;
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
   meta = {
     description = "This module provides an interface to controlling various functionality (mainly connected to the EC) through WMI.";
     homepage = https://github.com/tuxedocomputers/tuxedo-cc-wmi;
-    license = stdenv.lib.licenses.gpl3;
+    license = lib.licenses.gpl3;
     platforms = [ "x86_64-linux" "i686-linux" ];
   };
 }

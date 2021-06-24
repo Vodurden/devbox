@@ -4,11 +4,11 @@
   primary-user.home-manager = {
     home.packages = [
       pkgs.htop
-      pkgs.ytop
+      pkgs.bottom
     ];
 
     programs.bash.initExtra = ''
-      alias top=ytop
+      alias top=bottom
     '';
   };
 }

@@ -1,14 +1,4 @@
-{ stdenv, fetchurl, unzip, jdk11, makeDesktopItem }:
-
-let
-  desktopItem = makeDesktopItem {
-    name = "minion";
-    exec = "minion";
-    comment = "MMO Addon manager for Elder Scrolls Online and World of Warcraft";
-    desktopName = "Minion";
-    categories = "Game;Application;";
-  };
-in
+{ stdenv, lib, fetchurl, unzip, jdk11, makeDesktopItem }:
 
 stdenv.mkDerivation rec {
   version = "3.0.5";
@@ -40,10 +30,19 @@ stdenv.mkDerivation rec {
 
     chmod a+x "$out/bin/${baseName}"
 
-    ${desktopItem.buildCommand}
   '';
 
-  meta = with stdenv.lib; {
+  desktopItems = [
+    (makeDesktopItem {
+      name = "minion";
+      exec = "minion";
+      comment = "MMO Addon manager for Elder Scrolls Online and World of Warcraft";
+      desktopName = "Minion";
+      categories = "Game;";
+    })
+  ];
+
+  meta = with lib; {
     description = "MMO Addon manager";
     homepage = https://www.mmoui.com/;
     platforms = platforms.linux ++ platforms.darwin;

@@ -27,7 +27,6 @@ in
       pkgs.discord
       pkgs.firefox
       pkgs.kdenlive
-      pkgs.notion-so
       pkgs.pinta
       pkgs.obsidian
       pkgs.slack

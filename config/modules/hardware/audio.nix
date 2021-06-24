@@ -1,17 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.pulseaudio.extraConfig = ''
-    # Microphone background noise cancellation
-    load-module module-echo-cancel
-  '';
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
-  sound.enable = true;
-  sound.enableOSSEmulation = false;
-  sound.mediaKeys.enable = true;
-
-  primary-user.extraGroups = [ "audio" ];
+  # pipewire replaces pulseaudio
+  hardware.pulseaudio.enable = false;
 }

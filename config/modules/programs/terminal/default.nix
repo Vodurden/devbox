@@ -24,6 +24,7 @@ in
       pkgs.s-tui
       pkgs.tokei
       pkgs.unzip
+      pkgs.vulkan-tools
     ];
   };
 }

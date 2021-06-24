@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, jre }:
+{ stdenv, lib, fetchurl, jre }:
 
 stdenv.mkDerivation rec {
   version = "1.0.0";
@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
     chmod a+x "$out/bin/${baseName}"
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Scalastyle examines your Scala code and indicates potential problems with it.";
     homepage = http://scalastyle.org;
     license = licenses.asl20;

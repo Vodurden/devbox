@@ -2,7 +2,7 @@
 
 {
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.config = {
+  hardware.bluetooth.settings = {
     General.ControllerMode = "dual";
     Controller = { };
     GATT = { };

@@ -2,6 +2,7 @@
 
 let
   cfg = config.services.nintendo;
+  kernelPackages = config.boot.kernelPackages;
 in
 
 with lib;
@@ -13,10 +14,10 @@ with lib;
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      pkgs.hid-nintendo
+      kernelPackages.hid-nintendo
     ];
 
-    boot.extraModulePackages = [ pkgs.hid-nintendo ];
+    boot.extraModulePackages = [ kernelPackages.hid-nintendo ];
     boot.kernelModules = [ "hid_nintendo" ];
   };
 }

@@ -1,4 +1,4 @@
-{ stdenv }:
+{ stdenv, lib}:
 
 stdenv.mkDerivation rec {
   version = "1.0.0";
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
     cp -r "${src}"/* "$out"
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Bash-my-AWS provides simple but powerful CLI commands for managing AWS resources";
     homepage = https://bash-my-aws.org/;
     license = licenses.mit;

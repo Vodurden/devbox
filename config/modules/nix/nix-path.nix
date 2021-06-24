@@ -13,7 +13,7 @@
     nixpkgs-overlays = toString <nixpkgs-overlays>;
     nixos-hardware = toString <nixos-hardware>;
     home-manager = toString <home-manager>;
-    nixpkgs-unstable = toString <nixpkgs-unstable>;
+    nixpkgs-stable = toString <nixpkgs-stable>;
     nixpkgs-master = toString <nixpkgs-master>;
     nixpkgs = toString <nixpkgs>;
   };

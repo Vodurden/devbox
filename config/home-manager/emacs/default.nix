@@ -4,7 +4,7 @@ let
   sources = (import ../../../nix/sources.nix);
   doom-emacs = sources.doom-emacs;
 
-  myEmacs = pkgs.unstable.emacsWithPackages (epkgs: [
+  myEmacs = pkgs.emacsWithPackages (epkgs: [
     epkgs.vterm
   ]);
 in
@@ -92,7 +92,5 @@ in
     if [ -d /tmp/.cache ]; then
       mv /tmp/.cache $HOME/.emacs.d/.cache
     fi
-
-    $HOME/.emacs.d/bin/doom sync
   '';
 }
