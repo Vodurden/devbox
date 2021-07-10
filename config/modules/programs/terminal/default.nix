@@ -20,11 +20,10 @@ in
       pkgs.pandoc
       pkgs.procs
       pkgs.proselint
-      pkgs.plantuml
+      pkgs.lsof
       pkgs.s-tui
       pkgs.tokei
       pkgs.unzip
-      pkgs.vulkan-tools
     ];
   };
 }

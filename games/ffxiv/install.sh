@@ -1,10 +1,13 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash -p wineFull curl
+#! nix-shell -i bash -p wineWowPackages.full winetricks curl unzip
+
+set -x
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${HOME}/Games/ffxiv"
-WINEPREFIX="${INSTALL_DIR}/wine"
-WINEARCH="win64"
+
+export WINEPREFIX="${INSTALL_DIR}/wine"
+export WINEARCH="win64"
 
 echo "* Installing FFXIV to ${INSTALL_DIR}"
 mkdir -p ${INSTALL_DIR}
@@ -33,11 +36,11 @@ else
   echo
   sleep 3
   echo "Launching ffxivsetup ..."
-  WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" wine "${FFXIV_SETUP_PATH}"
+  wine64 "${FFXIV_SETUP_PATH}"
 fi
 
 echo "* DXVK setup found?"
-DXVK_VERSION="0.96"
+DXVK_VERSION="1.9"
 DXVK_SETUP_PATH="${INSTALL_DIR}/dxvk-${DXVK_VERSION}"
 if [ -d "${DXVK_SETUP_PATH}" ]; then
   echo "* Yes! DXVK setup found at ${DXVK_SETUP_PATH}. Skipping download. "
@@ -47,7 +50,37 @@ else
 fi
 
 echo "* Installing DXVK"
-WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" winetricks --force "${DXVK_SETUP_PATH}/setup_dxvk.verb"
+winetricks --force "${DXVK_SETUP_PATH}/setup_dxvk.verb"
+
+echo "* Installing net48"
+winetricks --force dotnet48
+
+echo "* Installing faudio (i.e xaudio2_7)"
+winetricks --force faudio
+
+
+echo "* XIVLauncher setup found?"
+XIV_LAUNCHER_VERSION="5.5.8"
+XIV_LAUNCHER_SETUP_PATH="${INSTALL_DIR}/XIVLauncherSetup.nupkg"
+if [ -f "${XIV_LAUNCHER_SETUP_PATH}" ]; then
+  echo "* Yes! XIVLauncher setup found at ${XIV_LAUNCHER_SETUP_PATH}. Skipping download. "
+else
+  echo "* No! Downloading XIVLauncher..."
+  curl -L -o - "https://github.com/goatcorp/FFXIVQuickLauncher/releases/download/${XIV_LAUNCHER_VERSION}/XIVLauncher-${XIV_LAUNCHER_VERSION}-full.nupkg" > "${XIV_LAUNCHER_SETUP_PATH}"
+fi
+
+echo "* Installing XIVLauncher"
+cp "${XIV_LAUNCHER_SETUP_PATH}" "${INSTALL_DIR}/XIVLauncherSetup.zip"
+mkdir -p "${INSTALL_DIR}/XIVLauncherSetup"
+rm -rf "${INSTALL_DIR}/XIVLauncherSetup"
+unzip "${INSTALL_DIR}/XIVLauncherSetup.zip" -d "${INSTALL_DIR}/XIVLauncherSetup"
+cp -r "${INSTALL_DIR}/XIVLauncherSetup/lib/net45" "${FFXIV_INSTALL_PATH}/XIVLauncher"
+
+echo "* Launching XIVLauncher"
+wine64 "${FFXIV_INSTALL_PATH}/XIVLauncher/XIVLauncher.exe"
+
+# echo "* Installing XIVLauncher"
+WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" wine "${XIV_LAUNCHER_SETUP_PATH}"
 
 FFXIV_CFG_FOLDER_PATH="${WINEPREFIX}/drive_c/users/${USER}/My Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/"
 FFXIV_BOOT_CFG_PATH="${FFXIV_CFG_FOLDER_PATH}/FFXIV_BOOT.cfg"

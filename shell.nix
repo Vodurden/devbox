@@ -14,6 +14,7 @@ in
     # Make sure to update ./config/modules/nix/nix-path.nix if changing this setting
     nix-path = build-nix-path-env-var {
       nixpkgs = sources.nixpkgs-unstable;
+      nixpkgs-unstable = sources.nixpkgs-unstable;
       nixpkgs-stable = sources.nixpkgs-stable;
       nixpkgs-master = sources.nixpkgs-master;
       nixos-hardware = sources.nixos-hardware;

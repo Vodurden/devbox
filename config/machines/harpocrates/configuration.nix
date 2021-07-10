@@ -5,6 +5,7 @@
     /etc/nixos/hardware-configuration.nix
 
     ../../modules/base.nix
+    ../../modules/hardware/tools.nix
     ../../modules/hardware/audio.nix
     ../../modules/hardware/bluetooth.nix
     ../../modules/hardware/keyboard-g512
@@ -30,7 +31,6 @@
   '';
   networking.firewall.allowedTCPPorts = [ 2049 ];
 
-
   fileSystems."/nfs/share" = {
     device = "/mnt/nfs-share";
     options = [ "bind" "rw" ];
@@ -39,7 +39,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_5_12;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.initrd.luks.devices = {
     root = {

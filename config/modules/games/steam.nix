@@ -28,9 +28,5 @@
     ];
   };
 
-  primary-user.home-manager = {
-    home.packages = [ pkgs.steam ];
-  };
-
+  programs.steam.enable = true;
 }
-

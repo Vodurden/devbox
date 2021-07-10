@@ -1,5 +1,5 @@
 self: _: {
-  stable = import <nixpkgs-stable> {
+  nixpkgs-stable = import <nixpkgs-stable> {
     config = self.config;
   };
 
