@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash -p wineWowPackages.full winetricks curl unzip
 
-set -x
+set -euo pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${HOME}/Games/ffxiv"
@@ -58,6 +58,9 @@ winetricks --force dotnet48
 echo "* Installing faudio (i.e xaudio2_7)"
 winetricks --force faudio
 
+echo "* Installing vcrun2015"
+winetricks --force vcrun2015
+
 
 echo "* XIVLauncher setup found?"
 XIV_LAUNCHER_VERSION="5.5.8"
@@ -93,7 +96,7 @@ if [ ! -f "${FFXIV_BOOT_CFG_PATH}" ]; then
   echo "    - Close the client. If the client crashes at this point this is fine :)"
   echo
   sleep 3
-  WINEPREFIX="${WINEPREFIX}" WINARCH="${WINARCH}" wine "${FFXIV_INSTALL_PATH}/boot/ffxivboot.exe"
+  WINEPREFIX="${WINEPREFIX}" WINEARCH="${WINARCH}" wine "${FFXIV_INSTALL_PATH}/boot/ffxivboot.exe"
 fi;
 
 
