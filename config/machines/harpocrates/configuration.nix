@@ -16,6 +16,8 @@
     ../../modules/programs
     ../../modules/games
 
+    ../../modules/services/syncthing.nix
+
     ../../modules/ui/gnome
     ../../modules/ui/fonts.nix
   ];
