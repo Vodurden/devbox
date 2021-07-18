@@ -16,6 +16,7 @@
     ../../modules/programs
     ../../modules/games
 
+    ../../modules/services/duplicati.nix
     ../../modules/services/syncthing.nix
 
     ../../modules/ui/gnome
