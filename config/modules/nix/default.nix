@@ -1,18 +1,13 @@
 { config, pkgs, ... }:
 
-let
-  load-overlay = overlay: import "${toString <nixpkgs-overlays>}/${overlay}";
-  all-overlays = builtins.attrNames (builtins.readDir (toString <nixpkgs-overlays>));
-in
-
 {
   imports = [
     ./nix-path.nix
     ./cachix.nix
+    ./overlays.nix
   ];
 
   nixpkgs.config = import ./nixpkgs-config.nix;
-  nixpkgs.overlays = map load-overlay all-overlays;
 
   primary-user.home-manager = {
     nixpkgs.config = config.nixpkgs.config;
