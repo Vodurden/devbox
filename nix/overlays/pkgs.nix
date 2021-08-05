@@ -12,11 +12,6 @@ self: super: {
   clevo-indicator = self.callPackage ../pkgs/clevo-indicator {};
   notion-so = self.callPackage ../pkgs/notion-so {};
 
-  aws-shortcuts = self.callPackage ../pkgs/rea/aws-shortcuts {};
-  rea-as = self.callPackage ../pkgs/rea/rea-as {};
-  rea-slip-utils = self.callPackage ../pkgs/rea/rea-slip-utils {};
-  rea-cli = self.callPackage ../pkgs/rea/rea-cli {};
-
   linux_testing_drm_next = self.callPackage ../pkgs/os-specific/linux/linux-testing-drm-next.nix {
     kernelPatches = [
       self.kernelPatches.bridge_stp_helper
