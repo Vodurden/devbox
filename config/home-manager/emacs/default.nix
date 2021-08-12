@@ -13,11 +13,11 @@ in
   home.packages = [
     myEmacs
 
+    pkgs.source-code-pro
+    pkgs.etBook
+
     # for treemacs
     pkgs.python3
-
-    # For geiser-mode. It has trouble finding nix-shell driven mit-scheme's in the REPL.
-    pkgs.mitscheme
 
     # for doom module: nix
     pkgs.nixfmt
@@ -50,7 +50,6 @@ in
   # emacs.d needs to be writable for doom emacs to work.
   home.activation.installDoom = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Link doom.d
-
     ln -sfT ${toString ./doom.d} $HOME/.doom.d
 
     if [ -d $HOME/.emacs.d ]; then
@@ -87,5 +86,7 @@ in
     if [ -d /tmp/.cache ]; then
       mv /tmp/.cache $HOME/.emacs.d/.cache
     fi
+
+    $HOME/.emacs.d/bin/doom sync
   '';
 }

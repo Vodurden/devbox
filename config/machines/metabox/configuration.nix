@@ -73,6 +73,11 @@
 
   primary-user.name = "jake";
   primary-user.home-manager.programs.git.userEmail = "jake@jakewoods.net";
+  primary-user.home-manager.imports = [
+    ../../home-manager/base.nix
+    ../../home-manager/emacs
+    ../../home-manager/vim
+  ];
 
 
   # Don't turn off the screen when closing the laptop lid, needed for external monitors
