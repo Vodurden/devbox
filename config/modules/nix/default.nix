@@ -7,6 +7,11 @@
     ./overlays.nix
   ];
 
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = builtins.readFile ./nix.conf;
+  };
+
   nixpkgs.config = import ./nixpkgs-config.nix;
 
   primary-user.home-manager = {
