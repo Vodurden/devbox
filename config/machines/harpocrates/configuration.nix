@@ -27,18 +27,6 @@
     ../../home-manager/emacs
   ];
 
-  services.nfs.server.enable = true;
-  services.nfs.server.exports = ''
-    /nfs         192.168.1.0/24(rw,fsid=0,no_subtree_check,no_root_squash)
-    /nfs/share   192.168.1.0/24(rw,nohide,insecure,no_subtree_check,no_root_squash)
-  '';
-  networking.firewall.allowedTCPPorts = [ 2049 ];
-
-  fileSystems."/nfs/share" = {
-    device = "/mnt/nfs-share";
-    options = [ "bind" "rw" ];
-  };
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
