@@ -1,4 +1,16 @@
 {
+    "NUR": {
+        "branch": "master",
+        "description": "Nix User Repository: User contributed nix packages [maintainer=@Mic92]",
+        "homepage": "https://nur.nix-community.org/",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "a1574efec48478c0794311b730a277391e9eba1c",
+        "sha256": "1wcfw56khbv71s6gdcy5kmkigscqwp00mw1q4hhjfp4ww3nc44s4",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/NUR/archive/a1574efec48478c0794311b730a277391e9eba1c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "cachix": {
         "branch": "v0.3.6",
         "description": "Command line client for Nix binary cache hosting:",

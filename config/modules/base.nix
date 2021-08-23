@@ -36,9 +36,9 @@ in
 
   services.lorri.enable = true;
 
-  primary-user.home-manager = { config, ... }: {
-    nixpkgs.config.allowUnfree = true;
+  home-manager.useGlobalPkgs = true;
 
+  primary-user.home-manager = { config, ... }: {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };
