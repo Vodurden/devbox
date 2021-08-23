@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.programs.vim = {
+  programs.vim = {
     enable = true;
     plugins = [
       pkgs.vimPlugins.vim-colors-solarized
