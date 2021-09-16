@@ -3,7 +3,6 @@
 {
   fonts = {
     fontconfig = {
-      dpi = 96;
       subpixel.rgba = "rgb";
       enable = true;
       antialias = true;

@@ -2,6 +2,8 @@
 
 let
   sources = import ./nix/sources.nix;
+
+  nixpkgs-unstable-local = import ./nix/nixpkgs {};
 in
   with (import sources.nixpkgs-stable {});
   let
@@ -11,10 +13,10 @@ in
       src = sources.nixpkgs-unstable;
       patches = [
         # Fix steam proton: https://github.com/NixOS/nixpkgs/pull/129805
-        (fetchpatch {
-          url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/129805.diff";
-          sha256 = "0aq8cjjh84wg5sj0zi7ppsi5r2akh6w3zphqjglywzs0mhll6yyj";
-        })
+        # (fetchpatch {
+        #   url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/129805.diff";
+        #   sha256 = "0aq8cjjh84wg5sj0zi7ppsi5r2akh6w3zphqjglywzs0mhll6yyj";
+        # })
       ];
     };
 
