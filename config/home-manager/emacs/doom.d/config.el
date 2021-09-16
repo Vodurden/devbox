@@ -104,3 +104,4 @@
 
 (load! "modules/org/init")
 (load! "modules/scala")
+(load! "modules/csharp")

@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  primary-user.home-manager.home.packages = with pkgs; [
+  home.packages = with pkgs; [
+    mono
     omnisharp-roslyn
   ];
 }

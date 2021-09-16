@@ -25,6 +25,7 @@
 
   primary-user.home-manager.imports = [
     ../../home-manager/emacs
+    ../../home-manager/lang/csharp.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

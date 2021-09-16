@@ -28,5 +28,6 @@ self: super: {
   linuxPackages_testing_amd_staging_drm_next =
     self.recurseIntoAttrs (self.linuxPackagesFor self.linux_testing_amd_staging_drm_next);
 
+  code-shim = self.callPackage ../pkgs/code-shim {};
   mesa-latest = self.callPackage ../pkgs/mesa.nix {};
 }

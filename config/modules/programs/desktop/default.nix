@@ -34,7 +34,6 @@ in
       pkgs.spideroak
       pkgs.spotify
       pkgs.thunderbird
-      pkgs.unityhub
       pkgs.xournalpp
       pkgs.zoom-us
     ];
