@@ -55,6 +55,9 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Local variables are nice sometimes
+(setq-default enable-local-variables t)
+
 ;; Spacemacs bindings, they're not all bad!
 (map! :leader
       :desc "Run command" "SPC" #'counsel-M-x
@@ -72,6 +75,13 @@
      (shell-command-to-string
       (concat "nix-build '<nixpkgs>' --quiet --attr " package-name " --no-out-link")))
     binary-path)))
+
+(setq
+  lsp-signature-render-documentation nil
+  lsp-ui-doc-enable nil
+  lsp-ui-sideline-show-code-actions nil
+  lsp-ui-sideline-show-hover nil
+  lsp-ui-sideline-show-symbol nil)
 
 (use-package! treemacs
   :config
