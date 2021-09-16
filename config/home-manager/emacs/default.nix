@@ -47,11 +47,6 @@ in
     };
   };
 
-  home.file.".spacemacs.emacs.d" = {
-    recursive = true;
-    source = sources.spacemacs;
-  };
-
   # emacs.d needs to be writable for doom emacs to work.
   home.activation.installDoom = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     # Link doom.d
