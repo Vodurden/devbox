@@ -7,7 +7,10 @@ let
 in
   with (import sources.nixpkgs-stable {});
   let
-    #####################################
+    machine-path = ./config/machines + "/${machine}";
+    machine-nixos-config = toString (machine-path + /configuration.nix);
+    machine-home-manager-config = toString (machine-path + /home.nix);
+
     nixpkgs-unstable-patched = applyPatches {
       name = "nixpkgs-unstable-patched";
       src = sources.nixpkgs-unstable;
@@ -23,7 +26,8 @@ in
     # Make sure to update ./config/modules/nix/nix-path.nix if changing this setting
     nix-path = builtins.concatStringsSep ":" [
       "nixpkgs=${nixpkgs-unstable-patched}"
-      "nixos-config=${toString (./config/machines + "/${machine}" + /configuration.nix)}"
+      "nixos-config=${machine-nixos-config}"
+      "home-manager-config=${machine-home-manager-config}"
       "nixos-hardware=${sources.nixos-hardware}"
       "home-manager=${sources.home-manager}"
       "nixpkgs-stable=${sources.nixpkgs-stable}"
@@ -34,6 +38,7 @@ in
     mkShell {
       shellHook = ''
         export NIX_PATH="${nix-path}"
+        export HOME_MANAGER_CONFIG="${machine-home-manager-config}"
       '';
 
       buildInputs = [
