@@ -3,7 +3,7 @@
 let
   sources = import ./nix/sources.nix;
 
-  nixpkgs-unstable-local = import ./nix/nixpkgs {};
+  # nixpkgs-unstable-local = import ./nixpkgs {};
 in
   with (import sources.nixpkgs-stable {});
   let
@@ -13,7 +13,7 @@ in
 
     nixpkgs-unstable-patched = applyPatches {
       name = "nixpkgs-unstable-patched";
-      src = sources.nixpkgs-unstable;
+      src = ./nixpkgs;
       patches = [
         # Fix steam proton: https://github.com/NixOS/nixpkgs/pull/129805
         # (fetchpatch {
