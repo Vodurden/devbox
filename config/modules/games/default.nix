@@ -8,7 +8,7 @@ in
 {
   inherit imports;
 
-  services.nintendo.enable = true;
+  services.joycond.enable = true;
 
   primary-user.home-manager = {
     home.packages = [

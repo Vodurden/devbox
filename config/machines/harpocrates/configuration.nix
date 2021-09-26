@@ -40,6 +40,8 @@
     };
   };
 
+  services.joycond.enable = true;
+
   networking.hostName = "harpocrates"; # Define your hostname.
 
   networking.useDHCP = false;
