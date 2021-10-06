@@ -18,7 +18,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1633492251,
@@ -52,20 +54,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1633492624,
-        "narHash": "sha256-Wm3KnGdrLZI7BAvqHZcNDGPmPI4zQ0GImluXtOAuIFs=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "01bd5f8e0dc866e28808bd6acc6e1fe65e08cf34",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "narHash": "sha256-fP9YX0WRhh+JTFewqnDL3mqZ5QoVNKiDK6E0tv2EgEI=",
         "path": "./nixpkgs",
         "type": "path"
@@ -95,7 +83,7 @@
         "doom-emacs": "doom-emacs",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nur": "nur"
       }
     }

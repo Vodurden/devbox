@@ -3,7 +3,10 @@
 
   inputs.nixpkgs.url = path:./nixpkgs;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
-  inputs.home-manager.url = github:nix-community/home-manager;
+  inputs.home-manager = {
+    url = github:nix-community/home-manager;
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   inputs.nur.url = github:nix-community/NUR;
   inputs.doom-emacs = {
     url = github:hlissner/doom-emacs;
