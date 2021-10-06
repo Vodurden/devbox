@@ -19,7 +19,12 @@
       modules = [
         ./config/machines/harpocrates/configuration.nix
         home-manager.nixosModules.home-manager
-        { nixpkgs.overlays = [ nur.overlay ]; }
+        {
+          nixpkgs.overlays = [
+            (import ./nix/pkgs/overlay.nix)
+            nur.overlay
+          ];
+        }
       ];
       specialArgs = { inherit inputs; };
     };
