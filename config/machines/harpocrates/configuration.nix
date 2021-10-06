@@ -4,23 +4,23 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/base.nix
-    ../../modules/hardware/tools.nix
-    ../../modules/hardware/audio.nix
-    ../../modules/hardware/bluetooth.nix
-    ../../modules/hardware/keyboard-g512
-    ../../modules/hardware/network.nix
-    ../../modules/hardware/storage.nix
-    ../../modules/hardware/video-amd.nix
+    ../../nixos/base.nix
+    ../../nixos/hardware/tools.nix
+    ../../nixos/hardware/audio.nix
+    ../../nixos/hardware/bluetooth.nix
+    ../../nixos/hardware/keyboard-g512
+    ../../nixos/hardware/network.nix
+    ../../nixos/hardware/storage.nix
+    ../../nixos/hardware/video-amd.nix
 
-    ../../modules/programs
-    ../../modules/games
+    ../../nixos/programs
+    ../../nixos/games
 
-    ../../modules/services/duplicati.nix
-    ../../modules/services/syncthing.nix
+    ../../nixos/services/duplicati.nix
+    ../../nixos/services/syncthing.nix
 
-    ../../modules/ui/gnome
-    ../../modules/ui/fonts.nix
+    ../../nixos/ui/gnome
+    ../../nixos/ui/fonts.nix
   ];
 
   primary-user.home-manager.imports = [
