@@ -3,7 +3,6 @@
 {
   imports = [
     ./nix-path.nix
-    ./cachix.nix
     ./overlays.nix
   ];
 

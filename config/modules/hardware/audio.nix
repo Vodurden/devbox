@@ -8,7 +8,7 @@
       pkgs.pulseaudio # for pactl
       pkgs.helvum
       pkgs.pavucontrol
-      pkgs.nixpkgs-master.easyeffects
+      pkgs.easyeffects
     ];
   };
 
