@@ -30,4 +30,7 @@ self: super: {
 
   code-shim = self.callPackage ../pkgs/code-shim {};
   mesa-latest = self.callPackage ../pkgs/mesa.nix {};
+
+  e9patch = self.callPackage ../pkgs/e9patch {};
+  mudfish = self.callPackage ../pkgs/mudfish {};
 }
