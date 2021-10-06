@@ -1,8 +1,1 @@
-build/
-.vagrant/
-
-old-ansible-debian/ansible/galaxy_roles/
-ansible/galaxy_roles/
-ansible.log
-*.retry
 *.swp
