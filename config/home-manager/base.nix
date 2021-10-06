@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../../nix/home-manager
+  ];
+
   programs.home-manager = {
     enable = true;
     path = toString <home-manager>;

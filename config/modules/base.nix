@@ -3,7 +3,7 @@
 {
   imports = [
     ./nix
-    ../../nix/modules
+    ../../nix/nixos
   ];
 
   # Internationalisation
@@ -31,6 +31,10 @@
   home-manager.extraSpecialArgs = { inherit inputs; }; # Make flake inputs available to home-manager
 
   primary-user.home-manager = { config, ... }: {
+    imports = [
+      ../../nix/home-manager
+    ];
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };
