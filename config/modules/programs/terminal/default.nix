@@ -15,6 +15,7 @@ in
     home.packages = [
       pkgs.ag
       pkgs.bat
+      pkgs.binutils
       pkgs.du-dust
       pkgs.fd
       pkgs.pandoc

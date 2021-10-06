@@ -1,16 +1,8 @@
-{ config, pkgs, lib, ... }:
-
-let
-  sources = import ../../nix/sources.nix;
-  home-manager = import sources.home-manager {};
-in
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
     ./nix
-
-    home-manager.nixos # All machines support home-manager defined by configuration.nix
-
     ../../nix/modules
   ];
 
@@ -29,14 +21,14 @@ in
     wget
     vim
     ripgrep
-    (import sources.cachix)
-    (import sources.niv {}).niv
   ];
 
 
   services.lorri.enable = true;
 
   home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = { inherit inputs; }; # Make flake inputs available to home-manager
 
   primary-user.home-manager = { config, ... }: {
     # Let Home Manager install and manage itself.

@@ -1,8 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 let
-  sources = (import ../../../nix/sources.nix);
-  doom-emacs = sources.doom-emacs;
+  doom-emacs = inputs.doom-emacs;
 
   myEmacs = pkgs.emacsWithPackages (epkgs: [
     epkgs.vterm

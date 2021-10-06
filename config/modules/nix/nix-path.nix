@@ -8,15 +8,15 @@
   # - To apply the above to both root and primary-user
 
   # These values are bootstrapped from `shell.nix`. On subsequent runs this simply sets each value to itself.
-  nix.nixPath = [
-    "nixpkgs=${toString <nixpkgs>}"
-    "nixos-config=${toString <nixos-config>}"
-    "nixos-hardware=${toString <nixos-hardware>}"
-    "home-manager=${toString <home-manager>}"
-    "nixpkgs-stable=${toString <nixpkgs-stable>}"
-    "nixpkgs-unstable=${toString <nixpkgs-unstable>}"
-    "nixpkgs-master=${toString <nixpkgs-master>}"
-  ];
+  # nix.nixPath = [
+  #   "nixpkgs=${toString <nixpkgs>}"
+  #   "nixos-config=${toString <nixos-config>}"
+  #   "nixos-hardware=${toString <nixos-hardware>}"
+  #   "home-manager=${toString <home-manager>}"
+  #   "nixpkgs-stable=${toString <nixpkgs-stable>}"
+  #   "nixpkgs-unstable=${toString <nixpkgs-unstable>}"
+  #   "nixpkgs-master=${toString <nixpkgs-master>}"
+  # ];
 
   # Eliminate channels and replace ~/.nix-defexpr with a symlink to <nixpkgs>
   primary-user.home-manager = { config, ... }: {
@@ -24,7 +24,6 @@
       rm -f $HOME/.nix-channels
 
       rm -rf $HOME/.nix-defexpr
-      ln -sf ${toString <nixpkgs>} $HOME/.nix-defexpr
     '';
   };
 
@@ -34,7 +33,6 @@
       rm -f $HOME/.nix-channels
 
       rm -rf $HOME/.nix-defexpr
-      ln -sf ${toString <nixpkgs>} $HOME/.nix-defexpr
     '';
   };
 }
