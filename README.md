@@ -1,15 +1,13 @@
 Introduction
 ============
-This repository contains scripts to provision my development environment. Currently it supports *NixOS*
+This repository contains scripts to provision my development environment. 
 
 Installation
 ============
 
-On NixOS:
+NixOS: Execute `sudo nixos-rebuild switch --flake .#{machine-name}`
 
-- Execute `auto/install {machine-name}`
-
-After installation `nixos-rebuild` will automatically use the correct machine configuration regardless of the current working directory.
+Home Manager (non-NixOS): `home-manager switch --flake .`
 
 Directory Structure
 ===================
