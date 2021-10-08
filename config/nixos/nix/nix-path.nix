@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   # We want:
@@ -18,12 +18,17 @@
   #   "nixpkgs-master=${toString <nixpkgs-master>}"
   # ];
 
-  # Eliminate channels and replace ~/.nix-defexpr with a symlink to <nixpkgs>
+  # We want nix path to point to nixpkgs so `nix-shell` and friends still work and don't instead
+  # try to use the channel-based nixpkgs (which are ancient)
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+  # Eliminate channels and replace ~/.nix-defexpr with a symlink to nixpkgs, so `nix-env` uses a sane channel
   primary-user.home-manager = { config, ... }: {
     home.activation.eliminateChannelsRoot = config.lib.dag.entryAfter [ "writeBoundary" ] ''
       rm -f $HOME/.nix-channels
 
       rm -rf $HOME/.nix-defexpr
+      ln -sf ${inputs.nixpkgs} $HOME/.nix-defexpr
     '';
   };
 
@@ -33,6 +38,7 @@
       rm -f $HOME/.nix-channels
 
       rm -rf $HOME/.nix-defexpr
+      ln -sf ${inputs.nixpkgs} $HOME/.nix-defexpr
     '';
   };
 }
