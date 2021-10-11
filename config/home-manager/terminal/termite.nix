@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  primary-user.home-manager.programs.termite = {
+  programs.termite = {
     enable = true;
     font = "Hack 12";
 

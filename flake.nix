@@ -29,7 +29,7 @@
       specialArgs = { inherit inputs; };
     };
 
-    homeConfigurations."jakew@jakew-cash.local" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."jakew" = home-manager.lib.homeManagerConfiguration {
       system = "x86_64-darwin";
       homeDirectory = "/Users/jakew";
       username = "jakew";

@@ -26,6 +26,11 @@
   primary-user.home-manager.imports = [
     ../../home-manager/base.nix
 
+    ../../home-manager/terminal/base.nix
+    ../../home-manager/terminal/aws.nix
+    ../../home-manager/terminal/bash.nix
+    ../../home-manager/terminal/termite.nix
+
     ../../home-manager/emacs
     ../../home-manager/lang/csharp.nix
   ];

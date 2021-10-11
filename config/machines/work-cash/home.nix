@@ -3,6 +3,9 @@
 {
   imports = [
     ../../home-manager/base.nix
+
+    ../../home-manager/terminal/base.nix
+
     ../../home-manager/intellij
     ../../home-manager/emacs
     ../../home-manager/vim
