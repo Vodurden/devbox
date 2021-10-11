@@ -7,7 +7,10 @@ Installation
 
 NixOS: Execute `sudo nixos-rebuild switch --flake .#{machine-name}`. To update use `nix flake update`.
 
-Home Manager (non-NixOS): `home-manager switch --flake .`
+Home Manager:
+
+- First time: `./auto/bootstrap-home-manager <machine-name>`
+- Otherwise: `home-manager switch --flake .`
 
 Directory Structure
 ===================

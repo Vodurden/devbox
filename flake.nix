@@ -28,5 +28,14 @@
       ];
       specialArgs = { inherit inputs; };
     };
+
+    homeConfigurations."jakew@jakew-cash.local" = home-manager.lib.homeManagerConfiguration {
+      system = "x86_64-darwin";
+      homeDirectory = "/Users/jakew";
+      username = "jakew";
+      extraSpecialArgs = { inherit inputs; };
+      stateVersion = "21.03";
+      configuration = ./config/machines/work-cash/home.nix;
+    };
   };
 }

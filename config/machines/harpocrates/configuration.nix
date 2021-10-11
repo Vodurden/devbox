@@ -24,6 +24,8 @@
   ];
 
   primary-user.home-manager.imports = [
+    ../../home-manager/base.nix
+
     ../../home-manager/emacs
     ../../home-manager/lang/csharp.nix
   ];

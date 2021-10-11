@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./nix
     ../../nix/nixos
   ];
 
@@ -26,16 +25,30 @@
 
   services.lorri.enable = true;
 
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = builtins.readFile ../nix/nix.conf;
+  };
+
+  nixpkgs.config = import ../nix/nixpkgs-config.nix;
+
+  # We want nix path to point to nixpkgs so `nix-shell` and friends still work and don't instead
+  # try to use the channel-based nixpkgs (which are ancient)
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs; }; # Make flake inputs available to home-manager
 
-  primary-user.home-manager = { config, ... }: {
-    imports = [
-      ../../nix/home-manager
-    ];
+  # Remove root's obsolete use of nix channels and nix-defexpr
+  #
+  # Non-root is handled by the home-manager base config
+  home-manager.users.root = { config, ... }: {
+    home.activation.eliminateChannelsRoot = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      rm -f $HOME/.nix-channels
 
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
+      rm -rf $HOME/.nix-defexpr
+      ln -sf ${inputs.nixpkgs} $HOME/.nix-defexpr
+    '';
   };
 }

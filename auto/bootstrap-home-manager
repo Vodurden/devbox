@@ -1,0 +1,23 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p nixUnstable
+
+set -euo pipefail
+
+function finish {
+    rm -f ./result
+    popd > /dev/null
+}
+
+trap finish EXIT
+pushd $PWD > /dev/null
+cd $(dirname "$0")/..
+
+MACHINE_NAME="${1:-}"
+if [[ "$MACHINE_NAME" = "" ]]; then
+  echo "No arguments provided. Usage: bootstrap-home-manager <machine-name>"
+  exit 1
+fi
+
+nix --experimental-features 'nix-command flakes' \
+  build ".#homeConfigurations.${MACHINE_NAME}.activationPackage" \
+  && ./result/activate
