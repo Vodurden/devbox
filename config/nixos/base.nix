@@ -28,6 +28,7 @@
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = builtins.readFile ../nix/nix.conf;
+    registry.nixpkgs.flake = inputs.nixpkgs;
   };
 
   nixpkgs.config = import ../nix/nixpkgs-config.nix;
