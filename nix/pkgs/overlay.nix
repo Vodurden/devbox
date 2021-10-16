@@ -30,4 +30,6 @@ self: super: {
 
   code-shim = self.callPackage ../pkgs/code-shim {};
   mesa-latest = self.callPackage ../pkgs/mesa.nix {};
+
+  wine-tools = self.callPackage ../pkgs/wine-tools {};
 }

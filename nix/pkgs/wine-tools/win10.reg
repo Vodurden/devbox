@@ -1,0 +1,17 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ProductOptions]
+"ProductType"="WinNT"
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion]
+"CSDVersion"=""
+"CurrentBuildNumber"="10241"
+"CurrentVersion"="10.0"
+"ProductName"="Microsoft Windows 10"
+"CurrentBuild"="17763"
+"CurrentBuildNumber"="17763"
+"CurrentMajorVersionNumber"=dword:0000000a
+"CurrentMinorVersionNumber"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Windows]
+"CSDVersion"="dword:00000000"
