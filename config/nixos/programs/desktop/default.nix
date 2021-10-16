@@ -16,8 +16,6 @@ in
     pkgs.libreoffice
   ];
 
-  programs.evince.enable = true;
-
   primary-user.home-manager = {
     home.packages = [
       pkgs.aseprite-unfree
@@ -35,6 +33,7 @@ in
       pkgs.spotify
       pkgs.thunderbird
       pkgs.xournalpp
+      pkgs.zathura
       pkgs.zoom-us
     ];
   };
