@@ -1,7 +1,7 @@
 {
   description = "My development environment";
 
-  inputs.nixpkgs.url = path:./nixpkgs;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
   inputs.home-manager = {
     url = github:nix-community/home-manager;
