@@ -100,6 +100,9 @@ if [ ! -f "${FFXIV_BOOT_CFG_PATH}" ]; then
 fi;
 
 
+echo "* Install DXVK config"
+cp "${SOURCE_DIR}/dxvk.conf" "${FFXIV_INSTALL_PATH}/game/dxvk.conf"
+
 FFXIV_CFG_PATH="${FFXIV_CFG_FOLDER_PATH}/FFXIV.cfg"
 echo "* FFXIV Settings tweak: Setting CutsceneMovieOpening to 1 in FFXIV.cfg"
 sed -i -e 's/CutsceneMovieOpening[[:space:]][[:digit:]]/CutsceneMovieOpening 1/' "${FFXIV_CFG_PATH}"
