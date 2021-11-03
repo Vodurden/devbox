@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    mono
+    mono6
     omnisharp-roslyn
   ];
 }
