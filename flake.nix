@@ -9,7 +9,7 @@
   };
   inputs.nur.url = github:nix-community/NUR;
   inputs.doom-emacs = {
-    url = github:hlissner/doom-emacs;
+    url = "github:hlissner/doom-emacs";
     flake = false;
   };
 
