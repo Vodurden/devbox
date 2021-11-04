@@ -7,7 +7,7 @@ let
 
   mkDoom = pkgs.callPackage ./mkDoom.nix {};
   myDoom = mkDoom {
-    emacs = pkgs.emacsWithPackages (epkgs: [
+    emacs = (pkgs.emacsPackagesFor pkgs.emacsPgtkGcc).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]);
 
@@ -29,16 +29,17 @@ in
   config = mkIf cfg.enable {
     home.packages = [
       myDoom
-
       pkgs.emacs-all-the-icons-fonts
     ];
 
     xdg.configFile."emacs" = {
       source = inputs.doom-emacs;
+      onChange = "${myDoom}/bin/doom-change";
     };
 
     xdg.configFile."doom" = {
       source = cfg.doomPrivateDir;
+      onChange = "${myDoom}/bin/doom-change";
     };
 
     services.emacs = {

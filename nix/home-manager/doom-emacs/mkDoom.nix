@@ -18,21 +18,26 @@ let
   '';
 in
 
-pkgs.symlinkJoin {
+pkgs.buildEnv {
   name = "doom-emacs-wrapped";
   paths = [ emacs doomChange ];
-  buildInputs = [ pkgs.makeWrapper ];
+  nativeBuildInputs = [ pkgs.makeWrapper ];
+  pathsToLink = [
+    # Deep-link /share/applications so we can delete things from it.
+    #
+    # Otherwise /share/applications is a symlink and we can't touch it.
+    "/share/applications"
+    "/"
+  ];
   postBuild = ''
-    wrapProgram $out/bin/emacs \
-      --set DOOMLOCALDIR ${doomLocalDir}
-
-    wrapProgram "$out/bin/emacs-${lib.getVersion emacs}" \
-      --set DOOMLOCALDIR ${doomLocalDir}
-
-    wrapProgram $out/bin/emacsclient \
-      --set DOOMLOCALDIR ${doomLocalDir}
+    for exe in $out/bin/*; do
+      wrapProgram "$exe" --set DOOMLOCALDIR ${doomLocalDir}
+    done
 
     makeWrapper ${doom}/bin/doom $out/bin/doom \
       --set DOOMLOCALDIR ${doomLocalDir}
+
+    rm $out/share/applications/emacs.desktop
+    rm $out/share/applications/emacs-mail.desktop
   '';
 }
