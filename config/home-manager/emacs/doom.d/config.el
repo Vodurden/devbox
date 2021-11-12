@@ -83,6 +83,8 @@
   lsp-ui-sideline-show-hover nil
   lsp-ui-sideline-show-symbol nil)
 
+(setq projectile-files-cache-expire 5)
+
 (use-package! treemacs
   :config
   (setq treemacs-collapse-dirs 5
