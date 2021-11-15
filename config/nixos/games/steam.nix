@@ -29,4 +29,9 @@
   };
 
   programs.steam.enable = true;
+
+  primary-user.home-manager.home.packages = [
+    pkgs.protontricks
+    pkgs.gamenix
+  ];
 }
