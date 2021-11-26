@@ -19,6 +19,7 @@ in
     pkgs.binutils
     pkgs.du-dust
     pkgs.fd
+    pkgs.fzf
     pkgs.pandoc
     pkgs.procs
     pkgs.proselint
