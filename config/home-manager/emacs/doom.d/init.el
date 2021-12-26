@@ -94,7 +94,10 @@
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        lsp
-       magit             ; a git porcelain for Emacs
+
+       ;; TODO Re-enable when https://github.com/hlissner/doom-emacs/issues/5918 is resolved
+       ;;magit             ; a git porcelain for Emacs
+
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
