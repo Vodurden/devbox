@@ -31,6 +31,8 @@
     ../../home-manager/terminal/bash.nix
     ../../home-manager/terminal/termite.nix
 
+    ../../home-manager/programs
+
     ../../home-manager/emacs
     ../../home-manager/lang/csharp.nix
   ];
