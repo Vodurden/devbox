@@ -10,7 +10,6 @@ self: super: {
 
   minion = self.callPackage ../pkgs/minion {};
   clevo-indicator = self.callPackage ../pkgs/clevo-indicator {};
-  notion-so = self.callPackage ../pkgs/notion-so {};
 
   linux_testing_drm_next = self.callPackage ../pkgs/os-specific/linux/linux-testing-drm-next.nix {
     kernelPatches = [

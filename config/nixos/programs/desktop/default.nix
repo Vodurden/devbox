@@ -26,7 +26,6 @@ in
       pkgs.firefox
       pkgs.kdenlive
       pkgs.pinta
-      pkgs.obsidian
       pkgs.slack
       pkgs.speedcrunch
       pkgs.spideroak

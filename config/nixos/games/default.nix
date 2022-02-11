@@ -8,8 +8,6 @@ in
 {
   inherit imports;
 
-  services.joycond.enable = true;
-
   primary-user.home-manager = {
     home.packages = [
       pkgs.lutris

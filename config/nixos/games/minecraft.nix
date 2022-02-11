@@ -7,6 +7,6 @@
   };
 
   primary-user.home-manager = {
-    home.packages = [ pkgs.multimc ];
+    home.packages = [ pkgs.polymc ];
   };
 }
