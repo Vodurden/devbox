@@ -1,0 +1,12 @@
+diff --git a/FFXIV_Modding_Tool/FFXIV_Modding_Tool.csproj b/FFXIV_Modding_Tool/FFXIV_Modding_Tool.csproj
+index aaebb25..957de88 100644
+--- a/FFXIV_Modding_Tool/FFXIV_Modding_Tool.csproj
++++ b/FFXIV_Modding_Tool/FFXIV_Modding_Tool.csproj
+@@ -19,6 +19,7 @@
+     <Reference Include="xivModdingFramework">
+       <HintPath>references/xivModdingFramework.dll</HintPath>
+     </Reference>
++    <PackageReference Include="xivModdingFramework" Version="*" Condition=" '$(ContinuousIntegrationBuild)'=='true' "/>
+     <MyResourceFiles Include="references\Resources\SQL\*"/>
+   </ItemGroup>
+   <Target Name="CopyBuildFiles" AfterTargets="AfterBuild">

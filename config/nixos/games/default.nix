@@ -12,6 +12,7 @@ in
     home.packages = [
       pkgs.lutris
       pkgs.minion
+      pkgs.ffmt
     ];
   };
 }

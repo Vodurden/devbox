@@ -30,5 +30,7 @@ self: super: {
   code-shim = self.callPackage ../pkgs/code-shim {};
   mesa-latest = self.callPackage ../pkgs/mesa.nix {};
 
+  ffmt = self.callPackage ../pkgs/ffmt {};
+
   gamenix = self.callPackage ../pkgs/gamenix {};
 }
