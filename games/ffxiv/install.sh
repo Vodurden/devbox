@@ -63,7 +63,7 @@ winetricks --force vcrun2015
 
 
 echo "* XIVLauncher setup found?"
-XIV_LAUNCHER_VERSION="5.5.8"
+XIV_LAUNCHER_VERSION="6.1.19"
 XIV_LAUNCHER_SETUP_PATH="${INSTALL_DIR}/XIVLauncherSetup.nupkg"
 if [ -f "${XIV_LAUNCHER_SETUP_PATH}" ]; then
   echo "* Yes! XIVLauncher setup found at ${XIV_LAUNCHER_SETUP_PATH}. Skipping download. "
