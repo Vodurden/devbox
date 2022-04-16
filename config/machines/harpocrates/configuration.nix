@@ -35,6 +35,8 @@
 
     ../../home-manager/emacs
     ../../home-manager/lang/csharp.nix
+
+    ../../home-manager/services/go-to-bed.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
