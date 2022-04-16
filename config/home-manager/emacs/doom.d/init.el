@@ -96,7 +96,7 @@
        lsp
 
        ;; TODO Re-enable when https://github.com/hlissner/doom-emacs/issues/5918 is resolved
-       ;;magit             ; a git porcelain for Emacs
+       magit             ; a git porcelain for Emacs
 
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
