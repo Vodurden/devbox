@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Bash-my-AWS provides simple but powerful CLI commands for managing AWS resources";
     homepage = https://bash-my-aws.org/;
-    license = licenses.mit;
+    license = licenses.gpl3;
     platforms = platforms.linux ++ platforms.darwin;
   };
 }
