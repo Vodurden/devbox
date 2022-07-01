@@ -12,6 +12,7 @@
 
   fonts.fontconfig.enable = true;
 
+  home.stateVersion = "21.05";
   home.sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
 
   xdg.configFile."nix/nix.conf".source = ../nix/nix.conf;

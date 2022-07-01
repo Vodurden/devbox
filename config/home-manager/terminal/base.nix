@@ -17,7 +17,7 @@ in
 
   home.packages = [
     pkgs.bottom
-    pkgs.ag
+    pkgs.silver-searcher
     pkgs.bat
     pkgs.binutils
     pkgs.du-dust
