@@ -45,7 +45,6 @@
   #
   # Non-root is handled by the home-manager base config
   home-manager.users.root = { config, ... }: {
-    home.stateVersion = "21.05";
     home.activation.eliminateChannelsRoot = config.lib.dag.entryAfter [ "writeBoundary" ] ''
       rm -f $HOME/.nix-channels
 

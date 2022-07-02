@@ -7,7 +7,7 @@ let
 
   mkDoom = pkgs.callPackage ./mkDoom.nix {};
   myDoom = mkDoom {
-    emacs = (pkgs.emacsPackagesFor pkgs.emacsNativeComp).emacsWithPackages (epkgs: [
+    emacs = (pkgs.emacsPackagesFor pkgs.emacsGcc).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]);
 

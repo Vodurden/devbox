@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
       exec = "minion";
       comment = "MMO Addon manager for Elder Scrolls Online and World of Warcraft";
       desktopName = "Minion";
-      categories = ["Game"];
+      categories = "Game;";
     })
   ];
 
