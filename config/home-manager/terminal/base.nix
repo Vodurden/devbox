@@ -17,7 +17,6 @@ in
 
   home.packages = [
     pkgs.bottom
-    pkgs.ag
     pkgs.bat
     pkgs.binutils
     pkgs.du-dust
@@ -26,6 +25,7 @@ in
     pkgs.pandoc
     pkgs.procs
     pkgs.proselint
+    pkgs.ripgrep
     pkgs.lsof
     pkgs.s-tui
     pkgs.tokei
