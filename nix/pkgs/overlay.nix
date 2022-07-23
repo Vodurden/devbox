@@ -32,5 +32,7 @@ self: super: {
 
   ffmt = self.callPackage ../pkgs/ffmt {};
 
+  sunshine = self.callPackage ../pkgs/sunshine {};
+
   gamenix = self.callPackage ../pkgs/gamenix {};
 }
