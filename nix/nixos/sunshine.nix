@@ -34,17 +34,9 @@ in
   config = mkIf cfg.enable {
     services.udev.packages = [cfg.package];
 
-    services.avahi = {
-      enable = true;
-      nssmdns = true;
-      publish.enable = true;
-      publish.addresses = true;
-      publish.workstation = true;
-    };
-
     security.wrappers.sunshine = {
       source = "${cfg.package}/bin/sunshine";
-      capabilities = "cap_sys_admin=+pei";
+      capabilities = "cap_sys_admin=+p";
       owner = "root";
       group = "root";
     };

@@ -36,7 +36,7 @@
     ../../home-manager/emacs
     ../../home-manager/lang/csharp.nix
 
-    ../../home-manager/services/go-to-bed.nix
+    # ../../home-manager/services/go-to-bed.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -52,6 +52,13 @@
   };
 
   services.joycond.enable = true;
+
+  # TODO: Testing, move elsewhere
+  services.sunshine = {
+    enable = true;
+    user = "jake";
+    group = "users";
+  };
 
   networking.hostName = "harpocrates"; # Define your hostname.
 
