@@ -27,10 +27,16 @@
 
   primary-user.home-manager = {
     home.packages = [
+      pkgs.vulkan-loader
       pkgs.vulkan-tools
       pkgs.glxinfo
     ];
   };
 
   primary-user.extraGroups = [ "video" ];
+
+  # Workaround for https://gitlab.freedesktop.org/drm/amd/-/issues/1500
+  services.udev.extraRules = ''
+    KERNEL=="card0", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
+  '';
 }
