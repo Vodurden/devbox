@@ -22,14 +22,11 @@
   ];
 
   primary-user.home-manager = {
+    imports = [ ./dconf.nix ];
+
     home.packages = [
       pkgs.gnome3.dconf-editor
+      pkgs.dconf2nix
     ];
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        enable-hot-corners = false;
-      };
-    };
   };
 }
