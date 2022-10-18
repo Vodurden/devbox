@@ -12,7 +12,7 @@ buildDotnetModule rec {
     owner = "fosspill";
     repo = "FFXIV_Modding_Tool";
     rev = "v${version}";
-    sha256 = "sha256-5At4KSl2Y6qyQ+AqaZeLBIuS4k9SgdqfzuUFTbY8zyw=";
+    sha256 = "sha256-dqYWKRLUcEvKob3L3Tujy/pqwFmPJ3F8uNyUdBvBh0c=";
   };
 
   # Generated with `nix-build -E "with import <nixpkgs> {}; (callPackage ./. {}).passthru.fetch-deps"`
