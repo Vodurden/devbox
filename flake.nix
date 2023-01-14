@@ -14,15 +14,16 @@
     url = "github:hlissner/doom-emacs";
     flake = false;
   };
+  inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
 
   outputs = inputs@{ self, nixpkgs, home-manager, nur, emacs-overlay, declarative-cachix, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./config/machines/harpocrates/configuration.nix
-        home-manager.nixosModules.home-manager
-        declarative-cachix.nixosModules.declarative-cachix
-        {
+        home-manager.nixosModules.home-manager 
+        declarative-cachix.nixosModules.declarative-cachix {
           nixpkgs.overlays = [
             (import ./nix/pkgs/overlay.nix)
             nur.overlay

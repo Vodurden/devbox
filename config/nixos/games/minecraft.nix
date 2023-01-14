@@ -6,7 +6,6 @@
     allowedUDPPorts = [ 25565 ];
   };
 
-  primary-user.home-manager = {
-    home.packages = [ pkgs.polymc ];
-  };
+  # TODO: Find something to replace polymc
+  primary-user.home-manager = { };
 }

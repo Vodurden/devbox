@@ -60,6 +60,37 @@
     group = "users";
   };
 
+  # Temporary FTP
+  # services.vsftpd = {
+  #  enable = true;
+  #  # forceLocalLoginsSSL = true;
+  #  # forceLocalDataSSL = true;
+  #  userlistDeny = false;
+  #  localUsers = true;
+  #  userlist = ["jake"];
+  #  rsaCertFile = "/var/vsftpd/vsftpd.pem";
+  # };
+#   services.vsftpd = {
+#     enable = true;
+# #   cannot chroot && write
+# #    chrootlocalUser = true;
+#     writeEnable = true;
+#     localUsers = true;
+#     userlist = [ "jake" ];
+#     userlistEnable = true;
+#     extraConfig = ''
+#       pasv_enable=YES
+#       pasv_min_port=2121
+#       pasv_max_port=2142
+#     '';
+#   };
+#   networking.firewall = {
+#     allowedTCPPorts = [ 20 21 990 ];
+#     allowedUDPPorts = [ 20 21 990 ];
+#     allowedTCPPortRanges = [{ from = 2121; to = 2142; }];
+#     allowedUDPPortRanges = [{ from = 2121; to = 2142; }];
+#   };
+
   networking.hostName = "harpocrates"; # Define your hostname.
 
   networking.useDHCP = false;

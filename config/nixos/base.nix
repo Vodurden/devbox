@@ -3,6 +3,7 @@
 {
   imports = [
     ../../nix/nixos
+    ./versions.nix
   ];
 
   # Internationalisation

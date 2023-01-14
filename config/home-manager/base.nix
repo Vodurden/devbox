@@ -3,6 +3,7 @@
 {
   imports = [
     ../../nix/home-manager
+    inputs.nix-doom-emacs.hmModule
   ];
 
   programs.home-manager = {

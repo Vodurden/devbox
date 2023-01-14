@@ -4,7 +4,10 @@
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom.d;
+    emacsPackage = pkgs.emacsNativeComp;
   };
+
+  services.emacs.enable = true;
 
   home.packages = [
     pkgs.source-code-pro
