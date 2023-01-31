@@ -5,13 +5,15 @@
     ./hardware-configuration.nix
 
     ../../nixos/base.nix
-    ../../nixos/hardware/tools.nix
+    ../../nixos/hardware/keyboard-g512
     ../../nixos/hardware/audio.nix
     ../../nixos/hardware/bluetooth.nix
-    ../../nixos/hardware/keyboard-g512
     ../../nixos/hardware/network.nix
+    ../../nixos/hardware/nintendo.nix
     ../../nixos/hardware/storage.nix
+    ../../nixos/hardware/tools.nix
     ../../nixos/hardware/video-amd.nix
+    ../../nixos/hardware/xbox.nix
 
     ../../nixos/programs
     ../../nixos/games
@@ -50,8 +52,6 @@
       preLVM = true;
     };
   };
-
-  services.joycond.enable = true;
 
   # TODO: Testing, move elsewhere
   services.sunshine = {
