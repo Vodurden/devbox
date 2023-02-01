@@ -17,6 +17,13 @@ let
         glide-close-effect = false;
       };
     }
+    {
+      package = pkgs.gnomeExtensions.compiz-windows-effect;
+      dconf = {
+        resize-effect = true;
+        maximize-effect = false;
+      };
+    }
   ];
 
   gnomeExtensionsDconf = pkgs.lib.mkMerge (map (ext:
