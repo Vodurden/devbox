@@ -9,10 +9,7 @@
   };
   inputs.nur.url = github:nix-community/NUR;
   inputs.emacs-overlay.url = github:nix-community/emacs-overlay;
-  inputs.declarative-cachix = {
-    url = github:jonascarpay/declarative-cachix;
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  inputs.declarative-cachix.url = github:jonascarpay/declarative-cachix;
   inputs.nix-doom-emacs = {
     url = "github:nix-community/nix-doom-emacs";
     inputs.nixpkgs.follows = "nixpkgs";

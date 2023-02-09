@@ -56,16 +56,17 @@
     "vm.max_map_count" = 1048576; # Steam Deck sets this high, it helps some games not crash
   };
 
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "8192"; # Default is 1024, but some games hit this limit so lets bump it up a bit
-  }];
+  security.pam.loginLimits = [
+    { domain = "*"; item = "nofile"; type = "soft"; value = "524288"; }
+    { domain = "*"; item = "nofile"; type = "hard"; value = "524288"; }
+  ];
 
-  # Workaround for ulimit setting bug
-  # See: https://github.com/NixOS/nixpkgs/issues/159964#issuecomment-1252682060
-  systemd.services."user@1000".serviceConfig.LimitNOFILE = "8192";
+  systemd.extraConfig = ''
+    DefaultLimitNOFILE=524288
+  '';
+  systemd.user.extraConfig = ''
+    DefaultLimitNOFILE=524288
+  '';
 
   # TODO: Testing, move elsewhere
   services.sunshine = {
