@@ -15,7 +15,7 @@ buildDotnetModule rec {
   nugetDeps = ./xivModdingFramework-deps.nix;
 
   dotnet-sdk = dotnetCorePackages.sdk_3_1;
-  dotnet-runtime = dotnetCorePackages.runtime_5_0;
+  dotnet-runtime = dotnetCorePackages.runtime_6_0;
 
   projectFile = [
     "xivModdingFramework/xivModdingFramework.csproj"
