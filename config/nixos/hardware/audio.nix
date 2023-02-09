@@ -6,7 +6,7 @@
     home.packages = [
       pkgs.alsa-utils
       pkgs.pulseaudio # for pactl
-      pkgs.helvum
+      # pkgs.helvum
       pkgs.pavucontrol
       pkgs.easyeffects
     ];

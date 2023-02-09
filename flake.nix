@@ -1,21 +1,26 @@
 {
   description = "My development environment";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
   inputs.home-manager = {
-    url = github:nix-community/home-manager;
+    url = github:nix-community/home-manager/release-22.11;
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.nur.url = github:nix-community/NUR;
   inputs.emacs-overlay.url = github:nix-community/emacs-overlay;
-  inputs.declarative-cachix.url = github:jonascarpay/declarative-cachix;
+  inputs.declarative-cachix = {
+    url = github:jonascarpay/declarative-cachix;
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  inputs.nix-doom-emacs = {
+    url = "github:nix-community/nix-doom-emacs";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   inputs.doom-emacs = {
     url = "github:hlissner/doom-emacs";
     flake = false;
   };
-  inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-
 
   outputs = inputs@{ self, nixpkgs, home-manager, nur, emacs-overlay, declarative-cachix, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem {
