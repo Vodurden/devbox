@@ -7,5 +7,9 @@
   };
 
   # TODO: Find something to replace polymc
-  primary-user.home-manager = { };
+  primary-user.home-manager = {
+    home.packages = [
+      pkgs.prismlauncher
+    ];
+  };
 }
