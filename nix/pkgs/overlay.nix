@@ -1,6 +1,4 @@
 self: super: {
-
-
   tuxedo-cc-wmi = self.callPackage ../pkgs/tuxedo-cc-wmi {};
   tuxedo-control-center = self.callPackage ../pkgs/tuxedo-control-center {};
   g810-led = self.callPackage ../pkgs/g810-led {};
@@ -37,4 +35,6 @@ self: super: {
   sunshine = self.callPackage ../pkgs/sunshine {};
 
   gamenix = self.callPackage ../pkgs/gamenix {};
+
+  plymouth-adi1090x = self.callPackage ./plymouth-adi1090x {};
 }

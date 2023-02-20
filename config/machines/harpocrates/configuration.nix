@@ -23,6 +23,7 @@
 
     ../../nixos/ui/gnome
     ../../nixos/ui/fonts.nix
+    ../../nixos/ui/plymouth.nix
   ];
 
   primary-user.home-manager.imports = [
