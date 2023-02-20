@@ -40,7 +40,17 @@ in
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+
+    displayManager.autoLogin = {
+      enable = true;
+      user = "jake";
+    };
   };
+
+  # Workaround to prevent almost-instant logout after auto-login
+  # See: https://github.com/NixOS/nixpkgs/issues/103746
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   services.gnome.gnome-remote-desktop.enable = false;
 
