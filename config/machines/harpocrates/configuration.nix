@@ -20,6 +20,7 @@
 
     ../../nixos/services/duplicati.nix
     ../../nixos/services/syncthing.nix
+    ../../nixos/services/warpinator.nix
 
     ../../nixos/ui/gnome
     ../../nixos/ui/fonts.nix
