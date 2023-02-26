@@ -24,6 +24,22 @@ let
         maximize-effect = false;
       };
     }
+    {
+      package = pkgs.gnomeExtensions.logo-menu;
+      dconf = {
+        menu-button-icon-image = 44; # NixOS Logo
+        menu-button-icon-size = 22;
+        menu-button-terminal = "termite";
+      };
+    }
+    {
+      package = pkgs.gnomeExtensions.rounded-window-corners;
+      dconf = {};
+    }
+    {
+      package = pkgs.gnomeExtensions.vitals;
+      dconf = {};
+    }
   ];
 
   gnomeExtensionsDconf = pkgs.lib.mkMerge (map (ext:
@@ -62,6 +78,7 @@ in
   environment.systemPackages = [
     pkgs.qt5.qtbase
     pkgs.qt5.qtwayland
+    pkgs.gnome.gnome-tweaks
   ];
 
   primary-user.home-manager = {
@@ -72,11 +89,24 @@ in
       pkgs.dconf2nix
     ] ++ map (ext: ext.package) gnomeExtensions;
 
+    gtk.enable = true;
+    gtk.theme = { name = "Catppuccin-Dark"; package = pkgs.catppuccin-gtk; };
+    gtk.iconTheme = { name = "Tela-circle-dark"; package = pkgs.tela-circle-icon-theme; };
+    gtk.gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk.gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+
     # Enable our gnome extensions
+    dconf.enable = true;
     dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = false;
-        enabled-extensions = map (ext: ext.package.extensionUuid) gnomeExtensions;
+        enabled-extensions = map (ext: ext.package.extensionUuid) gnomeExtensions ++ [
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+        ];
       };
     } // gnomeExtensionsDconf;
   };
