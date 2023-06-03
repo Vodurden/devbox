@@ -21,6 +21,7 @@ in
     pkgs.binutils
     pkgs.du-dust
     pkgs.fd
+    pkgs.file
     pkgs.fzf
     pkgs.pandoc
     pkgs.procs

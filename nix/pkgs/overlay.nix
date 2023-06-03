@@ -31,6 +31,7 @@ self: super: {
   mesa-latest = self.callPackage ../pkgs/mesa.nix {};
 
   ffmt = self.callPackage ../pkgs/ffmt {};
+  fflogs-uploader = self.callPackage ../pkgs/fflogs-uploader {};
 
   sunshine = self.callPackage ../pkgs/sunshine {};
 

@@ -2,7 +2,10 @@
 
 {
   primary-user.home-manager = {
-    home.packages = [ pkgs.xivlauncher ];
+    home.packages = [
+      pkgs.xivlauncher
+      pkgs.fflogs-uploader
+    ];
   };
 
   ### Additional steps for getting IINACT running
