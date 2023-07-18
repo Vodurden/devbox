@@ -22,7 +22,6 @@ in
       pkgs.audacity
       pkgs.calibre
       pkgs.drawio
-      # pkgs.discord -- broken, don't care
       pkgs.firefox
       pkgs.kdenlive
       pkgs.pinta
