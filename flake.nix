@@ -1,10 +1,10 @@
 {
   description = "My development environment";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
   inputs.home-manager = {
-    url = github:nix-community/home-manager/release-22.11;
+    url = github:nix-community/home-manager/release-23.05;
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.nur.url = github:nix-community/NUR;
@@ -18,8 +18,10 @@
     url = "github:hlissner/doom-emacs";
     flake = false;
   };
+  inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, emacs-overlay, declarative-cachix, ... }: {
+
+  outputs = inputs@{ self, nixpkgs, home-manager, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

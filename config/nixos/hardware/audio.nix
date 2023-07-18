@@ -18,18 +18,5 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    config.pipewire = {
-      "context.properties" = {
-        "log.level" = 3;
-      };
-
-    };
-
-    config.pipewire-pulse = {
-      "context.properties" = {
-        "log.level" = 3;
-      };
-    };
   };
 }

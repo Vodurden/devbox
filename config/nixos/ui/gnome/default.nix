@@ -71,9 +71,9 @@ in
   services.gnome.gnome-remote-desktop.enable = false;
 
   # Support QT apps but make them look like Gnome apps
-  qt5.enable = true;
-  qt5.platformTheme = "gnome";
-  qt5.style = "adwaita";
+  qt.enable = true;
+  qt.platformTheme = "gnome";
+  qt.style = "adwaita";
 
   environment.systemPackages = [
     pkgs.qt5.qtbase
