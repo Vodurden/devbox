@@ -13,8 +13,8 @@ in
 appimageTools.wrapType2 {
   name = "fflogs-uploader";
   src = fetchurl {
-    url = "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v6.0.2/FF-Logs-Uploader-6.0.2.AppImage";
-    hash = "sha256-BmG3s9JVicWM1DdEbK+BPeIawMKJ9fdU3yV9NtRNfuc=";
+    url = "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v7.0.121/fflogs-v7.0.121.AppImage";
+    hash = "sha256-+2x4SyHA2MsXCJ7GuOFdYegMWE3Ede5MSQnJio2hudY=";
   };
 
   extraInstallCommands = ''
