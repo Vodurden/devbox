@@ -14,6 +14,7 @@
     defaultLocale = "en_AU.UTF-8";
   };
 
+  # Australia/Sydney
   time.timeZone = "Australia/Sydney";
 
   environment.systemPackages = with pkgs; [

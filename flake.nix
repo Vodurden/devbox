@@ -2,6 +2,7 @@
   description = "My development environment";
 
   inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
+  inputs.nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
   inputs.home-manager = {
     url = github:nix-community/home-manager/release-23.05;
@@ -21,8 +22,8 @@
   inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
 
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
-    nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
+    nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         ./config/machines/harpocrates/configuration.nix
@@ -30,12 +31,17 @@
         declarative-cachix.nixosModules.declarative-cachix {
           nixpkgs.overlays = [
             (import ./nix/pkgs/overlay.nix)
+            (self: super: {
+              unstable = import nixpkgs-unstable { system = self.system; config.allowUnfree = true; };
+            })
             nur.overlay
             emacs-overlay.overlay
           ];
         }
       ];
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+      };
     };
 
     homeConfigurations."jakew" = home-manager.lib.homeManagerConfiguration {
