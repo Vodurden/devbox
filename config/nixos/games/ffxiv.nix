@@ -3,7 +3,7 @@
 {
   primary-user.home-manager = {
     home.packages = [
-      pkgs.xivlauncher
+      pkgs.unstable.xivlauncher
       pkgs.fflogs-uploader
     ];
   };

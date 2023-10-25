@@ -32,6 +32,7 @@ self: super: {
 
   ffmt = self.callPackage ../pkgs/ffmt {};
   fflogs-uploader = self.callPackage ../pkgs/fflogs-uploader {};
+  ffxiv-cexporter = self.callPackage ../pkgs/ffxiv-cexporter {};
 
   sunshine = self.callPackage ../pkgs/sunshine {};
 
