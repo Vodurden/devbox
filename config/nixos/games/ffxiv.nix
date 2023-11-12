@@ -3,7 +3,7 @@
 {
   primary-user.home-manager = {
     home.packages = [
-      pkgs.unstable.xivlauncher
+      pkgs.xivlauncher
       pkgs.fflogs-uploader
     ];
   };
@@ -36,12 +36,12 @@
   })];
 
   # steam-run needs to include gnutls for iinact to work
-  programs.steam.package = pkgs.steam.override {
-    extraLibraries = pkgs:
-      if pkgs.stdenv.hostPlatform.is64bit
-      then [ config.hardware.opengl.package ] ++ config.hardware.opengl.extraPackages ++ [ pkgs.gnutls ]
-      else [ config.hardware.opengl.package32 ] ++ config.hardware.opengl.extraPackages32 ++ [ pkgs.gnutls ];
-  };
+  # programs.steam.package = pkgs.steam.override {
+  #   extraLibraries = pkgs:
+  #     if pkgs.stdenv.hostPlatform.is64bit
+  #     then [ config.hardware.opengl.package ] ++ config.hardware.opengl.extraPackages ++ [ pkgs.gnutls ]
+  #     else [ config.hardware.opengl.package32 ] ++ config.hardware.opengl.extraPackages32 ++ [ pkgs.gnutls ];
+  # };
 
   security.wrappers.rpcapd = {
     source = "${pkgs.rpcapd}/bin/rpcapd";
