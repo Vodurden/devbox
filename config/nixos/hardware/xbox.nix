@@ -4,6 +4,12 @@
   hardware.xone.enable = true;
   hardware.xpadneo.enable = true;
 
+  primary-user.home-manager.home.packages = with pkgs; [
+    pkgs.evtest
+    pkgs.jstest-gtk
+    pkgs.linuxConsoleTools # for evdev-joystick
+  ];
+
   boot.kernelModules = [
     "xone-wired"
     # "xone-dongle"
