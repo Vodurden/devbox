@@ -41,6 +41,8 @@ in
     });
   })];
 
+  environment.variables.GHIDRA_HOME=pkgs.ghidra;
+
   environment.systemPackages = [
     pkgs.ghidra
     (pkgs.unstable.cutter.withPlugins (plugins: [plugins.rz-ghidra]))
