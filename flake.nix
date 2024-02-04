@@ -21,7 +21,6 @@
   };
   inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
 
-
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
