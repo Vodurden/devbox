@@ -3,7 +3,15 @@
 {
   primary-user.home-manager = {
     home.packages = [
-      pkgs.xivlauncher
+      # When TZ is set XIV will display incorrect Local Time and Server Time
+      (pkgs.xivlauncher.override {
+        steam = pkgs.steam.override {
+          extraProfile = ''
+            unset TZ
+          '';
+        };
+      })
+
       pkgs.fflogs-uploader
     ];
   };
