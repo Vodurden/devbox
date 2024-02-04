@@ -34,6 +34,7 @@
       ubuntu_font_family
       ttf_bitstream_vera
       emacs-all-the-icons-fonts
+      nerdfonts
     ];
   };
 }

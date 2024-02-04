@@ -1,12 +1,24 @@
 { config, pkgs, lib, inputs, ... }:
 
+# Parts of this are stolen from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
+#
+# We do this because nix-doom-emacs is defunct, so lets copy the author of
+# doom emacs instead.
+let
+  doomRepoUrl = "https://github.com/doomemacs/doomemacs";
+in
 {
-  programs.doom-emacs = {
+  programs.emacs = {
     enable = true;
-    doomPrivateDir = ./doom.d;
+    extraPackages = epkgs: with epkgs; [
+      vterm
+    ];
   };
-
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+    startWithUserSession = "graphical";
+  };
 
   home.packages = [
     pkgs.source-code-pro
@@ -41,4 +53,16 @@
       "annotations.misc" = false;
     };
   };
+
+  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+
+  home.activation.installDoomm = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -d "${config.xdg.configHome}/emacs" ]; then
+          git clone --depth=1 --single-branch "${doomRepoUrl}" "${config.xdg.configHome}/emacs"
+      fi
+  '';
+
+  xdg.configFile."doom".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/devbox/config/home-manager/emacs/doom.d";
 }
