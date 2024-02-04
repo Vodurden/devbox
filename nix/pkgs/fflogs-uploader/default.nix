@@ -10,11 +10,12 @@ let
   };
 in
 
-appimageTools.wrapType2 {
+appimageTools.wrapType2 rec {
   name = "fflogs-uploader";
+  version = "8.0.0";
   src = fetchurl {
-    url = "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v7.0.121/fflogs-v7.0.121.AppImage";
-    hash = "sha256-+2x4SyHA2MsXCJ7GuOFdYegMWE3Ede5MSQnJio2hudY=";
+    url = "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v${version}/fflogs-v${version}.AppImage";
+    sha256 = "sha256-z8XQWr3uv95aDfdisXAhh02c4heV5VBUeZjvtlSXHs0=";
   };
 
   extraInstallCommands = ''
