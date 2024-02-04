@@ -2,7 +2,7 @@
 
 {
   hardware.xone.enable = true;
-  hardware.xpadneo.enable = true;
+  # hardware.xpadneo.enable = true; # Overrides deadzones
 
   primary-user.home-manager.home.packages = with pkgs; [
     pkgs.evtest
