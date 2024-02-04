@@ -34,6 +34,8 @@ self: super: {
   fflogs-uploader = self.callPackage ../pkgs/fflogs-uploader {};
   ffxiv-cexporter = self.callPackage ../pkgs/ffxiv-cexporter {};
 
+  server-pack-creator = self.callPackage ./server-pack-creator {};
+
   sunshine = self.callPackage ../pkgs/sunshine {};
 
   gamenix = self.callPackage ../pkgs/gamenix {};
