@@ -1,7 +1,7 @@
 { lib, buildDotnetModule, fetchFromGitHub, dotnetCorePackages }:
 
 buildDotnetModule rec {
-  pname = "ffxiv-cexporter";
+  pname = "FFXIVClientStructs-CExporter";
   version = "1.0.0";
 
   src = fetchFromGitHub {
