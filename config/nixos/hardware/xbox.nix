@@ -8,6 +8,7 @@
     pkgs.evtest
     pkgs.jstest-gtk
     pkgs.linuxConsoleTools # for evdev-joystick
+    pkgs.evdev-joystick-calibration
   ];
 
   boot.kernelModules = [
