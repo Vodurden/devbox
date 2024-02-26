@@ -7,7 +7,7 @@
     enable = true;
     matchBlocks = {
       "*" = {
-        identityFile = "~/.ssh/id_rsa";
+        identityFile = "~/.ssh/id_ed25519";
       };
     };
 
