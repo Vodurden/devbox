@@ -22,7 +22,7 @@ python3Packages.buildPythonApplication rec {
   src = pkgs.fetchFromGitHub {
     owner = "Vodurden";
     repo = "evdev-joystick-calibration";
-    rev = "9031aa7534be0c2595f3dfa617c364121f8920b8";
-    sha256 = "sha256-QD4UKzr4VkZaZwz7r4I5fQzCUDZPbEvvxDT+cXqI/r0=";
+    rev = "72b6ceb8d4be917f54f1ecb1bb6952e88144db01";
+    sha256 = "sha256-S9Y03xjFsM8+5i3++bUky+AyybAzUMx9Ny+DNNaz4U0=";
   };
 }
