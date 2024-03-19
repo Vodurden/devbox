@@ -36,8 +36,6 @@ self: super: {
 
   server-pack-creator = self.callPackage ./server-pack-creator {};
 
-  sunshine = self.callPackage ../pkgs/sunshine {};
-
   gamenix = self.callPackage ../pkgs/gamenix {};
 
   plymouth-adi1090x = self.callPackage ./plymouth-adi1090x {};
