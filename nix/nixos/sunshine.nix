@@ -53,7 +53,7 @@ in
 
     systemd.user.services.sunshine = mkIf cfg.enableAutostart {
       description = "Sunshine Gamestream Server for Moonlight";
-      wantedBy="graphical-session.target";
+      wantedBy = [ "graphical-session.target" ];
 
       serviceConfig = {
         ExecStart = "${pkgs.sunshine}/bin/sunshine";
