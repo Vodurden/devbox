@@ -4,7 +4,7 @@
   primary-user.home-manager = {
     home.packages = [
       # When TZ is set XIV will display incorrect Local Time and Server Time
-      (pkgs.xivlauncher.override {
+      (pkgs.xivlauncher-edge.override {
         steam = pkgs.steam.override {
           extraProfile = ''
             unset TZ

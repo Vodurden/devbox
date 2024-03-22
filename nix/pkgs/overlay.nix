@@ -41,4 +41,6 @@ self: super: {
   plymouth-adi1090x = self.callPackage ./plymouth-adi1090x {};
 
   evdev-joystick-calibration = self.callPackage ./evdev-joystick-calibration {};
+
+  xivlauncher-edge = self.callPackage ./xivlauncher-edge {};
 }
