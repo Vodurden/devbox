@@ -30,6 +30,8 @@
       pkgs.vulkan-loader
       pkgs.vulkan-tools
       pkgs.glxinfo
+      pkgs.radeon-profile
+      pkgs.xorg.xdriinfo
     ];
   };
 
