@@ -36,10 +36,8 @@
 , withUdev ? true
 , withTouch ? true
 , dotnet-sdk
-, dotnet-sdk_8
 , mono
 , dotnet-runtime
-, dotnet-runtime_8
 , callPackage
 }:
 
@@ -111,8 +109,8 @@ stdenv.mkDerivation rec {
     libxkbcommon
     alsa-lib
     mono
-    dotnet-sdk_8
-    dotnet-runtime_8
+    dotnet-sdk
+    dotnet-runtime
   ]
   ++ lib.optional withPulseaudio libpulseaudio
   ++ lib.optional withDbus dbus
