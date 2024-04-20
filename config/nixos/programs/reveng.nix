@@ -29,17 +29,18 @@ let
 in
 
 {
+  # This is broken in nix 23.11, fix later maybe
   # We need extra python packages in ghidra, but since they need to be in the nix
   # directory we hack it into the package directly
-  nixpkgs.overlays = [(self: super: {
-    ghidra = super.ghidra.overrideAttrs(oldAttrs: rec {
-      postFixup = oldAttrs.postFixup + ''
-      cp -r ${pkgs.python2.pkgs.anytree}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
-      cp -r ${pyyaml541}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
-      cp -r ${six116}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
-      '';
-    });
-  })];
+  # nixpkgs.overlays = [(self: super: {
+  #   ghidra = super.ghidra.overrideAttrs(oldAttrs: rec {
+  #     postFixup = oldAttrs.postFixup + ''
+  #     cp -r ${pkgs.python2.pkgs.anytree}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
+  #     cp -r ${pyyaml541}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
+  #     cp -r ${six116}/lib/python2.7/site-packages/* $out/lib/ghidra/Ghidra/Features/Python/data/jython-*/Lib/site-packages/
+  #     '';
+  #   });
+  # })];
 
   environment.variables.GHIDRA_HOME=pkgs.ghidra;
 

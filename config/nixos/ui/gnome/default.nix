@@ -90,8 +90,8 @@ in
     ] ++ map (ext: ext.package) gnomeExtensions;
 
     gtk.enable = true;
-    gtk.theme = { name = "Catppuccin-Dark"; package = pkgs.catppuccin-gtk; };
-    gtk.iconTheme = { name = "Tela-circle-dark"; package = pkgs.tela-circle-icon-theme; };
+    # gtk.theme = { name = "Catppuccin-Dark"; package = pkgs.catppuccin-gtk; };
+    # gtk.iconTheme = { name = "Tela-circle-dark"; package = pkgs.tela-circle-icon-theme; };
     gtk.gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };

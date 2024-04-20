@@ -1,20 +1,16 @@
 {
   description = "My development environment";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
   inputs.nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
   inputs.nixos-hardware.url = github:NixOS/nixos-hardware/master;
   inputs.home-manager = {
-    url = github:nix-community/home-manager/release-23.05;
+    url = github:nix-community/home-manager;
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.nur.url = github:nix-community/NUR;
   inputs.emacs-overlay.url = github:nix-community/emacs-overlay;
   inputs.declarative-cachix.url = github:jonascarpay/declarative-cachix;
-  inputs.nix-doom-emacs = {
-    url = "github:nix-community/nix-doom-emacs";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
   inputs.doom-emacs = {
     url = "github:hlissner/doom-emacs";
     flake = false;

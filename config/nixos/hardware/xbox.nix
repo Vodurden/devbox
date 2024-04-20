@@ -8,7 +8,7 @@
     pkgs.evtest
     pkgs.jstest-gtk
     pkgs.linuxConsoleTools # for evdev-joystick
-    pkgs.evdev-joystick-calibration
+    # pkgs.evdev-joystick-calibration -- broken on nixos 23.11, fix later maybe
   ];
 
   boot.kernelModules = [
