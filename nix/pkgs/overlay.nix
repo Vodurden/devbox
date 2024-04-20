@@ -42,4 +42,6 @@ self: super: {
   evdev-joystick-calibration = self.callPackage ./evdev-joystick-calibration {};
 
   xivlauncher-edge = self.callPackage ./xivlauncher-edge {};
+
+  godot4-mono = self.callPackage ./godot4-mono {};
 }
