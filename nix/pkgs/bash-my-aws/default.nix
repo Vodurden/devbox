@@ -1,13 +1,15 @@
-{ stdenv, lib}:
+{ stdenv, lib, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
-  version = "1.0.0";
+  version = "2024-04-16";
   baseName = "bash-my-aws";
   name = "${baseName}-${version}";
 
-  src = builtins.fetchGit {
-    url = git://github.com/bash-my-aws/bash-my-aws;
-    rev = "9a0c05f208aa2d1f17c51d30c2fecaba03c8850e";
+  src = fetchFromGitHub {
+    owner = "bash-my-aws";
+    repo = "bash-my-aws";
+    rev = "e2f24e7a38822bee3b8552ceb8f3a7d226f7343d";
+    sha256 = "sha256-3hP2g9PIKnEVfF167hnRniMC5EOZQyKccM5ZNaGTIZ0=";
   };
 
   phases = "installPhase";
