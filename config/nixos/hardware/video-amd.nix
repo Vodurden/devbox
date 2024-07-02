@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  hardware.opengl = {
+  hardware.enableRedistributableFirmware = true;
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = [
       pkgs.amdvlk
       pkgs.rocm-opencl-icd
@@ -15,7 +15,6 @@
       pkgs.driversi686Linux.amdvlk
     ];
   };
-  hardware.enableRedistributableFirmware = true;
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [

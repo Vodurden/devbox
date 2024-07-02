@@ -56,11 +56,11 @@ in
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+  };
 
-    displayManager.autoLogin = {
-      enable = true;
-      user = "jake";
-    };
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "jake";
   };
 
   # Workaround to prevent almost-instant logout after auto-login
