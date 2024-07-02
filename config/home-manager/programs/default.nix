@@ -7,9 +7,11 @@
     pkgs.mdf2iso
     pkgs.wiimms-iso-tools
     pkgs.gdb
-    pkgs.godot4-mono
     (inputs.replugged-nix-flake.lib.makeDiscordPlugged {
       inherit pkgs;
     })
+
+    pkgs.godot4-mono
+    pkgs.dotnet-sdk_8 # Needed for godot4-mono to work
   ];
 }
