@@ -70,13 +70,6 @@
     DefaultLimitNOFILE=524288
   '';
 
-  # TODO: Testing, move elsewhere
-  services.sunshine = {
-    enable = true;
-    user = "jake";
-    group = "users";
-  };
-
   # Temporary FTP
   # services.vsftpd = {
   #  enable = true;

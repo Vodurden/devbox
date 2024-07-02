@@ -27,7 +27,7 @@
   services.lorri.enable = true;
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     extraOptions = builtins.readFile ../nix/nix.conf;
     registry.nixpkgs.flake = inputs.nixpkgs;
   };
