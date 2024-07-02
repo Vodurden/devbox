@@ -28,7 +28,7 @@ in
     pkgs.python3
 
     # for doom module: nix
-    pkgs.nixfmt
+    pkgs.nixfmt-classic
 
     # for doom module: sh
     pkgs.shellcheck
