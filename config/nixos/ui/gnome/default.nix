@@ -78,14 +78,14 @@ in
   environment.systemPackages = [
     pkgs.qt5.qtbase
     pkgs.qt5.qtwayland
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-tweaks
   ];
 
   primary-user.home-manager = {
     imports = [ ./dconf.nix ];
 
     home.packages = [
-      pkgs.gnome3.dconf-editor
+      pkgs.dconf-editor
       pkgs.dconf2nix
     ] ++ map (ext: ext.package) gnomeExtensions;
 
