@@ -10,6 +10,7 @@
     ../../nixos/hardware/bluetooth.nix
     ../../nixos/hardware/network.nix
     ../../nixos/hardware/nintendo.nix
+    ../../nixos/hardware/rgb.nix
     ../../nixos/hardware/storage.nix
     ../../nixos/hardware/tools.nix
     ../../nixos/hardware/video-amd.nix

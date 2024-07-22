@@ -12,7 +12,6 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     packages = with pkgs; [
-      emojione
       etBook
       noto-fonts
       noto-fonts-cjk
