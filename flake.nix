@@ -17,11 +17,32 @@
   };
   inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         ./config/machines/harpocrates/configuration.nix
+        home-manager.nixosModules.home-manager 
+        declarative-cachix.nixosModules.declarative-cachix {
+          nixpkgs.overlays = [
+            (import ./nix/pkgs/overlay.nix)
+            (self: super: {
+              unstable = import nixpkgs-unstable { system = self.system; config.allowUnfree = true; };
+            })
+            nur.overlay
+            emacs-overlay.overlay
+          ];
+        }
+      ];
+      specialArgs = {
+        inherit inputs;
+      };
+    };
+
+    nixosConfigurations.oschon = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        ./config/machines/oschon/configuration.nix
         home-manager.nixosModules.home-manager 
         declarative-cachix.nixosModules.declarative-cachix {
           nixpkgs.overlays = [
