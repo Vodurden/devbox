@@ -5,6 +5,7 @@
 
   primary-user.home-manager.programs.ssh = {
     enable = true;
+    includes = [ "~/.ssh/config.private" ];
     matchBlocks = {
       "*" = {
         identityFile = "~/.ssh/id_ed25519";
