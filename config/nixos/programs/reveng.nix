@@ -65,7 +65,7 @@ in
 
   environment.systemPackages = [
     pkgs.ghidra
-    # (pkgs.unstable.cutter.withPlugins (plugins: [plugins.rz-ghidra])) # currently fails to build
+    (pkgs.unstable.cutter.withPlugins (plugins: [plugins.rz-ghidra]))
     pkgs.ffxiv-cexporter
     pkgs.pkgsCross.mingwW64.buildPackages.gdb
   ];
