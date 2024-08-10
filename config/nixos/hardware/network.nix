@@ -17,5 +17,8 @@
     expressvpn
   ];
 
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
+
   primary-user.extraGroups = [ "networkmanager" ];
 }
