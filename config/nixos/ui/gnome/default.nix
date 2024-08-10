@@ -79,6 +79,7 @@ in
     pkgs.qt5.qtbase
     pkgs.qt5.qtwayland
     pkgs.gnome-tweaks
+    pkgs.adwaita-qt
   ];
 
   primary-user.home-manager = {
