@@ -11,7 +11,7 @@ let
 in
 
 appimageTools.wrapType2 rec {
-  name = "fflogs-uploader";
+  pname = "fflogs-uploader";
   version = "8.12.19";
   src = fetchurl {
     url = "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v${version}/fflogs-v${version}.AppImage";

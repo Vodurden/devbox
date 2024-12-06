@@ -4,7 +4,9 @@
   # We need samba for ntlm_auth
   services.samba = {
     enable = true;
-    enableWinbindd = true;
+    winbindd = {
+      enable = true;
+    };
   };
 
   primary-user.home-manager = {

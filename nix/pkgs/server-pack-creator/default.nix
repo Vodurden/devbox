@@ -11,7 +11,7 @@ let
 in
 
 appimageTools.wrapType2 rec {
-  name = "ServerPackCreator";
+  pname = "ServerPackCreator";
   version = "5.1.11";
   src = fetchurl {
     url = "https://github.com/Griefed/ServerPackCreator/releases/download/${version}/ServerPackCreator-${version}-Portable-Linux-x86_64.AppImage";

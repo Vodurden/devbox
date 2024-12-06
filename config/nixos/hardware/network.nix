@@ -13,7 +13,7 @@
     # VPN support
     openconnect
     openssl
-    gnome3.networkmanager-openconnect
+    networkmanager-openconnect
     expressvpn
   ];
 

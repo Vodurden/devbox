@@ -14,7 +14,7 @@
     packages = with pkgs; [
       etBook
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       fira
       fira-code
@@ -33,7 +33,6 @@
       ubuntu_font_family
       ttf_bitstream_vera
       emacs-all-the-icons-fonts
-      nerdfonts
-    ];
+    ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
   };
 }

@@ -8,7 +8,7 @@
 
   primary-user.home-manager = {
     home.packages = [
-      pkgs.cinnamon.warpinator
+      pkgs.warpinator
     ];
   };
 }

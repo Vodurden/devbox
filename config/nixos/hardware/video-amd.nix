@@ -7,8 +7,6 @@
     enable32Bit = true;
     extraPackages = [
       pkgs.amdvlk
-      pkgs.rocm-opencl-icd
-      pkgs.rocm-opencl-runtime
     ];
 
     extraPackages32 = [

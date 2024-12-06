@@ -51,22 +51,22 @@ in
 {
   # We need extra python packages in ghidra, but since they need to be in the nix
   # directory we hack it into the package directly
-  nixpkgs.overlays = [(self: super: {
-    ghidra = super.ghidra.overrideAttrs(oldAttrs: rec {
-      postFixup = oldAttrs.postFixup + ''
-      cp -r ${anytree280}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
-      cp -r ${pyyaml541}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
-      cp -r ${six116}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
-      '';
-    });
-  })];
+  # nixpkgs.overlays = [(self: super: {
+  #   ghidra = super.ghidra.overrideAttrs(oldAttrs: rec {
+  #     postFixup = oldAttrs.postFixup + ''
+  #     cp -r ${anytree280}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
+  #     cp -r ${pyyaml541}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
+  #     cp -r ${six116}/lib/python2.7/site-packages/* "$out/lib/ghidra/Ghidra/Features/Python/data/jython-2.7.3/Lib/site-packages/"
+  #     '';
+  #   });
+  # })];
 
-  environment.variables.GHIDRA_HOME=pkgs.ghidra;
+  # environment.variables.GHIDRA_HOME=pkgs.ghidra;
 
   environment.systemPackages = [
-    pkgs.ghidra
-    (pkgs.unstable.cutter.withPlugins (plugins: [plugins.rz-ghidra]))
+    # pkgs.ghidra
+    # (pkgs.unstable.cutter.withPlugins (plugins: [plugins.rz-ghidra]))
     pkgs.ffxiv-cexporter
-    pkgs.pkgsCross.mingwW64.buildPackages.gdb
+    # pkgs.pkgsCross.mingwW64.buildPackages.gdb
   ];
 }

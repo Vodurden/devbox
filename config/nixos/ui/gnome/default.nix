@@ -33,10 +33,6 @@ let
       };
     }
     {
-      package = pkgs.gnomeExtensions.rounded-window-corners;
-      dconf = {};
-    }
-    {
       package = pkgs.gnomeExtensions.vitals;
       dconf = {};
     }
