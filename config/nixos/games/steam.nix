@@ -57,6 +57,6 @@
 
   primary-user.home-manager.home.packages = [
     pkgs.protontricks
-    pkgs.gamenix
+    pkgs.steam-proton-run
   ];
 }

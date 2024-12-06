@@ -35,7 +35,7 @@ self: super: {
 
   server-pack-creator = self.callPackage ./server-pack-creator {};
 
-  gamenix = self.callPackage ../pkgs/gamenix {};
+  steam-proton-run = self.callPackage ../pkgs/steam-proton-run {};
 
   plymouth-adi1090x = self.callPackage ./plymouth-adi1090x {};
 

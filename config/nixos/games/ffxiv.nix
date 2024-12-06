@@ -8,6 +8,7 @@
         steam = pkgs.steam.override {
           extraProfile = ''
             unset TZ
+            export CHROME_PATH=pkgs.chromium;
           '';
         };
       })
