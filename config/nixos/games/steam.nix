@@ -58,5 +58,6 @@
   primary-user.home-manager.home.packages = [
     pkgs.protontricks
     pkgs.steam-proton-run
+    pkgs.factorio_achievement_enabler
   ];
 }

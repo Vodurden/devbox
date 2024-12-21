@@ -33,6 +33,8 @@ self: super: {
   fflogs-uploader = self.callPackage ../pkgs/fflogs-uploader {};
   ffxiv-cexporter = self.callPackage ../pkgs/ffxiv-cexporter {};
 
+  factorio_achievement_enabler = self.callPackage ../pkgs/factorio_achievement_enabler {};
+
   server-pack-creator = self.callPackage ./server-pack-creator {};
 
   steam-proton-run = self.callPackage ../pkgs/steam-proton-run {};
