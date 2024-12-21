@@ -1,14 +1,23 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   primary-user.home-manager = {
     home.packages = [
       # When TZ is set XIV will display incorrect Local Time and Server Time
-      (pkgs.xivlauncher.override {
+      # (pkgs.xivlauncher.override {
+      #   steam = pkgs.steam.override {
+      #     extraProfile = ''
+      #       unset TZ
+      #       export CHROME_PATH=pkgs.chromium;
+      #     '';
+      #   };
+      # })
+
+      (inputs.nixos-xivlauncher-rb.packages.x86_64-linux.default.override {
+        useGameMode = true;
         steam = pkgs.steam.override {
           extraProfile = ''
             unset TZ
-            export CHROME_PATH=pkgs.chromium;
           '';
         };
       })
@@ -32,6 +41,7 @@
 
   # For IINACT we need rpcapd which means we need to build libpcap with "--enable-remote"
   environment.systemPackages = [
+    (inputs.umu.packages.${pkgs.system}.umu.override {version = "${inputs.umu.shortRev}"; truststore = true;})
     pkgs.rpcapd
     pkgs.gnutls
   ];
