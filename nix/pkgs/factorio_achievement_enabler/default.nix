@@ -5,13 +5,13 @@
 # Replace when available
 stdenv.mkDerivation rec {
   pname = "fae_linux";
-  version = "1.3.1";
+  version = "1.3.1-git";
 
   src = fetchFromGitHub {
     owner = "UnlegitSenpaii";
     repo = "FAE_Linux";
-    rev = "refs/tags/v${version}";
-    hash = "sha256-6+5ooYFYRImOJKrTApUCrpKiSYXbEugnG6rZeKmaGsY=";
+    rev = "85ed54b5b6566ce91b90374c9cbc81c3194592d1";   # Tag 1.3.1 doesn't have latest signature
+    hash = "sha256-Fetj6/owrtjGOhZvJO9pMHMPlXhqEESdcf1A1T2WXWM=";
   };
 
   nativeBuildInputs = [
