@@ -16,6 +16,14 @@
     flake = false;
   };
   inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
+  inputs.nixos-xivlauncher-rb = {
+    url = "github:drakon64/nixos-xivlauncher-rb";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  inputs.umu = {
+    url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem rec {
