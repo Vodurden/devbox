@@ -1,0 +1,1 @@
+/home/jake/devbox/config/home-manager/emacs/doom.d

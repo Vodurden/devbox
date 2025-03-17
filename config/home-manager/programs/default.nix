@@ -11,7 +11,9 @@
       inherit pkgs;
     })
 
+    pkgs.jujutsu
     pkgs.godot_4-mono
     pkgs.dotnet-sdk_8 # Needed for godot4-mono to work
+    pkgs.tiled
   ];
 }

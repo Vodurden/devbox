@@ -4,5 +4,6 @@
   home.packages = with pkgs; [
     mono6
     omnisharp-roslyn
+    jetbrains.rider
   ];
 }
