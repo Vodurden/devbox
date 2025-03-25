@@ -9,8 +9,10 @@
   hardware.amdgpu.opencl.enable = true;
   hardware.amdgpu.amdvlk.enable = true;
   hardware.amdgpu.amdvlk.support32Bit.enable = true;
+  hardware.amdgpu.initrd.enable = true;
 
   boot.initrd.kernelModules = [ "amdgpu" ];
+
   boot.kernelParams = [
     "amdgpu.noretry=0" # Attempting to prevent `[drm:amdgpu_dm_atomic_commit_tail [amdgpu]] *ERROR* Waiting for fences timed out!`
   ];

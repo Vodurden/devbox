@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   primary-user.home-manager = {
     home.packages = [

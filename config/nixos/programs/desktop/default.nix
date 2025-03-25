@@ -23,7 +23,6 @@ in
       pkgs.calibre
       pkgs.drawio
       pkgs.firefox
-      pkgs.kdenlive
       pkgs.pinta
       pkgs.slack
       pkgs.speedcrunch

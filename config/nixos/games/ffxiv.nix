@@ -41,7 +41,7 @@
 
   # For IINACT we need rpcapd which means we need to build libpcap with "--enable-remote"
   environment.systemPackages = [
-    (inputs.umu.packages.${pkgs.system}.umu.override {version = "${inputs.umu.shortRev}"; truststore = true;})
+    # (inputs.umu.packages.${pkgs.system}.umu.override {version = "${inputs.umu.shortRev}"; truststore = true;})
     pkgs.rpcapd
     pkgs.gnutls
   ];

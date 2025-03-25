@@ -15,7 +15,6 @@
     url = "github:hlissner/doom-emacs";
     flake = false;
   };
-  inputs.replugged-nix-flake.url = "github:LunNova/replugged-nix-flake";
   inputs.nixos-xivlauncher-rb = {
     url = "github:drakon64/nixos-xivlauncher-rb";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +24,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, emacs-overlay, declarative-cachix, replugged-nix-flake, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, emacs-overlay, declarative-cachix, ... }: {
     nixosConfigurations.harpocrates = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
@@ -37,7 +36,7 @@
             (self: super: {
               unstable = import nixpkgs-unstable { system = self.system; config.allowUnfree = true; };
             })
-            nur.overlay
+            nur.overlays.default
             emacs-overlay.overlay
           ];
         }

@@ -45,14 +45,6 @@
           keyutils
         ];
       };
-      gamescopeSession = {
-        enable = true;
-        args = [
-          "--rt"
-          "-f"
-          "-o 10"
-        ];
-      };
   };
 
   primary-user.home-manager.home.packages = [
